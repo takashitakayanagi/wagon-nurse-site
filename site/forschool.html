@@ -22,6 +22,15 @@
   .flow{ display:flex; flex-wrap:wrap; gap:0; margin-top:18px; }
   .flow-step{ background:var(--card-bg); border-radius:12px; padding:14px 16px; box-shadow:var(--card-shadow); font-size:13px; flex:1 1 150px; }
   .flow-arrow{ display:flex; align-items:center; justify-content:center; padding:0 8px; color:var(--ink-soft); font-size:18px; }
+  .svc-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:18px; }
+  @media (max-width:700px){ .svc-grid{ grid-template-columns:1fr; } }
+  .svc-card{ background:var(--card-bg); border-radius:14px; padding:18px 20px; box-shadow:var(--card-shadow); }
+  .svc-card .t{ font-weight:800; font-size:14.5px; color:var(--ink); }
+  .svc-card .d{ font-size:13px; color:var(--ink-soft); margin-top:8px; line-height:1.8; }
+  .contact-card{ display:flex; flex-wrap:wrap; gap:24px; }
+  .contact-card .col{ font-size:13.5px; }
+  .contact-card .k{ font-size:11.5px; color:var(--muted, var(--ink-soft)); font-weight:700; text-transform:uppercase; letter-spacing:.04em; }
+  .contact-card .v{ font-size:15px; font-weight:700; color:var(--ink); margin-top:3px; }
 </style>
 </head>
 <body>
@@ -60,6 +69,28 @@
   </section>
 
   <section>
+    <h2 class="hl">ご提供できるサービス</h2>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="t">講師派遣</div>
+        <div class="d">非常勤講師として、解剖生理学・生化学などの専門基礎分野から各看護学まで、対面での出張講義に対応します。</div>
+      </div>
+      <div class="svc-card">
+        <div class="t">WEB教室(団体導入)</div>
+        <div class="d">オンデマンド動画講義を学校単位でご購入いただけます。個人契約に加え、団体でのまとめ導入にも対応します。</div>
+      </div>
+      <div class="svc-card">
+        <div class="t">LIVE教室(団体導入)</div>
+        <div class="d">リアルタイム生配信講義を、クラス・学年単位でご案内できます。オンラインと対面の長所を両立した学習形態です。</div>
+      </div>
+      <div class="svc-card">
+        <div class="t">WAGON模擬試験(団体実施)</div>
+        <div class="d">マークシート式・本番同様の模試を学校単位で実施。科目ごと・難易度別に受験者の強み/課題を可視化し、指導に活用いただけます。基本無料でご案内しています。</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
     <h2 class="hl">非常勤講師請負サービスの流れ(例)</h2>
     <div class="flow" style="margin-top:18px;">
       <div class="flow-step">① フォームよりお問い合わせ・ご相談受付</div>
@@ -75,7 +106,15 @@
     <p style="margin-top:18px;">基本無料のWAGONオリジナル模試実施から講師派遣まで、お気軽にお問い合わせください。ご状況・受講者の人数・ご予算などにあわせて、サービス内容やカリキュラムをご提案させていただきます。</p>
   </section>
 
-  <a class="btn lg" href="/contact.html">お問い合わせはこちら &rsaquo;</a>
+  <section>
+    <h2 class="hl">お問い合わせ窓口</h2>
+    <div class="card contact-card" style="margin-top:18px;">
+      <div class="col"><div class="k">電話</div><div class="v">048-685-3316</div></div>
+      <div class="col"><div class="k">メール</div><div class="v">wagon@nurse-wagon.com</div></div>
+    </div>
+    <p style="margin-top:16px;">お電話・メールのほか、以下のフォームからもお問い合わせいただけます。</p>
+    <a class="btn lg" href="/contact.html">お問い合わせフォームはこちら &rsaquo;</a>
+  </section>
 </main>
 
 <footer class="site-footer">
