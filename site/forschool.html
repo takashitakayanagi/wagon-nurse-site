@@ -31,6 +31,13 @@
   .contact-card .col{ font-size:13.5px; }
   .contact-card .k{ font-size:11.5px; color:var(--muted, var(--ink-soft)); font-weight:700; text-transform:uppercase; letter-spacing:.04em; }
   .contact-card .v{ font-size:15px; font-weight:700; color:var(--ink); margin-top:3px; }
+  .svc-featured{
+    background:var(--card-bg); border:2px solid var(--free-border, #17C7C2); border-radius:16px;
+    padding:22px 24px; box-shadow:var(--card-shadow); margin-top:18px;
+  }
+  .svc-featured .badge{ display:inline-block; background:#E9FBF9; color:#0F8A85; font-size:11.5px; font-weight:800; padding:4px 12px; border-radius:999px; margin-bottom:10px; }
+  .svc-featured .t{ font-weight:800; font-size:18px; color:var(--ink); }
+  .svc-featured .d{ font-size:13.5px; color:var(--ink-soft); margin-top:10px; line-height:1.9; max-width:64ch; }
 </style>
 </head>
 <body>
@@ -70,21 +77,25 @@
 
   <section>
     <h2 class="hl">ご提供できるサービス</h2>
-    <div class="svc-grid">
+
+    <div class="svc-featured">
+      <span class="badge">WAGONが最も力を入れているサービス</span>
+      <div class="t">学内国家試験対策講義</div>
+      <p class="d">WAGONの講師が学内に伺い、対面で国家試験対策講義を実施します。特に、模試の平均点や正答率が伸び悩んでいる学年ほど、効果を実感いただきやすいサービスです。過去の国家試験データを分析し、正答率70%以上の頻出問題を確実に得点する力を、講師が直接、対面で指導します。「なんとなく難しい問題ばかり気にしてしまう」段階から抜け出せていない学年にこそ、ぜひご相談ください。</p>
+      <a class="btn lg" style="margin-top:16px;" href="/contact.html">学内講義について相談する &rsaquo;</a>
+    </div>
+
+    <div class="svc-grid" style="margin-top:14px;">
       <div class="svc-card">
-        <div class="t">① 学校カリキュラム請負</div>
+        <div class="t">学校カリキュラム請負</div>
         <div class="d">貴校の看護カリキュラムに合わせて、国家試験対策プランの設計から実施までを請け負います。既存カリキュラムへの組み込み方もあわせてご提案します。</div>
       </div>
       <div class="svc-card">
-        <div class="t">② 学内国家試験対策講義</div>
-        <div class="d">WAGONの講師が学内に伺い、対面で国家試験対策講義を実施します。解剖生理学・生化学などの専門基礎分野から各看護学まで対応します。</div>
-      </div>
-      <div class="svc-card">
-        <div class="t">③ 無料模試受験</div>
+        <div class="t">無料模試受験</div>
         <div class="d">マークシート式・本番同様のWAGONオリジナル模試を学校単位で実施(基本無料)。科目ごと・難易度別に受験者の強み/課題を可視化し、指導に活用いただけます。</div>
       </div>
       <div class="svc-card">
-        <div class="t">④ 学習支援サービス</div>
+        <div class="t">学習支援サービス</div>
         <div class="d">WEB教室・LIVE教室の団体導入や、LINEでの日々の質問対応など、講義以外の時間も継続的に学習をサポートします。</div>
       </div>
     </div>
