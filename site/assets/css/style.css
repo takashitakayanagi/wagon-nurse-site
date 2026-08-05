@@ -1,0 +1,113 @@
+/* WAGON サイト共通デザイントークン・コンポーネント */
+
+:root{
+  --sky: #4EC6EC;
+  --nav-bg: #FCFEFF;
+  --page-bg: #F3F8FA;
+  --ink: #1B3A56;
+  --ink-soft: #46586B;
+  --line: #E6EEF2;
+  --accent: #1EA7DE;
+  --grad-a: #1878C4;
+  --grad-b: #17C7C2;
+  --line-green: #06C755;
+  --card-bg: #FFFFFF;
+  --card-shadow: 0 2px 6px rgba(20,60,90,0.07), 0 12px 28px -14px rgba(20,60,90,0.22);
+  --marker: #FFF176;
+  --free-border: #17C7C2;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  background:var(--page-bg);
+  color:var(--ink);
+  font-family:"Hiragino Sans","Yu Gothic","Segoe UI",Meiryo,sans-serif;
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; display:block; }
+
+/* ヘッダー */
+header.topnav{
+  background:var(--nav-bg);
+  border-bottom:1px solid var(--line);
+  padding:14px 32px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:16px;
+  position:sticky;
+  top:0;
+  z-index:40;
+}
+.logo-block{ line-height:1.3; }
+.logo-eyebrow{ font-size:10.5px; color:var(--accent); font-weight:700; }
+.logo-word{ font-size:22px; font-weight:800; color:var(--ink); letter-spacing:.03em; }
+nav.primary-nav{ display:flex; align-items:center; gap:26px; flex-wrap:wrap; }
+nav.primary-nav a{ font-size:14px; font-weight:700; color:var(--ink-soft); }
+nav.primary-nav a[aria-current="page"]{ color:var(--accent); }
+.school-btn{
+  border:1.5px solid var(--ink); border-radius:999px; padding:9px 18px; font-size:13px; font-weight:700; color:var(--ink);
+  white-space:nowrap;
+}
+@media (max-width:760px){
+  header.topnav{ flex-direction:column; align-items:flex-start; gap:12px; }
+  nav.primary-nav{ gap:16px; font-size:13px; width:100%; }
+  .school-btn{ align-self:flex-start; }
+}
+
+/* 見出しの黄色マーカー装飾 */
+.hl{
+  background:linear-gradient(120deg, var(--marker), var(--marker));
+  padding:3px 14px; border-radius:20px 6px 20px 6px; display:inline-block;
+  font-size:22px; font-weight:800; color:var(--ink); box-decoration-break:clone;
+}
+
+/* ボタン */
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  background:linear-gradient(100deg, var(--grad-a), var(--grad-b));
+  color:#fff; font-weight:800; font-size:15px; border-radius:999px; padding:14px 26px;
+  box-shadow: 0 8px 18px -8px rgba(23,199,194,.5);
+}
+.btn.line{ background:var(--line-green); box-shadow:0 8px 18px -8px rgba(6,199,85,.45); }
+.btn.lg{ font-size:16.5px; padding:16px 30px; }
+
+/* カード */
+.card{
+  background:var(--card-bg); border-radius:16px; padding:22px 24px; box-shadow:var(--card-shadow);
+}
+
+/* メインコンテナ */
+main.page{ max-width:860px; margin:0 auto; padding:40px 24px 72px; }
+main.page h1{ font-size:clamp(22px,3vw,30px); margin:0 0 24px; }
+main.page section{ margin-bottom:44px; }
+main.page section h2{ font-size:18px; margin:0 0 12px; }
+main.page p{ font-size:14.5px; color:var(--ink-soft); max-width:64ch; }
+
+/* フッター */
+footer.site-footer{
+  background:#0F2438; color:#C9D6E2; padding:48px 32px 32px; font-size:13px;
+}
+footer.site-footer .foot-grid{
+  max-width:1080px; margin:0 auto; display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:32px;
+}
+@media (max-width:700px){ footer.site-footer .foot-grid{ grid-template-columns:1fr; } }
+footer.site-footer h3{ color:#fff; font-size:13px; margin:0 0 12px; }
+footer.site-footer ul{ list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+footer.site-footer a{ color:#C9D6E2; }
+footer.site-footer a:hover{ color:#fff; }
+footer.site-footer .copyright{ max-width:1080px; margin:32px auto 0; padding-top:20px; border-top:1px solid #1E3A52; font-size:11.5px; color:#7E93A6; }
+
+/* FAQ */
+details.faq{ background:var(--card-bg); border:1px solid var(--line); border-radius:12px; margin-bottom:10px; box-shadow:var(--card-shadow); overflow:hidden; }
+details.faq summary{ cursor:pointer; padding:16px 20px; font-weight:700; font-size:14.5px; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; color:var(--ink); }
+details.faq summary::-webkit-details-marker{ display:none; }
+details.faq summary::after{ content:"+"; color:var(--accent); font-size:18px; flex-shrink:0; }
+details.faq[open] summary::after{ content:"\2212"; }
+details.faq .faq-a{ padding:0 20px 18px; color:var(--ink-soft); font-size:14px; margin:0; }
