@@ -32,6 +32,7 @@
   @media (max-width:700px){ .course-grid{ grid-template-columns:1fr; } }
   .course-card{ background:var(--card-bg); border-radius:12px; padding:18px; box-shadow:var(--card-shadow); }
   .course-card .p{ font-weight:800; color:var(--accent); margin-top:8px; }
+  .course-card{ border-top:3px solid var(--free-border); }
 </style>
 </head>
 <body>
@@ -49,29 +50,53 @@
   <a class="school-btn" href="/forschool.html">学校関係者の皆様へ</a>
 </header>
 
-<main class="page">
-  <h1>サービスとプラン</h1>
-  <p>こちらのページでは、主にオンラインでご利用いただける講義プランをご案内しております。対面講義の内容は随時お知らせにてご案内しております。各プランの学習法については<a href="/howto.html" style="color:var(--accent); font-weight:700;">合格の仕組み</a>のページもご覧ください。</p>
+<main class="page has-hero">
+  <div class="page-hero">
+    <h1>サービスとプラン</h1>
+    <p class="sub">無料でできることから、使い放題のサブスクWAGONまで。目的に合わせて選べます。</p>
+  </div>
+
+  <p style="font-size:13.5px;">主にオンラインでご利用いただける講義プランをご案内しております。対面講義の内容は随時お知らせにてご案内しております。各プランの学習法については<a href="/howto.html" style="color:var(--accent); font-weight:700;">合格の仕組み</a>のページもご覧ください。</p>
 
   <section>
     <h2 class="hl">WAGONのオンラインサービス</h2>
-    <p style="margin-top:18px;">WEB教室・LIVE教室アーカイブ・模擬試験の解説講義まで、WAGONのオンラインサービスはひとつにまとまりました。無料でできることから、月額制で使い放題のサブスクWAGONまで、目的に合わせてご利用いただけます。</p>
-    <table class="price-table">
-      <thead><tr><th>区分</th><th>月額</th><th>できること</th></tr></thead>
-      <tbody>
-        <tr><td>無料</td><td>¥0</td><td>掲示板の閲覧(無料開放)・LINE担任制での毎日問題・LINEでの質疑応答</td></tr>
-        <tr><td>サブスクWAGON会員</td><td>¥20,000(税込)</td><td>WEB教室・LIVE教室・模試解説動画まで全て使い放題</td></tr>
-      </tbody>
-    </table>
-    <p style="margin-top:16px; font-size:13px;">無料の範囲だけでもすぐに使い始められます。まずはLINEにご登録ください。</p>
-    <a class="btn line" style="margin-top:8px;" href="https://page.line.me/wvr6857m">LINEに登録する &rsaquo;</a>
+    <p style="margin-top:18px;">WEB教室・LIVE教室アーカイブ・模擬試験の解説講義まで、WAGONのオンラインサービスはひとつにまとまりました。</p>
+    <div class="price-grid">
+      <div class="price-card free">
+        <span class="badge">無料</span>
+        <div class="name">まずはここから</div>
+        <div class="amount">¥0</div>
+        <ul>
+          <li>掲示板の閲覧(無料開放)</li>
+          <li>LINE担任制での毎日問題</li>
+          <li>LINEでの質疑応答</li>
+        </ul>
+        <a class="btn line" href="https://page.line.me/wvr6857m">LINEに登録する &rsaquo;</a>
+      </div>
+      <div class="price-card paid">
+        <span class="badge">使い放題</span>
+        <div class="name">サブスクWAGON会員</div>
+        <div class="amount">¥20,000<small> / 月(税込)</small></div>
+        <ul>
+          <li>WEB教室 全コース見放題</li>
+          <li>LIVE教室アーカイブ見放題</li>
+          <li>模試解説動画まで全て使い放題</li>
+        </ul>
+        <a class="btn line" href="https://page.line.me/wvr6857m">LINEで相談する &rsaquo;</a>
+      </div>
+    </div>
     <p class="reply-note"><span class="dot"></span>LINEの先にいるのは本物の担任です。当日中にご返信します。</p>
   </section>
 
-  <section>
+  <section class="section-sky">
     <h2 class="hl">WEB教室</h2>
     <p style="margin-top:18px;">その年度の試験内容に沿って構成されたコース(1コースあたり全15回)をWEB配信で受講できます。基礎・解剖/疾病の成り立ち・看護・治療・薬理/各看護学・看護論と、段階的に学べる構成です。</p>
-    <p style="margin-top:8px; font-size:12.5px;">※WEB教室はサブスクWAGONに含まれており、単体でのご購入はできません。</p>
+    <div class="course-grid">
+      <div class="course-card"><div>①基礎・解剖</div><div class="p">全15回</div></div>
+      <div class="course-card"><div>②疾病の成り立ち・看護・治療・薬理</div><div class="p">全15回</div></div>
+      <div class="course-card"><div>③各看護学・看護論</div><div class="p">全15回</div></div>
+    </div>
+    <p style="margin-top:14px; font-size:12.5px;">※WEB教室はサブスクWAGONに含まれており、単体でのご購入はできません。</p>
     <a class="btn line" style="margin-top:8px;" href="https://page.line.me/wvr6857m">LINEで相談する &rsaquo;</a>
   </section>
 
@@ -81,7 +106,7 @@
     <a class="btn line" href="https://page.line.me/wvr6857m">LINEで相談する &rsaquo;</a>
   </section>
 
-  <section>
+  <section class="section-grass">
     <h2 class="hl">WAGON模擬試験(無料)</h2>
     <p style="margin-top:18px;">看護師国家試験を知り尽くしたWAGONが独自に実施している、誰でも無料で受験できる実戦形式の模擬試験です。総合得点や科目ごとの得点率、全国順位などをスマホから確認できます。</p>
     <a class="btn lg" href="https://forms.gle/QWdwTxHozDBj5ThL8">模擬試験個人お申込みフォーム &rsaquo;</a>
