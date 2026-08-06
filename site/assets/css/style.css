@@ -135,6 +135,12 @@ details.faq .faq-a{ padding:0 20px 18px; color:var(--ink-soft); font-size:14px; 
 .reply-note{ display:flex; align-items:center; gap:6px; font-size:12px; color:var(--ink-soft); margin-top:10px; }
 .reply-note .dot{ width:6px; height:6px; border-radius:50%; background:var(--line-green); flex-shrink:0; }
 
+/* news list */
+.news-list{ display:grid; gap:10px; margin-top:20px; }
+.news-item{ display:flex; align-items:center; justify-content:space-between; gap:16px; background:var(--card-bg); border:1px solid var(--line); border-radius:12px; padding:14px 18px; box-shadow:var(--card-shadow); font-size:13.5px; color:var(--ink); }
+.news-item:hover{ border-color:var(--accent); }
+.news-item .arrow{ color:var(--accent); font-size:18px; flex-shrink:0; }
+
 /* deadline note */
 .deadline-note{ display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; color:var(--deadline); background:var(--deadline-soft); padding:5px 12px; border-radius:999px; margin-top:10px; }
 
