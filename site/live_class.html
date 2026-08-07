@@ -22,7 +22,12 @@
 <style>
   .voice-row{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:18px; }
   @media (max-width:700px){ .voice-row{ grid-template-columns:1fr; } }
-  .voice-card{ background:var(--card-bg); border-radius:12px; padding:16px 18px; box-shadow:var(--card-shadow); font-size:13.5px; color:var(--ink-soft); }
+  .voice-card{
+    background:#FFFCEB; border:1px solid #F5EBB8; border-radius:14px;
+    padding:16px 18px; box-shadow:var(--card-shadow); font-size:13.5px; color:var(--ink-soft);
+  }
+  .voice-card:nth-child(odd){ transform:rotate(-0.4deg); }
+  .voice-card:nth-child(even){ transform:rotate(0.4deg); }
 </style>
 </head>
 <body>
@@ -40,8 +45,11 @@
   <a class="school-btn" href="/forschool.html">学校関係者の皆様へ</a>
 </header>
 
-<main class="page">
-  <h1>LIVE教室 &mdash; 自宅がリアルな教室に</h1>
+<main class="page has-hero">
+  <div class="page-hero">
+    <h1>LIVE教室</h1>
+    <p class="sub">自宅がリアルな教室に。ワンコインから始められる生配信講義です。</p>
+  </div>
   <p style="font-size:13.5px;">WAGONの<a href="/howto.html" style="color:var(--accent); font-weight:700;">合格の仕組み</a>に基づいた講義を、生配信で受講できます。</p>
 
   <section>
@@ -51,7 +59,7 @@
     <p style="font-size:12.5px;">※お支払いはLINE Payにも対応しています(事前のチャージが必要です)。</p>
   </section>
 
-  <section>
+  <section class="section-sky">
     <h2 class="hl">受講生の声</h2>
     <div class="voice-row">
       <div class="voice-card">質問を講義中にした時にすぐ返ってきて、本物の講義を受けているようで楽しかったです。具体的な例を使いながら説明して頂けて分かりやすかったです。</div>
