@@ -206,6 +206,9 @@ details.faq .faq-a{ padding:0 20px 18px; color:var(--ink-soft); font-size:14px; 
 .news-compact-item a{ color:var(--ink-soft); }
 .news-compact-item a:hover{ color:var(--accent); }
 .news-compact-more{ margin-top:12px; font-size:12px; font-weight:700; color:var(--accent); }
+.news-compact-item.pickup{ background:var(--deadline-soft); border-radius:8px; padding:8px 10px; margin:-8px -10px 4px; }
+.news-compact-item.pickup .badge{ display:inline-block; background:var(--deadline); color:#fff; font-size:9.5px; font-weight:800; padding:1px 7px; border-radius:999px; margin-right:6px; vertical-align:2px; }
+.news-compact-item.pickup a{ color:var(--ink); font-weight:700; }
 
 /* deadline note */
 .deadline-note{ display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; color:var(--deadline); background:var(--deadline-soft); padding:5px 12px; border-radius:999px; margin-top:10px; }
