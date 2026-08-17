@@ -176,7 +176,7 @@ details.faq .faq-a{ padding:0 20px 18px; color:var(--ink-soft); font-size:14px; 
 .price-card.free{ border:2px solid var(--free-border); }
 .price-card .badge{ align-self:flex-start; font-size:11px; font-weight:800; padding:4px 12px; border-radius:999px; margin-bottom:12px; }
 .price-card.free .badge{ background:#E9FBF9; color:#0F8A85; }
-.price-card.paid .badge{ background:var(--deadline-soft); color:var(--deadline); }
+.price-card.paid .badge{ background:linear-gradient(100deg, var(--grad-a), var(--grad-b)); color:#fff; }
 .price-card .name{ font-weight:800; font-size:16px; color:var(--ink); }
 .price-card .amount{ font-size:30px; font-weight:800; color:var(--ink); margin-top:8px; }
 .price-card .amount small{ font-size:13px; font-weight:700; color:var(--ink-soft); }
