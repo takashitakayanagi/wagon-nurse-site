@@ -30,6 +30,12 @@
 ]}
 </script>
 <style>
+  .venue-note-banner{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    background:var(--deadline-soft); border:1px solid var(--deadline); border-radius:14px;
+    padding:14px 20px; margin:18px 0; font-weight:800; color:var(--deadline); font-size:14px;
+  }
+  .venue-note-banner .chev{ font-size:20px; flex-shrink:0; }
   .venue-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:18px; }
   @media (max-width:700px){ .venue-grid{ grid-template-columns:repeat(2,1fr); } }
   .venue-item{ background:var(--card-bg); border-radius:12px; padding:14px 16px; text-align:center; font-weight:800; color:var(--ink); box-shadow:var(--card-shadow); }
@@ -59,6 +65,10 @@
     <h1>対面講義</h1>
     <p class="sub">全国6会場で通年開催。講師に直接会って、リアルな熱量で学べます。</p>
   </div>
+  <a class="venue-note-banner" href="https://note.com/wagon_nurse/m/m42ac14367c7b" target="_blank" rel="noopener">
+    <span>📅 最新の開催日程・詳細はnoteでご確認ください</span>
+    <span class="chev">&rsaquo;</span>
+  </a>
   <p style="font-size:13.5px;">WAGONの<a href="/howto.html" style="color:var(--accent); font-weight:700;">合格の仕組み</a>に基づいた講義を、会場でじっくり対面受講できます。</p>
 
   <section>
@@ -87,7 +97,6 @@
       <tr><th>料金</th><td>¥7,700 / 回(基本料金)<br><span style="font-size:12.5px; color:var(--ink-soft);">※条件による割引がございます。詳しくはLINEでご案内しています。</span></td></tr>
       <tr><th>開催頻度</th><td>通年開催(日程は会場ごとに異なります)</td></tr>
     </table>
-    <p style="margin-top:14px;"><a href="https://note.com/wagon_nurse/m/m42ac14367c7b" target="_blank" rel="noopener" style="color:var(--accent); font-weight:700; font-size:13.5px;">最新の開催日程・詳細をnoteで確認する &rsaquo;</a></p>
   </section>
 
   <a class="btn line lg" href="https://page.line.me/wvr6857m">LINEで相談する &rsaquo;</a>
