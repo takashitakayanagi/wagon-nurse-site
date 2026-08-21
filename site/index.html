@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
-<title>看護師国家試験対策なら WAGON｜データ分析に基づくオンライン予備校</title>
-<meta name="description" content="過去問データを徹底分析した独自カリキュラムと少人数制講義で合格へ最短ルート。まずは無料模試から。">
+<title>看護師国家試験対策なら WAGON｜データ分析に基づく予備校</title>
+<meta name="description" content="過去問データを徹底分析した独自カリキュラムと、オンライン・全国6会場の対面講義による少人数制指導で合格へ最短ルート。まずは無料模試から。">
 <link rel="canonical" href="https://wagon-nurse.com/">
 <meta property="og:site_name" content="ナース・ライセンススクール WAGON">
-<meta property="og:title" content="看護師国家試験対策なら WAGON｜データ分析に基づくオンライン予備校">
-<meta property="og:description" content="過去問データを徹底分析した独自カリキュラムと少人数制講義で合格へ最短ルート。まずは無料模試から。">
+<meta property="og:title" content="看護師国家試験対策なら WAGON｜データ分析に基づく予備校">
+<meta property="og:description" content="過去問データを徹底分析した独自カリキュラムと、オンライン・全国6会場の対面講義による少人数制指導で合格へ最短ルート。まずは無料模試から。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://wagon-nurse.com/">
 <meta property="og:image" content="https://storage.googleapis.com/production-os-assets/assets/8c2af856-2f88-48ae-aa8a-b0cb5d226680">
@@ -27,6 +27,7 @@
 {"@type":"Question","name":"WAGONとはどんな看護師国家試験対策サービスですか？","acceptedAnswer":{"@type":"Answer","text":"WAGONは、過去の看護師国家試験データを分析した独自カリキュラムと、多職種の講師陣による少人数制講義を特長とする国家試験対策スクールです。WEB教室・LIVE教室・サブスクWAGONを通じてオンライン受講できます。"}},
 {"@type":"Question","name":"WAGON模擬試験は誰でも無料で受けられますか？","acceptedAnswer":{"@type":"Answer","text":"はい。WAGON模擬試験は独自の実戦形式の模試で、誰でも無料で受験できます。結果はスマホから確認でき、総合得点・科目別得点率・全国順位などが分かります。"}},
 {"@type":"Question","name":"WEB教室とLIVE教室の違いは何ですか？","acceptedAnswer":{"@type":"Answer","text":"WEB教室はサブスクWAGONに含まれるオンデマンド動画講義で、何度でも視聴できます。LIVE教室は月替わりテーマでLINE配信されるリアルタイム生講義で、その場で講師に質問できます。"}},
+{"@type":"Question","name":"対面での講義はありますか？","acceptedAnswer":{"@type":"Answer","text":"はい。埼玉・東京・神奈川・名古屋・大阪・福岡の全国6会場で、対面講義を通年開催しています。講師に直接会って質問しながら学べる、WAGONのリアルな講義です。"}},
 {"@type":"Question","name":"WEB教室やサブスクWAGONはどうやって申し込みますか？","acceptedAnswer":{"@type":"Answer","text":"WEB教室・LIVE教室はサブスクWAGONに統合されており、ご利用にはアカウント発行が必要です。LINE公式アカウントからお申し込みください。"}},
 {"@type":"Question","name":"毎日問題はどこで届きますか？","acceptedAnswer":{"@type":"Answer","text":"LINE公式アカウントにご登録の上、「LINE担任制」にご参加いただくと、国試対策の一問一答が毎日届きます。"}},
 {"@type":"Question","name":"独学とWAGONの違いは何ですか？","acceptedAnswer":{"@type":"Answer","text":"WAGONは過去の国家試験データを分析し、正答率70%以上の頻出問題を確実に得点する学習法を採用しています。独学では気づきにくい優先順位を、講師が直接示しながら伴走します。"}},
@@ -59,7 +60,12 @@
   .sec-card .l{ font-size:11.5px; color:var(--accent); font-weight:700; margin-top:4px; }
   .sec-card.featured{ border:2px solid transparent; background:linear-gradient(var(--card-bg),var(--card-bg)) padding-box, linear-gradient(100deg, var(--grad-a), var(--grad-b)) border-box; }
   .sec-card.featured .badge{ display:inline-block; background:linear-gradient(100deg, var(--grad-a), var(--grad-b)); color:#fff; font-size:10px; font-weight:800; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
-  .sec-card.venue-wide{ display:flex; align-items:baseline; gap:10px; text-align:left; padding:16px 18px; }
+  .sec-card.venue-wide{
+    display:flex; align-items:center; justify-content:space-between; gap:10px; text-align:left; padding:16px 20px;
+    background:var(--deadline-soft); border:1px solid var(--deadline);
+  }
+  .sec-card.venue-wide .t{ color:var(--deadline); }
+  .sec-card.venue-wide .l{ color:var(--deadline); }
   .secondary-label{ margin-top:22px; }
   .secondary-label:first-of-type{ margin-top:0; }
 
@@ -164,6 +170,7 @@
       <div>
         <p>WAGONの講義は、過去の看護師国家試験で蓄積されたデータを徹底的に分析し、最も効率的に学習できるよう設計された独自の学習カリキュラムのもとで行われています。</p>
         <p>また講師陣は多医療職で構成され、知識と経験を伝えるプロフェッショナル集団。一回の講義で深く記憶に残る、厚みのある少人数制の講義が特長です。</p>
+        <p>WEB教室・LIVE教室などのオンライン学習に加え、<a href="/venue_class.html" style="color:var(--accent); font-weight:700;">全国6会場での対面講義</a>も通年開催。オンラインと対面、どちらでも本気で向き合う指導を受けられます。</p>
       </div>
       <div>
         <div class="video-embed">
@@ -235,6 +242,10 @@
       <details class="faq">
         <summary>WEB教室とLIVE教室の違いは何ですか？<span></span></summary>
         <p class="faq-a">WEB教室はサブスクWAGONに含まれるオンデマンド動画講義で、何度でも視聴できます。LIVE教室は月替わりテーマでLINE配信されるリアルタイム生講義で、その場で講師に質問できます。</p>
+      </details>
+      <details class="faq">
+        <summary>対面での講義はありますか？<span></span></summary>
+        <p class="faq-a">はい。埼玉・東京・神奈川・名古屋・大阪・福岡の全国6会場で、対面講義を通年開催しています。講師に直接会って質問しながら学べる、WAGONのリアルな講義です。詳しくは<a href="/venue_class.html" style="color:var(--accent); font-weight:700;">対面講義のページ</a>をご覧ください。</p>
       </details>
       <details class="faq">
         <summary>WEB教室やサブスクWAGONはどうやって申し込みますか？<span></span></summary>
