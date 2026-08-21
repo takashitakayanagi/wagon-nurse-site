@@ -45,6 +45,9 @@
   .price-table tbody tr:last-child td{ border-bottom:none; }
   .course-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px; }
   @media (max-width:700px){ .course-grid{ grid-template-columns:1fr; } }
+  .course-grid.five{ grid-template-columns:repeat(5,1fr); }
+  @media (max-width:900px){ .course-grid.five{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:560px){ .course-grid.five{ grid-template-columns:repeat(2,1fr); } }
   .course-card{ background:var(--card-bg); border-radius:12px; padding:18px; box-shadow:var(--card-shadow); }
   .course-card .p{ font-weight:800; color:var(--accent); margin-top:8px; }
   .course-card{ border-top:3px solid var(--free-border); }
@@ -71,11 +74,11 @@
     <p class="sub">無料でできることから、使い放題のサブスクWAGONまで。目的に合わせて選べます。</p>
   </div>
 
-  <p style="font-size:13.5px;">WAGONのオンラインサービスは、WEB教室・LIVE教室・データ問80%講座・模試解説講義の4つ。それぞれ個別にご利用いただくほか、サブスクWAGONなら全部まとめて使い放題です。各プランの学習法については<a href="/howto.html" style="color:var(--accent); font-weight:700;">合格の仕組み</a>のページもご覧ください。</p>
+  <p style="font-size:13.5px;">WAGONのオンラインサービスは、WEB教室・LIVE教室・データ問80%講座・模試解説講義の4つ。さらに全国6会場の対面講義も通年開催しています。それぞれ個別にご利用いただくほか、サブスクWAGONならオンラインサービスをまとめて使い放題です。各プランの学習法については<a href="/howto.html" style="color:var(--accent); font-weight:700;">合格の仕組み</a>のページもご覧ください。</p>
 
   <section>
-    <h2 class="hl">4つのサービス</h2>
-    <div class="course-grid" style="grid-template-columns:repeat(4,1fr);">
+    <h2 class="hl">5つのサービス</h2>
+    <div class="course-grid five">
       <a class="course-card" href="/web_class.html" style="display:block;">
         <div style="font-weight:800; color:var(--ink);">WEB教室</div>
         <div class="p" style="font-size:12px; color:var(--ink-soft); font-weight:400;">サブスクWAGON限定</div>
@@ -83,6 +86,10 @@
       <a class="course-card" href="/live_class.html" style="display:block;">
         <div style="font-weight:800; color:var(--ink);">LIVE教室</div>
         <div class="p" style="font-size:12px; color:var(--ink-soft); font-weight:400;">¥500〜/回・サブスク会員は無料</div>
+      </a>
+      <a class="course-card" href="/venue_class.html" style="display:block;">
+        <div style="font-weight:800; color:var(--ink);">対面講義</div>
+        <div class="p" style="font-size:12px; color:var(--ink-soft); font-weight:400;">¥7,700〜/回・全国6会場</div>
       </a>
       <a class="course-card" href="https://note.com/wagon_nurse/m/m0c34474a5fe5" target="_blank" rel="noopener" style="display:block;">
         <div style="font-weight:800; color:var(--ink);">データ問80%講座</div>
@@ -159,6 +166,7 @@
         <li><a href="/subscription.html">サブスクWAGON</a></li>
         <li><a href="/web_class.html">WEB教室</a></li>
         <li><a href="/live_class.html">LIVE教室</a></li>
+        <li><a href="/venue_class.html">対面講義</a></li>
         <li><a href="/moshi_kaisetsu.html">模試解説講義</a></li>
         <li><a href="https://forms.gle/QWdwTxHozDBj5ThL8">模擬試験個人お申込み</a></li>
       </ul>
