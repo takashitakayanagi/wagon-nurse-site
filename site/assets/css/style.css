@@ -99,7 +99,9 @@ main.page.has-hero .page-hero{ margin:0 -24px 40px; }
   box-shadow: 0 8px 18px -8px rgba(23,199,194,.5);
 }
 .btn.line{ background:var(--line-green); box-shadow:0 8px 18px -8px rgba(6,199,85,.45); }
+.btn.outline{ background:#fff; color:var(--accent); border:2px solid var(--accent); box-shadow:none; }
 .btn.lg{ font-size:16.5px; padding:16px 30px; }
+.btn-row{ display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
 
 /* カード */
 .card{
