@@ -1,0 +1,21 @@
+# STUDIO(旧サイト)の拡張子なしURL → 新サイトの.htmlページへの301リダイレクト
+/about /about.html 301
+/subscription /subscription.html 301
+/web_class /web_class.html 301
+/live_class /live_class.html 301
+/howto /howto.html 301
+/plan /plan.html 301
+/forschool /forschool.html 301
+/contact /contact.html 301
+/law /law.html 301
+/privacy_policy /privacy_policy.html 301
+/terms-of-service/moshi /moshi_terms.html 301
+
+# 旧フォームページ → 対応するGoogleフォームへ直接リダイレクト
+/form_web_school https://forms.gle/xJ6YhhBAiXSzEJD88 301
+/form_venue_seminar https://forms.gle/7LSEeqduxJ3G8mfy9 301
+/form_moshi https://forms.gle/QWdwTxHozDBj5ThL8 301
+/form_general_contact https://forms.gle/oPNubnzVbGo7wk4z9 301
+/form_for_school https://forms.gle/ckU7QtrpbpYACsZB9 301
+/form_recruitment https://forms.gle/Smcgyt3BGEUqXcC59 301
+/form_thanks /contact.html 301
