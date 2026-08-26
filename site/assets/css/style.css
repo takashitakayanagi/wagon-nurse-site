@@ -50,6 +50,7 @@ header.topnav{
 .logo-block{ line-height:1.3; }
 .logo-eyebrow{ font-size:10.5px; color:var(--accent); font-weight:700; }
 .logo-word{ font-size:22px; font-weight:800; color:var(--ink); letter-spacing:.03em; }
+.logo-img{ height:34px; width:auto; display:block; margin-top:3px; }
 nav.primary-nav{ display:flex; align-items:center; gap:26px; flex-wrap:wrap; }
 nav.primary-nav a{ font-size:14px; font-weight:700; color:var(--ink-soft); }
 nav.primary-nav a[aria-current="page"]{ color:var(--accent); }
