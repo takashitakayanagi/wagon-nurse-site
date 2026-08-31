@@ -17,6 +17,8 @@
   --free-border: #17C7C2;
   --deadline: #B9791F;
   --deadline-soft: #FDF3E2;
+  --urgent: #D32F2F;
+  --urgent-soft: #FDECEC;
 }
 
 *{ box-sizing:border-box; }
@@ -218,6 +220,7 @@ details.faq .faq-a{ padding:0 20px 18px; color:var(--ink-soft); font-size:14px; 
 
 /* deadline note */
 .deadline-note{ display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; color:var(--deadline); background:var(--deadline-soft); padding:5px 12px; border-radius:999px; margin-top:10px; }
+.deadline-note.urgent{ color:var(--urgent); background:var(--urgent-soft); }
 
 /* sticky CTA bar */
 .sticky-cta{
