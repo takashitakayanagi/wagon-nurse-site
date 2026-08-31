@@ -19,9 +19,9 @@
 <meta property="og:description" content="埼玉・東京・神奈川・名古屋・大阪・福岡の全国6会場で通年開催しているWAGONの対面講義。講師に直接質問しながら、集中して学べます。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://wagon-nurse.com/venue_class.html">
-<meta property="og:image" content="https://wagon-nurse.com/assets/img/hero.jpg">
+<meta property="og:image" content="https://wagon-nurse.com/assets/img/venue_class-hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://wagon-nurse.com/assets/img/hero.jpg">
+<meta name="twitter:image" content="https://wagon-nurse.com/assets/img/venue_class-hero.jpg">
 <link rel="stylesheet" href="/assets/css/style.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"ナース・ライセンススクール WAGON","url":"https://wagon-nurse.com/","sameAs":["https://twitter.com/nursewagon","https://www.youtube.com/channel/UCifxRY2eXLP5N96EnS72rKw","https://note.com/wagon_nurse"]}
@@ -56,6 +56,12 @@
   .info-table th{ text-align:left; color:var(--ink-soft); font-weight:700; padding:10px 16px 10px 0; white-space:nowrap; vertical-align:top; width:140px; }
   .info-table td{ padding:10px 0; border-top:1px solid var(--line); }
   .info-table tr:first-child td{ border-top:none; }
+  .page-hero.custom-img{
+    background:url('/assets/img/venue_class-hero.jpg') center/cover no-repeat;
+    aspect-ratio:1600/800; padding:0; max-width:1600px; margin:0 auto 40px;
+  }
+  .page-hero.custom-img::before, .page-hero.custom-img::after{ content:none; }
+  .page-hero-sub{ text-align:center; font-size:14px; color:var(--ink-soft); max-width:56ch; margin:18px auto 0; }
 </style>
 </head>
 <body>
@@ -74,10 +80,10 @@
 </header>
 
 <main class="page has-hero">
-  <div class="page-hero">
-    <h1>対面講義</h1>
-    <p class="sub">全国6会場で通年開催。講師に直接会って、リアルな熱量で学べます。</p>
+  <div class="page-hero custom-img">
+    <h1 style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;">対面講義</h1>
   </div>
+  <p class="page-hero-sub">全国6会場で通年開催。講師に直接会って、リアルな熱量で学べます。</p>
   <a class="venue-note-banner" href="https://note.com/wagon_nurse/m/m42ac14367c7b" target="_blank" rel="noopener">
     <span>📅 最新の開催日程・詳細はnoteでご確認ください</span>
     <span class="chev">&rsaquo;</span>
