@@ -19,6 +19,9 @@
   --deadline-soft: #FDF3E2;
   --urgent: #D32F2F;
   --urgent-soft: #FDECEC;
+  --magazine-accent: #E0567A;
+  --magazine-soft: #FDF0F4;
+  --news-soft: #EAF8FC;
 }
 
 *{ box-sizing:border-box; }
@@ -207,13 +210,20 @@ details.faq .faq-a{ padding:0 20px 18px; color:var(--ink-soft); font-size:14px; 
   background:var(--page-bg); border:1px solid var(--line); border-radius:16px;
   padding:18px 20px; display:flex; flex-direction:column;
 }
-.news-compact-panel .t{ font-size:15px; font-weight:800; color:var(--ink); letter-spacing:.01em; margin-bottom:12px; padding-bottom:9px; border-bottom:2px solid var(--accent); }
+.news-compact-panel .t{ display:flex; align-items:center; gap:9px; font-size:15px; font-weight:800; color:var(--ink); letter-spacing:.01em; margin-bottom:12px; padding-bottom:9px; border-bottom:2px solid var(--accent); }
+.news-compact-panel .badge-icon{ display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; font-size:13px; flex-shrink:0; background:var(--card-bg); box-shadow:0 1px 3px rgba(20,60,90,0.14); }
 .news-compact-list{ display:grid; gap:8px; flex:1; }
 .news-compact-item{ display:flex; align-items:baseline; gap:8px; font-size:12.5px; color:var(--ink-soft); line-height:1.6; }
 .news-compact-item .dot{ width:4px; height:4px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:7px; }
 .news-compact-item a{ color:var(--ink-soft); }
 .news-compact-item a:hover{ color:var(--accent); }
 .news-compact-more{ margin-top:12px; font-size:12px; font-weight:700; color:var(--accent); }
+.news-compact-panel.theme-news{ background:var(--news-soft); border-color:#D3EFF7; }
+.news-compact-panel.theme-magazine{ background:var(--magazine-soft); border-color:#F6DEE6; }
+.news-compact-panel.theme-magazine .t{ border-bottom-color:var(--magazine-accent); }
+.news-compact-panel.theme-magazine .news-compact-item .dot{ background:var(--magazine-accent); }
+.news-compact-panel.theme-magazine .news-compact-item a:hover{ color:var(--magazine-accent); }
+.news-compact-panel.theme-magazine .news-compact-more{ color:var(--magazine-accent); }
 .news-compact-item.pickup{ background:var(--deadline-soft); border-radius:8px; padding:8px 10px; margin:-8px -10px 4px; }
 .news-compact-item.pickup .badge{ display:inline-block; background:var(--deadline); color:#fff; font-size:9.5px; font-weight:800; padding:1px 7px; border-radius:999px; margin-right:6px; vertical-align:2px; }
 .news-compact-item.pickup a{ color:var(--ink); font-weight:700; }
