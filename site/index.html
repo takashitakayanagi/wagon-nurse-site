@@ -46,13 +46,10 @@
   .hero img{ width:100%; height:auto; }
   .cta-zone{ max-width:1040px; margin:0 auto; padding:28px 24px 56px; }
   .primary-cta{
-    display:flex; flex-direction:column; justify-content:center; gap:6px; flex:1;
-    background:linear-gradient(100deg, var(--grad-a), var(--grad-b));
-    color:#fff; border-radius:16px; padding:20px 22px; box-shadow: var(--card-shadow);
-    margin-bottom:14px;
+    display:block; flex:1; border-radius:16px; overflow:hidden; box-shadow: var(--card-shadow);
+    margin-bottom:14px; line-height:0;
   }
-  .primary-cta .label{ font-size:11px; font-weight:700; letter-spacing:.06em; opacity:.85; text-transform:uppercase; }
-  .primary-cta .main{ font-size:21px; font-weight:800; line-height:1.35; }
+  .primary-cta img{ width:100%; height:auto; display:block; }
   .secondary-label{ font-size:12px; color:var(--ink-soft); font-weight:700; margin:22px 2px 10px; }
   .secondary-row{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
   @media (max-width:1000px){ .secondary-row{ grid-template-columns:repeat(3,1fr); } }
@@ -106,8 +103,7 @@
     <div class="hero-grid">
       <div class="cta-col">
         <a class="primary-cta" href="https://forms.gle/QWdwTxHozDBj5ThL8" target="_blank" rel="noopener">
-          <span class="label">まずはここから・0円</span>
-          <span class="main">無料模試を<br>受けてみる &rsaquo;</span>
+          <img src="/assets/img/mogi-cta.jpg" alt="まずはここから・0円 無料模試を受けてみる。2026年12月26日以降のお申込みは有料になります。">
         </a>
         <span class="deadline-note">受付は2027年1月22日まで</span>
       </div>
