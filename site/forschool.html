@@ -19,9 +19,9 @@
 <meta property="og:description" content="学校・団体様向けの看護師国家試験対策。学校カリキュラムの請負、学内での対策講義、無料模試、学習支援サービスまで、状況に合わせてご提案します。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://wagon-nurse.com/forschool.html">
-<meta property="og:image" content="https://wagon-nurse.com/assets/img/hero.jpg">
+<meta property="og:image" content="https://wagon-nurse.com/assets/img/forschool-hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://wagon-nurse.com/assets/img/hero.jpg">
+<meta name="twitter:image" content="https://wagon-nurse.com/assets/img/forschool-hero.jpg">
 <link rel="stylesheet" href="/assets/css/style.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"ナース・ライセンススクール WAGON","url":"https://wagon-nurse.com/","sameAs":["https://twitter.com/nursewagon","https://www.youtube.com/channel/UCifxRY2eXLP5N96EnS72rKw","https://note.com/wagon_nurse"]}
@@ -55,6 +55,12 @@
   .svc-featured .t{ font-weight:800; font-size:17px; color:var(--ink); }
   .svc-featured .d{ font-size:13.5px; color:var(--ink-soft); margin-top:10px; line-height:1.85; flex:1; }
   .svc-featured .btn{ align-self:flex-start; }
+  .page-hero.custom-img{
+    background:url('/assets/img/forschool-hero.jpg') center/cover no-repeat;
+    aspect-ratio:1600/800; padding:0; max-width:1600px; margin:0 auto 40px;
+  }
+  .page-hero.custom-img::before, .page-hero.custom-img::after{ content:none; }
+  .page-hero-sub{ text-align:center; font-size:14px; color:var(--ink-soft); max-width:56ch; margin:18px auto 0; }
 </style>
 </head>
 <body>
@@ -73,10 +79,10 @@
 </header>
 
 <main class="page has-hero">
-  <div class="page-hero">
-    <h1>学校関係者の皆様へ</h1>
-    <p class="sub">貴校の状況に合わせて、国試対策のカリキュラム・講義・模試をご提案します。</p>
+  <div class="page-hero custom-img">
+    <h1 style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;">学校関係者の皆様へ</h1>
   </div>
+  <p class="page-hero-sub">貴校の状況に合わせて、国試対策のカリキュラム・講義・模試をご提案します。</p>
 
   <section>
     <h2 class="hl">ご提供できるサービス</h2>
