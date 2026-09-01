@@ -271,6 +271,9 @@ img{max-width:100%; height:auto; display:block;}
 .cta small{display:block; font-size:11.5px; font-weight:700; opacity:.94; margin-top:3px;}
 .cta:active{transform:scale(.99);}
 .cta-note{font-size:11.5px; color:var(--txt-dim); text-align:center; margin:10px 0 0;}
+/* 相談ブロックのCTAは文言が長いので、1行に収まるよう少しだけ詰める */
+.talk .cta{font-size:16.5px; letter-spacing:-.015em;}
+@media (max-width:359px){ .talk .cta{font-size:15px;} }
 
 /* 主導線＝LINE相談 */
 .cta.line{
@@ -899,6 +902,10 @@ function showResult(){
   // 最優先領域が、教材のある領域と違うとき。診断文とCTAの橋渡しを出す。
   var otherPriority = !!(primary && ctaDomain && primary !== ctaDomain);
 
+  // 教材のある領域を、この診断で落としたか。
+  // 落としていれば「さっき解けなかった問題が解けるようになる」と言い切れる。
+  var missedFeatured = weak.indexOf(ctaDomain) !== -1;
+
   track('quiz_complete', {
     score: score, rank: r.rank,
     missed: missed.join(','),
@@ -976,12 +983,14 @@ function showResult(){
         primary           ? '立て直しは、' + ctaDomain + 'から。' :
                             '維持のしかたにも、型があります。') + '</div>' +
       '<h3>' + (ctaDomain
-        ? ctaDomain + 'の問題を、<br>担任から無料で受け取れます。'
+        ? ctaDomain + 'の講義動画と問題を、<br>担任から無料で受け取れます。'
         : '本番までの詰め方を、<br>担任が個別にお答えします。') + '</h3>' +
       '<ul>' +
         (ctaDomain
-          ? '<li>' + ctaDomain + 'の演習問題を、その場でお送りします</li>' +
-            '<li>解説動画つき。見たあとにもう一度解いて、変化を確かめられます</li>'
+          ? '<li>まず<b>' + ctaDomain + 'の講義動画（約10分）</b>。解き方の考え方から確認できます</li>' +
+            '<li>' + (missedFeatured
+                ? 'そのあと演習問題。<b>さっき解けなかった問題が、解けるようになります</b>'
+                : 'そのあと演習問題で、理解できているかを確認できます') + '</li>'
           : '<li>いまの状態を維持するための進め方をお伝えします</li>' +
             '<li>次に伸ばすべき領域を、一緒に決めます</li>') +
         '<li>すべて無料です。返信するのは本物の担任で、当日中に返信します</li>' +
@@ -990,7 +999,7 @@ function showResult(){
       (otherPriority
         ? '<p class="shot" style="border-color:var(--line-g);">' +
             'あなたの最優先は<b>' + primary + '</b>でした。そちらも<b>同じLINEで、そのまま担任に相談できます。</b>' +
-            'まず手を動かせる教材として、' + ctaDomain + 'の演習をお送りします。</p>'
+            'まず届くのは、' + ctaDomain + 'の講義動画と演習問題です。</p>'
         : !primary
           ? '<p class="shot" style="border-color:var(--line-g);">' +
               ctaDomain + 'は、この5領域のなかで<b>最も差がつきやすい領域</b>です（正答率' + featuredQ.rate + '%）。' +
@@ -1005,13 +1014,13 @@ function showResult(){
         '</div>' +
         '<p class="hint">LINEを追加したら、この合言葉を送ってください。' +
           (ctaDomain
-            ? '<b style="color:var(--txt)">' + ctaDomain + 'の問題が、そのまま届きます。</b>'
+            ? '<b style="color:var(--txt)">' + ctaDomain + 'の講義動画と問題が、そのまま届きます。</b>'
             : '<b style="color:var(--txt)">満点だった方向けの進め方をお送りします。</b>') + '</p>' +
       '</div>' +
 
       '<a class="cta line" href="' + LP_CONFIG.lineUrl + '" target="_blank" rel="noopener" ' +
         'data-cta="result" data-goal="line">' +
-        '<span class="ic">L</span>' + (ctaDomain ? ctaDomain + 'の問題を受け取る' : 'LINEで担任に相談する') +
+        '<span class="ic">L</span>' + (ctaDomain ? ctaDomain + 'の動画と問題を受け取る' : 'LINEで担任に相談する') +
         '<small>友だち追加は無料・しつこい勧誘はしません</small></a>' +
     '</div>';
 
