@@ -1,0 +1,30 @@
+# ナース・ライセンススクール WAGON
+
+> 看護師国家試験対策のオンライン予備校。過去問データを分析した独自カリキュラムと、多職種の講師陣による少人数制講義で、正答率70%以上の頻出問題を確実に得点する学習法を提供しています。オンライン(WEB教室・LIVE教室・データ問80%講座・模試解説講義)と、全国6会場での対面講義の両方に対応しています。
+
+## サービス
+
+- [トップページ](https://wagon-nurse.com/): WAGONの特徴、無料模試、最新のお知らせ
+- [サービスとプラン](https://wagon-nurse.com/plan.html): 料金プラン一覧(無料・オンラインサロン月額1,000円・サブスクWAGON月額20,000円、いずれも税込)
+- [サブスクWAGON](https://wagon-nurse.com/subscription.html): WEB教室・LIVE教室・データ問80%講座・模試解説講義が月額1つで使い放題のプラン
+- [WEB教室](https://wagon-nurse.com/web_class.html): オンデマンド動画講義。サブスクWAGONに含まれ、単体購入は不可
+- [LIVE教室](https://wagon-nurse.com/live_class.html): 月替わりテーマのリアルタイム生配信講義(1回500円〜、サブスクWAGON会員は追加料金なし)
+- [対面講義](https://wagon-nurse.com/venue_class.html): 埼玉・東京・神奈川・名古屋・大阪・福岡の全国6会場で通年開催(1回7,700円〜)
+- [模試解説講義](https://wagon-nurse.com/moshi_kaisetsu.html): 模試の解き方・考え方・重要ポイントを解説する買い切り講義(1,500円〜)
+
+## WAGONについて
+
+- [WAGONについて](https://wagon-nurse.com/about.html): 理念、代表講師 小坂宣靖からのメッセージ、運営会社情報
+- [合格の仕組み](https://wagon-nurse.com/howto.html): 正答率70%以上の問題を確実に得点するWAGON式の学習法の解説
+- [学校関係者の皆様へ](https://wagon-nurse.com/forschool.html): 学校・団体向けの国試対策講義・カリキュラム請負・無料模試
+
+## お申し込み
+
+- [お申し込み・お問い合わせ](https://wagon-nurse.com/contact.html): 各種お申し込み窓口
+- [お申し込みフォーム一覧](https://wagon-nurse.com/forms.html): 用途別のお申し込みフォームまとめ
+
+## その他
+
+- [特定商取引法に基づく表示](https://wagon-nurse.com/law.html)
+- [模試サービスの利用規約](https://wagon-nurse.com/moshi_terms.html)
+- [プライバシーポリシー](https://wagon-nurse.com/privacy_policy.html)
