@@ -888,18 +888,22 @@ function showResult(){
   var featured = LP_CONFIG.featuredDomain || '';
   var featuredQ = QUESTIONS.filter(function(q){ return q.domain === featured; })[0];
 
-  // CTA・合言葉が指す領域。
-  //   失点あり … その領域を案内し、教材のある領域は別枠で添える
-  //   全問正解 … そのまま教材のある領域へ案内する
-  var ctaDomain = primary || (featuredQ ? featured : null);
+  // CTA・合言葉が指す領域は、必ず「教材が用意できている領域」にする。
+  // 診断上の最優先(primary)は診断文で正直に伝えるが、そこをCTAにすると
+  // 存在しない教材を約束することになるため、CTAとは分離する。
+  // → 合言葉が1種類に固定されるので、LINE自動応答のルールも1本で済む。
+  // 教材が複数領域そろったら、featuredDomain を配列にしてここで選び分ける。
+  var ctaDomain = featuredQ ? featured : primary;
   var keyword = ctaDomain ? ('診断-' + ctaDomain) : '診断-満点';
-  var showFeatured = !!featuredQ && ctaDomain !== featured;
+
+  // 最優先領域が、教材のある領域と違うとき。診断文とCTAの橋渡しを出す。
+  var otherPriority = !!(primary && ctaDomain && primary !== ctaDomain);
 
   track('quiz_complete', {
     score: score, rank: r.rank,
     missed: missed.join(','),
     weak_domains: weak.join('／') || 'none',
-    primary_domain: primary || 'none',   // 必修帯で落とした領域（なければ none）
+    primary_domain: primary || 'none',   // 診断上の最優先領域（なければ none）
     cta_domain: ctaDomain || 'none'      // 実際にLINEへ誘導した領域
   });
 
@@ -967,9 +971,10 @@ function showResult(){
     '</div>' +
 
     '<div class="talk">' +
-      '<div class="kick">' + (primary
-        ? '立て直しは、' + ctaDomain + 'から。'
-        : '維持のしかたにも、型があります。') + '</div>' +
+      '<div class="kick">' + (
+        otherPriority     ? 'まずは、無料の演習から。' :
+        primary           ? '立て直しは、' + ctaDomain + 'から。' :
+                            '維持のしかたにも、型があります。') + '</div>' +
       '<h3>' + (ctaDomain
         ? ctaDomain + 'の問題を、<br>担任から無料で受け取れます。'
         : '本番までの詰め方を、<br>担任が個別にお答えします。') + '</h3>' +
@@ -982,12 +987,15 @@ function showResult(){
         '<li>すべて無料です。返信するのは本物の担任で、当日中に返信します</li>' +
       '</ul>' +
 
-      (showFeatured
+      (otherPriority
         ? '<p class="shot" style="border-color:var(--line-g);">' +
-            'あわせて、いま無料でお配りしている<b>' + featured + 'の演習3問＋解説動画</b>もお送りします。' +
-            '<b>' + featured + 'は、この5領域のなかで最も多くの受験生が落とす領域</b>です' +
-            '（正答率' + featuredQ.rate + '%）。取れているうちに固めておくと、直前期に効きます。</p>'
-        : '') +
+            'あなたの最優先は<b>' + primary + '</b>でした。そちらも<b>同じLINEで、そのまま担任に相談できます。</b>' +
+            'まず手を動かせる教材として、' + ctaDomain + 'の演習をお送りします。</p>'
+        : !primary
+          ? '<p class="shot" style="border-color:var(--line-g);">' +
+              ctaDomain + 'は、この5領域のなかで<b>最も差がつきやすい領域</b>です（正答率' + featuredQ.rate + '%）。' +
+              '<b>取れているうちに固めておくと、直前期に効きます。</b></p>'
+          : '') +
 
       '<div class="kw">' +
         '<div class="lbl">▼ これを最初に送るだけで届きます</div>' +
