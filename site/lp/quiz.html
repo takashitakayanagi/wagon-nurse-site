@@ -743,12 +743,7 @@ var RESULTS = {
     rank:'A', glyph:'⚠', label:'危険度 A ／ 2問以上を失点',
     head:'いま、いちばん危ない状態です。',
     body:'5問とも<b>7割以上の受験生が正解する問題</b>です。そこを複数落としているということは、難しい問題が解けないのではなく、<b>土台が抜けたまま演習量だけ積んでいる</b>状態。この状態で問題集を回しても点は伸びません。まず順番を変える必要があります。',
-    // 学校講義用：1〜2年生が落とすのは普通なので、煽らず伸びしろとして提示する
-    school:{
-      glyph:'●', label:'埋めるべき領域が 2つ以上',
-      head:'伸びしろが、はっきり見えました。',
-      body:'落とした問題は、<b>本番では7割以上が正解する問題</b>です。いま解けなくても普通ですが、<b>ここは最後には全員が取れるようになる場所</b>。つまり<b>先に埋めた人が、そのまま先行します。</b>やることが絞れているのは、いい状態です。'
-    },
+    // 低学年向け：この5問は実習で受け持つ疾患そのものなので、実習の話として渡す
     practice:{
       glyph:'●', label:'実習で困りやすい領域が 2つ以上',
       head:'実習で、いちばん困るところです。',
@@ -759,11 +754,6 @@ var RESULTS = {
     rank:'B', glyph:'△', label:'危険度 B ／ 1問を失点',
     head:'土台はできています。落としたのは、1問だけ。',
     body:'ただしその1問も、<b>7割以上が正解する問題</b>です。合否を分けるのは難問ではなく、この1問。このままだと<b>本番でも同じ場所で落とします。</b>逆に言えば、ここを埋めるだけで一気に安定します。',
-    school:{
-      glyph:'●', label:'埋めるべき領域が 1つ',
-      head:'土台はできています。あと1つだけ。',
-      body:'落としたのは1問。しかも<b>本番では7割以上が正解する問題</b>です。ここを埋めておけば、<b>この5領域はもう心配いりません。</b>いま手をつけておくのが、いちばん効率のいいタイミングです。'
-    },
     practice:{
       glyph:'●', label:'実習で困りやすい領域が 1つ',
       head:'ほとんど押さえられています。あと1つだけ。',
@@ -774,11 +764,6 @@ var RESULTS = {
     rank:'C', glyph:'◎', label:'危険度 C ／ 全問正解',
     head:'5問とも正解。この時点で、かなり先行しています。',
     body:'ただし直前期に最も多いのが、<b>「取れている」と思って難問に手を出し、逆に土台を落とす</b>パターンです。あなたに必要なのは伸ばすことより、<b>本番まで落とさない状態を維持すること</b>。維持のしかたにも型があります。',
-    school:{
-      glyph:'◎', label:'全問正解',
-      head:'5問とも正解。かなり先行しています。',
-      body:'この5領域は、国家試験でそのまま得点源になります。いま取れているなら、<b>あとは本番まで落とさないこと</b>。そして<b>次にどこを伸ばすか</b>で差がつきます。'
-    },
     practice:{
       glyph:'◎', label:'全問正解',
       head:'5問とも正解。実習でも困らないはずです。',
@@ -855,15 +840,15 @@ var VARIANT = (function(){
 })();
 
 // 判定文の出し分け。school の指定があればそちらを、なければ既定を使う。
-/* 今年度の国試を受験するか。学校講義では5問のあとに本人へ確認する。
-   null … 未確認（広告流入は受験前提なので true 扱い）
-   false … 1〜2年生など。国試ではなく実習に寄せた文言に切り替える。 */
-var EXAM_YEAR = (VARIANT === 'school') ? null : true;
+/* 今年度の国試を受験するか。流入元に関わらず、5問のあとに本人へ確認する。
+   広告でも学年は絞れないため（1〜2年生も同じ広告を見る）、
+   出し分けの基準は「流入元」ではなく「学年」に一本化している。
+   null … 未確認 ／ true … 最終学年・既卒 ／ false … 低学年 */
+var EXAM_YEAR = null;
 
-// 文言の出し分け。実習向け → 学校向け → 既定 の順に拾う。
+// 文言の出し分け。低学年には実習向けを、それ以外は既定を使う。
 function res(r, key){
   if (EXAM_YEAR === false && r.practice && r.practice[key]) return r.practice[key];
-  if (VARIANT === 'school' && r.school && r.school[key]) return r.school[key];
   return r[key];
 }
 
@@ -876,23 +861,26 @@ function track(name, params){
   }, params || {}));
 }
 
-/* ---------- 学校での無料講義からの流入向けに調整 ----------
-   1〜2年生が混ざるため国試カウントダウンは意味をなさない。
-   また教室で結果を見せ合う場面なので、煽りの文言は使わない。
---------------------------------------------------------- */
+/* 流入元による違いは、入口の挨拶だけ。
+   カウントダウン・危険度・価格の出し分けは、すべて学年で決める。 */
 if (VARIANT === 'school') {
   document.getElementById('fv-tag').textContent = '◆ 今日の講義を受けた方へ';
   document.getElementById('fv-h1').innerHTML =
     'この5問で、<br><em>次にやること</em>が<br>決まります。';
   document.getElementById('fv-meta').innerHTML =
     '<span>所要2分</span><span>その場で採点</span><span>学年は問いません</span>';
+}
 
-  // 国試までの日数は出さない（DAYSをnullにすると結果側の表示も自動で外れる）
+// 低学年と分かったときに、国試まわりの表示をまとめて外す
+function hideExamUI(){
+  DAYS = null;
+  paintDays();
   var cd = document.querySelector('.topbar .cd');
   if (cd) cd.style.display = 'none';
   var sm = document.querySelector('.sticky .m .a');
   if (sm) sm.textContent = '無料・その場で受け取れます';
-  DAYS = null;
+  var offer = document.getElementById('final-offer');
+  if (offer) offer.hidden = true;   // 低学年に月額20,000円は早すぎる
 }
 
 /* ---------- 診断エンジン ---------- */
@@ -974,9 +962,9 @@ function answer(picked){
 
   document.getElementById('nx').addEventListener('click', function(){
     if (last){
-      // 学校講義では、結果を出す直前に受験学年かどうかだけ確認する。
+      // 結果を出す直前に、受験学年かどうかだけ確認する。
       // 最初に聞くと、価値を返す前の関門になって離脱するため。
-      if (VARIANT === 'school' && EXAM_YEAR === null) askExamYear();
+      if (EXAM_YEAR === null) askExamYear();
       else showResult();
     }
     else {
@@ -1008,16 +996,7 @@ function askExamYear(){
   elQuiz.querySelectorAll('.ch').forEach(function(b){
     b.addEventListener('click', function(){
       EXAM_YEAR = (b.dataset.exam === '1');
-      // 受験学年と分かったので、隠していた国試カウントダウンを戻す
-      if (EXAM_YEAR) {
-        DAYS = DAYS_RAW;
-        paintDays();
-        var cd = document.querySelector('.topbar .cd');
-        if (cd) cd.style.display = '';
-        var sm = document.querySelector('.sticky .m .a');
-        if (sm) sm.innerHTML = '国試まであと <span class="mono" id="cd3">' +
-          (DAYS === null ? '—' : DAYS) + '</span> 日';
-      }
+      if (!EXAM_YEAR) hideExamUI();
       track('exam_year_select', { exam_year: EXAM_YEAR ? 'yes' : 'no' });
       showResult();
     }, { once:true });
@@ -1075,8 +1054,8 @@ function showResult(){
     '<div class="score-card">' +
       '<div class="lbl">YOUR SCORE</div>' +
       '<div class="sc mono">' + score + '<small> / ' + QUESTIONS.length + '</small></div>' +
-      // 学校講義では教室で結果を見せ合うため、赤（危険）の配色は使わない
-      '<div class="rank ' + (VARIANT === 'school' && r.rank === 'A' ? 'B' : r.rank) + '">' +
+      // 低学年には赤（危険）の配色は使わない。落とすのが普通の段階のため。
+      '<div class="rank ' + (EXAM_YEAR === false && r.rank === 'A' ? 'B' : r.rank) + '">' +
         '<span class="g">' + res(r,'glyph') + '</span>' + res(r,'label') + '</div>' +
       '<p class="diag"><b>' + res(r,'head') + '</b><br>' + res(r,'body') + '</p>' +
     '</div>' +
@@ -1091,7 +1070,7 @@ function showResult(){
       ? '<p style="font-size:14.5px; margin:12px 0 0; line-height:1.85;">' +
           'なかでも<b style="color:var(--warn)">' + primary + '</b>は、' +
           '<b>' + primaryQ.rate + '%が正解している問題</b>でした。' +
-          (VARIANT === 'school'
+          (EXAM_YEAR === false
             ? 'つまり<b>最後には取れるようになる問題</b>です。まずここから埋めていきましょう。</p>'
             : 'つまり<b>落としてはいけない側の問題</b>です。このままだと本番でも同じ失点をします。' +
               'まずここから立て直してください。</p>')
@@ -1218,13 +1197,6 @@ function showResult(){
       document.body.removeChild(ta);
     }
   });
-
-  // 1〜2年生に月額20,000円を出すのは早すぎる。まず無料で伴走し、
-  // 学年と状況はLINE側で確認してから案内する。
-  if (EXAM_YEAR === false) {
-    var offer = document.getElementById('final-offer');
-    if (offer) offer.hidden = true;
-  }
 
   elResult.scrollIntoView({ behavior:'smooth', block:'start' });
   document.getElementById('sticky').classList.add('on');
