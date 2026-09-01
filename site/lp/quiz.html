@@ -432,9 +432,21 @@ footer .lk{display:flex; flex-wrap:wrap; gap:8px 16px; margin-bottom:14px;}
     <div class="eyebrow">WHY THESE 5</div>
     <h2>なぜ、この5問だったのか</h2>
     <p>
-      呼吸器・循環器・脳神経系・内分泌・腎。この5領域は、<b>国家試験の得点源であり、
-      同時に実習でも臨床でも一生使う土台</b>です。そして5問とも正答率70%以上、
-      つまり<b>全部、落としてはいけない問題</b>でした。それでも毎年、ここを落として不合格になる人がいます。
+      5問の正答率は、上から <b>98% / 93% / 90%</b>、そして <b>68% / 58%</b>。
+      きれいに2つの層に割れています。これは偶然ではありません。
+    </p>
+    <div class="bigstat" style="margin:18px 0;">
+      <div class="v">70%</div>
+      <div class="k">この線から上が「絶対に落とせない層」、<br>下が「合否を分ける層」です。</div>
+    </div>
+    <p>
+      上の3問（呼吸器・泌尿器・神経系）は、<b>受験生の9割以上が正解します。</b>
+      ここを落とすということは、そのまま不合格に直結します。
+    </p>
+    <p>
+      一方、下の2問（内分泌・循環器）は<b>3〜4割が落とす層</b>。
+      ここは多くの受験生が捨てにかかるので、<b>取れるようにした人から、そのまま順位が上がります。</b>
+      なかでも循環器は正答率58%で最下位。<b>70%の線に最も近い＝いちばん少ない労力で取れる側に持ち上がる領域</b>です。
     </p>
     <div class="bigstat">
       <div class="v">70%</div>
@@ -658,78 +670,83 @@ var LP_CONFIG = {
 var QUESTIONS = [
   {
     domain: '呼吸器',
-    rate: 90,
-    text: '成人の動脈血酸素飽和度〈SpO2〉の基準値はどれか。',
-    choices: ['55%以上', '75%以上', '95%以上', '常に100%'],
-    answer: 2,
-    expl: '健康な成人のSpO2は<b>95〜100%</b>が基準です。90%を下回る状態は呼吸不全が疑われます。',
-    pin: 'この数字を「暗記している」だけの人は、<b>実際の患者さんの値を見たときに動けません。</b>基準値は、異常を判断するために持つものです。'
+    rate: 98,
+    text: '慢性閉塞性肺疾患〈COPD〉の危険因子はどれか。',
+    choices: ['喫煙', '運動不足', '過度な飲酒', '高カロリー食の摂取'],
+    answer: 0,
+    expl: 'COPDの最大の危険因子は<b>喫煙</b>です。患者の大多数が喫煙歴をもち、「タバコ病」とも呼ばれます。',
+    pin: '正答率98%。<b>ここを落とすと、必修落ちが現実になります。</b>逆に言えば、この層を取りきることが合格ラインの土台です。'
   },
   {
-    domain: '脳神経系',
-    rate: 82,
-    text: '右上下肢の片麻痺がみられる患者で、障害されている可能性が高いのはどれか。',
-    choices: ['右大脳半球', '左大脳半球', '右小脳半球', '脊髄後索'],
-    answer: 1,
-    expl: '運動を伝える錐体路は<b>延髄で左右が交叉</b>します。そのため<b>左</b>大脳半球の障害で<b>右</b>片麻痺が起こります。',
-    pin: '「交叉する」を知っていれば一生間違えません。<b>暗記ではなく仕組みで解ける</b>典型例です。'
+    domain: '泌尿器',
+    rate: 93,
+    text: '健常な成人の1日の平均尿量はどれか。',
+    choices: ['100mL未満', '200mL〜500mL', '1,000mL〜1,500mL', '3,000mL以上'],
+    answer: 2,
+    expl: '健常な成人の1日尿量は<b>1,000〜1,500mL</b>です。400mL未満を乏尿、100mL未満を無尿、3,000mL以上を多尿といいます。',
+    pin: '基準値は「異常を判断するため」に持つもの。<b>乏尿・無尿・多尿の境目まで一緒に言えるか</b>で、状況設定問題の解ける・解けないが分かれます。'
+  },
+  {
+    domain: '神経系',
+    rate: 90,
+    text: '交感神経の作用で正しいのはどれか。',
+    choices: ['縮瞳', '呼吸数減少', '心拍数増加', '血糖値低下'],
+    answer: 2,
+    expl: '交感神経は体を戦闘態勢にする神経です。<b>心拍数増加</b>のほか、散瞳・呼吸数増加・血糖上昇が起こります。縮瞳と血糖低下は副交感神経の作用です。',
+    pin: '交感神経と副交感神経は、<b>1つずつ暗記すると必ず混ざります。</b>「戦うか／休むか」でまとめて考えられる人が、全部正解します。'
   },
   {
     domain: '内分泌',
-    rate: 78,
-    text: 'インスリンを分泌するのはどれか。',
-    choices: ['膵島〈ランゲルハンス島〉のA〈α〉細胞', '膵島〈ランゲルハンス島〉のB〈β〉細胞', '副腎皮質', '甲状腺の濾胞細胞'],
-    answer: 1,
-    expl: 'インスリンは膵島の<b>B〈β〉細胞</b>から分泌されます。A〈α〉細胞から出るのはグルカゴンです。',
-    pin: 'ここが曖昧なままだと、糖尿病の<b>病態・検査・薬理・看護</b>まで全部ぐらつきます。1問の失点では終わりません。'
-  },
-  {
-    domain: '腎',
-    rate: 74,
-    text: '慢性腎不全が進行したときに、低下するのはどれか。',
-    choices: ['血清クレアチニン', '血清カリウム', 'ヘモグロビン', '血清リン'],
+    rate: 68,
+    text: '外分泌器官はどれか。',
+    choices: ['胸腺', '副腎', '乳腺', '甲状腺'],
     answer: 2,
-    expl: '腎臓は赤血球をつくらせるホルモン（エリスロポエチン）を分泌しています。腎機能が落ちるとこれが減り、<b>ヘモグロビンが低下（腎性貧血）</b>します。クレアチニン・カリウム・リンは逆に上昇します。',
-    pin: '腎臓を「尿をつくる臓器」としか捉えていないと、この問題は落とします。<b>腎臓の働きを全部言えるか</b>が、そのまま得点差になります。'
+    expl: '外分泌腺は<b>導管を通して体外や管腔に分泌</b>する腺で、<b>乳腺</b>が該当します。胸腺・副腎・甲状腺は導管をもたず、血液中に分泌する内分泌腺です。',
+    pin: 'ここから正答率が一気に落ちます。<b>内分泌と外分泌の違い（導管があるか）</b>を一度整理するだけで取れる問題です。'
   },
   {
     domain: '循環器',
-    rate: 71,
-    text: '右心不全でみられるのはどれか。',
-    choices: ['起坐呼吸', '下腿の浮腫', '泡沫状の喀痰', '湿性ラ音'],
-    answer: 1,
-    expl: '<b>右心不全は体循環がうっ滞</b>するため、下腿の浮腫・頸静脈怒張・肝腫大が起こります。起坐呼吸・泡沫状喀痰・湿性ラ音は、肺がうっ血する<b>左心不全</b>の症状です。',
-    pin: '左右の区別は、受験生が最も混同するところです。<b>「右は体、左は肺」</b>と血液の流れで理解していれば、心不全の問題はまとめて取れます。丸暗記した人から落とします。'
+    rate: 58,
+    text: '主として右心不全でみられる症状はどれか。',
+    choices: ['肺水腫', '呼吸困難', '不穏状態', '下腿浮腫'],
+    answer: 3,
+    expl: '<b>右心不全は体循環がうっ滞</b>するため、下腿浮腫・頸静脈怒張・肝腫大が起こります。肺水腫と呼吸困難は、肺がうっ血する<b>左心不全</b>の症状です。',
+    pin: '正答率58%。<b>受験生の4割以上が落とす、この5領域で最も危険な領域</b>です。「右は体、左は肺」と血液の流れで理解すれば、心不全はまとめて取れるようになります。'
   }
 ];
+
+// WAGON式の基準線。この値以上を「必修帯（絶対に落とせない層）」、
+// 未満を「合否帯（ここを取れると差がつく層）」として診断する。
+var MUST_GET = 70;
 
 /* --------------------------------------------------------------------------
    ▼ 判定パターン
 -------------------------------------------------------------------------- */
 var RESULTS = {
   A: {
-    rank:'A', glyph:'⚠', label:'危険度 A',
+    rank:'A', glyph:'⚠', label:'危険度 A ／ 必修帯で失点',
     head:'いま、いちばん危ない状態です。',
-    body:'落としたのは、どれも<b>多くの受験生が正解する問題</b>でした。難しい問題が解けないのではなく、<b>基礎が抜けたまま演習量だけ積んでいる</b>状態です。この状態で問題集を回しても点は伸びません。順番を変える必要があります。'
+    body:'落としたのは<b>受験生の9割以上が正解する問題</b>です。難しい問題が解けないのではなく、<b>土台が抜けたまま演習量だけ積んでいる</b>状態。この状態で問題集を回しても点は伸びません。まず順番を変える必要があります。'
   },
   B: {
-    rank:'B', glyph:'△', label:'危険度 B',
-    head:'伸びしろは大きい。ただし、いまのままだと危ない。',
-    body:'知識はある程度入っています。ただ<b>取りこぼしが出るということは、本番でも同じ場所で落とす</b>ということです。合否を分けるのは難問ではなく、この数問です。埋めれば一気に安定します。'
+    rank:'B', glyph:'△', label:'危険度 B ／ 合否帯で失点',
+    head:'土台は取れています。落としたのは、合否を分ける層。',
+    body:'絶対に落とせない層（正答率90%以上）は全問取れていました。落としたのは<b>正答率70%未満＝受験生の3〜4割が落とす層</b>です。ここは全員が捨てにかかる領域なので、<b>取れるようにした人からそのまま順位が上がります。</b>いちばん費用対効果の高い場所です。'
   },
   C: {
-    rank:'C', glyph:'◎', label:'危険度 C',
-    head:'基礎は取れています。問題はここから先。',
-    body:'5問とも正解できました。ただ直前期に多いのが、<b>「取れている」と思って難問に手を出し、逆に基礎を落とす</b>パターンです。あなたに必要なのは伸ばすことより、<b>本番まで落とさない状態を維持すること</b>です。'
+    rank:'C', glyph:'◎', label:'危険度 C ／ 全問正解',
+    head:'5問とも正解。ここから先が本当の勝負です。',
+    body:'合否を分ける層まで取りきれています。ただ直前期に最も多いのが、<b>「取れている」と思って難問に手を出し、逆に土台を落とす</b>パターンです。あなたに必要なのは伸ばすことより、<b>本番まで落とさない状態を維持すること</b>。維持のしかたには型があります。'
   }
 };
 
-// スコア → 危険度の判定（問題数を変えたらここも調整）
-function rankOf(s){
-  var n = QUESTIONS.length;
-  if (s === n) return 'C';
-  if (s >= Math.ceil(n * 0.6)) return 'B';
-  return 'A';
+// 「点数」ではなく「どちらの層で落としたか」で判定する。
+//   必修帯(正答率MUST_GET以上)に失点あり → A（緊急）
+//   必修帯は全問正解、合否帯に失点あり     → B
+//   全問正解                              → C
+function rankOf(missedQ){
+  if (!missedQ.length) return 'C';
+  return missedQ.some(function(q){ return q.rate >= MUST_GET; }) ? 'A' : 'B';
 }
 
 var TODOS = [
@@ -863,28 +880,34 @@ function answer(picked){
 function showResult(){
   qi = QUESTIONS.length;
   drawProgress();
-  var r = RESULTS[rankOf(score)];
   var missedQ = QUESTIONS.filter(function(q, i){ return !marks[i]; });
   var weak = missedQ.map(function(q){ return q.domain; });
+  var r = RESULTS[rankOf(missedQ)];
 
-  // 最優先領域＝「正答率が最も高いのに落とした領域」。
-  // 難しい問題を落とすより、みんなが取れる問題を落とすほうが危険なため。
-  var primary = missedQ.length
-    ? missedQ.reduce(function(a, b){ return b.rate > a.rate ? b : a; }).domain
+  // 必修帯（正答率MUST_GET以上）の失点は、合否帯の失点より常に優先。
+  // 「みんなが取れる問題を落としている」ほうが危険なため。
+  var mustMissed = missedQ.filter(function(q){ return q.rate >= MUST_GET; });
+  var primary = mustMissed.length
+    ? mustMissed.reduce(function(a, b){ return b.rate > a.rate ? b : a; }).domain
     : null;
-  var keyword = primary ? ('診断-' + primary) : '診断-満点';
 
-  // 教材が用意できている領域（featuredDomain）を、診断結果とは別枠で案内する。
-  // 診断は正直に出したうえで、いま配れる無料教材はこれです、と伝える形。
+  // いま無料教材を用意できている領域
   var featured = LP_CONFIG.featuredDomain || '';
   var featuredQ = QUESTIONS.filter(function(q){ return q.domain === featured; })[0];
-  var showFeatured = !!featuredQ && featured !== primary;
+
+  // CTA・合言葉が指す領域。
+  //   A（必修帯で失点）… その領域が最優先なので、そちらを案内し、循環器は別枠で添える
+  //   B / C            … 必修帯は取れているので、そのまま教材のある領域へ案内する
+  var ctaDomain = primary || (featuredQ ? featured : null);
+  var keyword = ctaDomain ? ('診断-' + ctaDomain) : '診断-満点';
+  var showFeatured = !!featuredQ && ctaDomain !== featured;
 
   track('quiz_complete', {
     score: score, rank: r.rank,
     missed: missed.join(','),
     weak_domains: weak.join('／') || 'none',
-    primary_domain: primary || 'none'
+    primary_domain: primary || 'none',   // 必修帯で落とした領域（なければ none）
+    cta_domain: ctaDomain || 'none'      // 実際にLINEへ誘導した領域
   });
 
   elQuiz.hidden = true;
@@ -907,10 +930,14 @@ function showResult(){
     (primary
       ? '<p style="font-size:14.5px; margin:12px 0 0; line-height:1.85;">' +
           'なかでも<b style="color:var(--warn)">' + primary + '</b>は、' +
-          '<b>受験生の' + missedQ.reduce(function(a,b){return b.rate>a.rate?b:a;}).rate + '%が正解している領域</b>です。' +
-          'ここを落としているということは、<b>本番でも同じ失点をします。</b>' +
-          'まずこの領域から立て直してください。</p>'
-      : '') +
+          '<b>受験生の' + mustMissed.reduce(function(a,b){return b.rate>a.rate?b:a;}).rate + '%が正解している問題</b>でした。' +
+          'ここは<b>絶対に落とせない層</b>です。本番でも同じ失点をします。まずここから立て直してください。</p>'
+      : r.rank === 'B'
+        ? '<p style="font-size:14.5px; margin:12px 0 0; line-height:1.85;">' +
+            '<b>正答率90%以上の問題は、すべて取れていました。</b>' +
+            '落としたのは正答率70%未満の層です。ここは多くの受験生が捨てにかかる領域なので、' +
+            '<b>取れるようにした人から、そのまま順位が上がります。</b></p>'
+        : '') +
 
     '<div class="dom">' +
       QUESTIONS.map(function(q, i){
@@ -944,15 +971,16 @@ function showResult(){
     '</div>' +
 
     '<div class="talk">' +
-      '<div class="kick">' + (primary
-        ? '立て直しは、' + primary + 'から。'
-        : 'この状態を、本番まで維持するために。') + '</div>' +
-      '<h3>' + (primary
-        ? primary + 'の問題を、<br>担任から無料で受け取れます。'
+      '<div class="kick">' + (
+        r.rank === 'A' ? '立て直しは、' + ctaDomain + 'から。' :
+        r.rank === 'B' ? 'ここを取れると、順位が変わります。' :
+                         '維持のしかたにも、型があります。') + '</div>' +
+      '<h3>' + (ctaDomain
+        ? ctaDomain + 'の問題を、<br>担任から無料で受け取れます。'
         : '本番までの詰め方を、<br>担任が個別にお答えします。') + '</h3>' +
       '<ul>' +
-        (primary
-          ? '<li>' + primary + 'の演習問題を、その場でお送りします</li>' +
+        (ctaDomain
+          ? '<li>' + ctaDomain + 'の演習問題を、その場でお送りします</li>' +
             '<li>解説動画つき。見たあとにもう一度解いて、変化を確かめられます</li>'
           : '<li>いまの状態を維持するための進め方をお伝えします</li>' +
             '<li>次に伸ばすべき領域を、一緒に決めます</li>') +
@@ -973,14 +1001,14 @@ function showResult(){
           '<button type="button" id="kw-copy">コピー</button>' +
         '</div>' +
         '<p class="hint">LINEを追加したら、この合言葉を送ってください。' +
-          (primary
-            ? '<b style="color:var(--txt)">' + primary + 'の問題が、そのまま届きます。</b>'
+          (ctaDomain
+            ? '<b style="color:var(--txt)">' + ctaDomain + 'の問題が、そのまま届きます。</b>'
             : '<b style="color:var(--txt)">満点だった方向けの進め方をお送りします。</b>') + '</p>' +
       '</div>' +
 
       '<a class="cta line" href="' + LP_CONFIG.lineUrl + '" target="_blank" rel="noopener" ' +
         'data-cta="result" data-goal="line">' +
-        '<span class="ic">L</span>' + (primary ? primary + 'の問題を受け取る' : 'LINEで担任に相談する') +
+        '<span class="ic">L</span>' + (ctaDomain ? ctaDomain + 'の問題を受け取る' : 'LINEで担任に相談する') +
         '<small>友だち追加は無料・しつこい勧誘はしません</small></a>' +
     '</div>';
 
