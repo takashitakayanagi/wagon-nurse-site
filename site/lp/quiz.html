@@ -580,7 +580,7 @@ footer .lk{display:flex; flex-wrap:wrap; gap:8px 16px; margin-bottom:14px;}
       </a>
     </div>
 
-    <div class="offer" style="margin-top:26px;">
+    <div class="offer" id="final-offer" style="margin-top:26px;">
       <div class="kick" style="font-size:12px;">相談のなかでご案内している<br>メインプランはこちらです</div>
       <div class="nm">サブスクWAGON</div>
       <div class="pr"><b class="mono">20,000</b><span class="y">円</span>／月</div>
@@ -732,6 +732,11 @@ var RESULTS = {
       glyph:'●', label:'埋めるべき領域が 2つ以上',
       head:'伸びしろが、はっきり見えました。',
       body:'落とした問題は、<b>本番では7割以上が正解する問題</b>です。いま解けなくても普通ですが、<b>ここは最後には全員が取れるようになる場所</b>。つまり<b>先に埋めた人が、そのまま先行します。</b>やることが絞れているのは、いい状態です。'
+    },
+    practice:{
+      glyph:'●', label:'実習で困りやすい領域が 2つ以上',
+      head:'実習で、いちばん困るところです。',
+      body:'呼吸器・循環器・脳神経・内分泌・腎。<b>実習で受け持つ患者さんの疾患は、ほぼこの5つのどれか</b>です。ここが曖昧なままだと、アセスメントも実習記録も書けません。逆に、<b>ここを押さえておくと実習が一気に楽になります。</b>'
     }
   },
   B: {
@@ -742,6 +747,11 @@ var RESULTS = {
       glyph:'●', label:'埋めるべき領域が 1つ',
       head:'土台はできています。あと1つだけ。',
       body:'落としたのは1問。しかも<b>本番では7割以上が正解する問題</b>です。ここを埋めておけば、<b>この5領域はもう心配いりません。</b>いま手をつけておくのが、いちばん効率のいいタイミングです。'
+    },
+    practice:{
+      glyph:'●', label:'実習で困りやすい領域が 1つ',
+      head:'ほとんど押さえられています。あと1つだけ。',
+      body:'落としたのは1問だけ。<b>実習で受け持つ患者さんの疾患は、ほぼこの5領域のどれか</b>です。ここを埋めておけば、アセスメントも実習記録も、ぐっと書きやすくなります。'
     }
   },
   C: {
@@ -752,6 +762,11 @@ var RESULTS = {
       glyph:'◎', label:'全問正解',
       head:'5問とも正解。かなり先行しています。',
       body:'この5領域は、国家試験でそのまま得点源になります。いま取れているなら、<b>あとは本番まで落とさないこと</b>。そして<b>次にどこを伸ばすか</b>で差がつきます。'
+    },
+    practice:{
+      glyph:'◎', label:'全問正解',
+      head:'5問とも正解。実習でも困らないはずです。',
+      body:'この5領域は、<b>実習で受け持つ患者さんの疾患のほとんどをカバー</b>します。いま取れているなら、実習はかなり楽に進むはずです。あとは<b>この状態を国試まで持っていくこと</b>です。'
     }
   }
 };
@@ -818,8 +833,16 @@ var VARIANT = (function(){
 })();
 
 // 判定文の出し分け。school の指定があればそちらを、なければ既定を使う。
+/* 今年度の国試を受験するか。学校講義では5問のあとに本人へ確認する。
+   null … 未確認（広告流入は受験前提なので true 扱い）
+   false … 1〜2年生など。国試ではなく実習に寄せた文言に切り替える。 */
+var EXAM_YEAR = (VARIANT === 'school') ? null : true;
+
+// 文言の出し分け。実習向け → 学校向け → 既定 の順に拾う。
 function res(r, key){
-  return (VARIANT === 'school' && r.school && r.school[key]) ? r.school[key] : r[key];
+  if (EXAM_YEAR === false && r.practice && r.practice[key]) return r.practice[key];
+  if (VARIANT === 'school' && r.school && r.school[key]) return r.school[key];
+  return r[key];
 }
 
 function track(name, params){
@@ -928,13 +951,45 @@ function answer(picked){
   setTimeout(function(){ ex.scrollIntoView({ behavior:'smooth', block:'nearest' }); }, 60);
 
   document.getElementById('nx').addEventListener('click', function(){
-    if (last){ showResult(); }
+    if (last){
+      // 学校講義では、結果を出す直前に受験学年かどうかだけ確認する。
+      // 最初に聞くと、価値を返す前の関門になって離脱するため。
+      if (VARIANT === 'school' && EXAM_YEAR === null) askExamYear();
+      else showResult();
+    }
     else {
       qi++;
       renderQuestion();
       document.getElementById('qc').scrollIntoView({ behavior:'smooth', block:'center' });
     }
   }, { once:true });
+}
+
+/* 5問のあとに1問だけ。結果の出し方を変えるための確認。 */
+function askExamYear(){
+  qi = QUESTIONS.length;
+  drawProgress();
+  elQuiz.innerHTML =
+    '<div class="qcard">' +
+      '<div class="qmeta"><span class="qno">LAST ONE</span></div>' +
+      '<p class="qtext">最後に1つだけ。<br>あなたは今年度、看護師国家試験を受験しますか？</p>' +
+      '<p class="qsub">選んだ内容に合わせて、結果の出し方を変えます。</p>' +
+      '<div class="choices">' +
+        '<button class="ch" type="button" data-exam="1">' +
+          '<span class="num">1</span><span>受験します（3年生・既卒の方）</span></button>' +
+        '<button class="ch" type="button" data-exam="0">' +
+          '<span class="num">2</span><span>まだ先です（1〜2年生の方）</span></button>' +
+      '</div>' +
+    '</div>';
+  elQuiz.scrollIntoView({ behavior:'smooth', block:'center' });
+
+  elQuiz.querySelectorAll('.ch').forEach(function(b){
+    b.addEventListener('click', function(){
+      EXAM_YEAR = (b.dataset.exam === '1');
+      track('exam_year_select', { exam_year: EXAM_YEAR ? 'yes' : 'no' });
+      showResult();
+    }, { once:true });
+  });
 }
 
 function showResult(){
@@ -961,7 +1016,10 @@ function showResult(){
   // → 合言葉が1種類に固定されるので、LINE自動応答のルールも1本で済む。
   // 教材が複数領域そろったら、featuredDomain を配列にしてここで選び分ける。
   var ctaDomain = featuredQ ? featured : primary;
-  var keyword = ctaDomain ? ('診断-' + ctaDomain) : '診断-満点';
+  // 実習向けは合言葉に「-実習」を付けて、LINE側で分岐できるようにする。
+  // これで担任は、送られてきた時点で学年と話の入口が分かる。
+  var keyword = (ctaDomain ? ('診断-' + ctaDomain) : '診断-満点') +
+                (EXAM_YEAR === false ? '-実習' : '');
 
   // 最優先領域が、教材のある領域と違うとき。診断文とCTAの橋渡しを出す。
   var otherPriority = !!(primary && ctaDomain && primary !== ctaDomain);
@@ -1049,15 +1107,19 @@ function showResult(){
 
     '<div class="talk">' +
       '<div class="kick">' + (
-        otherPriority     ? 'まずは、無料の演習から。' :
-        primary           ? '立て直しは、' + ctaDomain + 'から。' :
-                            '維持のしかたにも、型があります。') + '</div>' +
+        EXAM_YEAR === false ? '実習が楽になるのは、ここからです。' :
+        otherPriority       ? 'まずは、無料の演習から。' :
+        primary             ? '立て直しは、' + ctaDomain + 'から。' :
+                              '維持のしかたにも、型があります。') + '</div>' +
       '<h3>' + (ctaDomain
         ? ctaDomain + 'の講義動画と問題を、<br>担任から無料で受け取れます。'
         : '本番までの詰め方を、<br>担任が個別にお答えします。') + '</h3>' +
       '<ul>' +
         (ctaDomain
-          ? '<li>まず<b>' + ctaDomain + 'の講義動画（約10分）</b>。解き方の考え方から確認できます</li>' +
+          ? '<li>まず<b>' + ctaDomain + 'の講義動画（約10分）</b>。' +
+              (EXAM_YEAR === false
+                ? '<b>心不全の患者さんを受け持ったとき、何を見るか</b>までつながります'
+                : '解き方の考え方から確認できます') + '</li>' +
             '<li>' + (missedFeatured
                 ? 'そのあと演習問題。<b>さっき解けなかった問題が、解けるようになります</b>'
                 : 'そのあと演習問題で、理解できているかを確認できます') + '</li>'
@@ -1114,6 +1176,13 @@ function showResult(){
       document.body.removeChild(ta);
     }
   });
+
+  // 1〜2年生に月額20,000円を出すのは早すぎる。まず無料で伴走し、
+  // 学年と状況はLINE側で確認してから案内する。
+  if (EXAM_YEAR === false) {
+    var offer = document.getElementById('final-offer');
+    if (offer) offer.hidden = true;
+  }
 
   elResult.scrollIntoView({ behavior:'smooth', block:'start' });
   document.getElementById('sticky').classList.add('on');
