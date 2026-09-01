@@ -415,9 +415,9 @@ footer .lk{display:flex; flex-wrap:wrap; gap:8px 16px; margin-bottom:14px;}
 <!-- ================= 診断 ================= -->
 <div class="wrap">
   <div class="qhead">
-    <span class="tagline">◆ 2分・登録不要の国試診断</span>
-    <h1>この5問で、<br>あなたが<em>落ちる理由</em>が<br>わかります。</h1>
-    <div class="meta"><span>所要2分</span><span>登録不要</span><span>その場で採点</span></div>
+    <span class="tagline" id="fv-tag">◆ 2分・登録不要の国試診断</span>
+    <h1 id="fv-h1">この5問で、<br>あなたが<em>落ちる理由</em>が<br>わかります。</h1>
+    <div class="meta" id="fv-meta"><span>所要2分</span><span>登録不要</span><span>その場で採点</span></div>
   </div>
 
   <div class="prog" id="prog" aria-hidden="true"></div>
@@ -649,8 +649,9 @@ var LP_CONFIG = {
   //   QUESTIONS の domain と完全一致させること。空文字にすると誘導は出ない。
   featuredDomain: '循環器',
 
-  // 主導線：公式LINE
+  // 主導線：公式LINE（友だち追加）— 広告など、まだ友だちでない層向け
   lineUrl: 'https://page.line.me/wvr6857m',
+
   // 副導線：サブスク申込フォーム
   applyUrl: 'https://forms.gle/xJ6YhhBAiXSzEJD88'
 };
@@ -725,17 +726,33 @@ var RESULTS = {
   A: {
     rank:'A', glyph:'⚠', label:'危険度 A ／ 2問以上を失点',
     head:'いま、いちばん危ない状態です。',
-    body:'5問とも<b>7割以上の受験生が正解する問題</b>です。そこを複数落としているということは、難しい問題が解けないのではなく、<b>土台が抜けたまま演習量だけ積んでいる</b>状態。この状態で問題集を回しても点は伸びません。まず順番を変える必要があります。'
+    body:'5問とも<b>7割以上の受験生が正解する問題</b>です。そこを複数落としているということは、難しい問題が解けないのではなく、<b>土台が抜けたまま演習量だけ積んでいる</b>状態。この状態で問題集を回しても点は伸びません。まず順番を変える必要があります。',
+    // 学校講義用：1〜2年生が落とすのは普通なので、煽らず伸びしろとして提示する
+    school:{
+      glyph:'●', label:'埋めるべき領域が 2つ以上',
+      head:'伸びしろが、はっきり見えました。',
+      body:'落とした問題は、<b>本番では7割以上が正解する問題</b>です。いま解けなくても普通ですが、<b>ここは最後には全員が取れるようになる場所</b>。つまり<b>先に埋めた人が、そのまま先行します。</b>やることが絞れているのは、いい状態です。'
+    }
   },
   B: {
     rank:'B', glyph:'△', label:'危険度 B ／ 1問を失点',
     head:'土台はできています。落としたのは、1問だけ。',
-    body:'ただしその1問も、<b>7割以上が正解する問題</b>です。合否を分けるのは難問ではなく、この1問。このままだと<b>本番でも同じ場所で落とします。</b>逆に言えば、ここを埋めるだけで一気に安定します。'
+    body:'ただしその1問も、<b>7割以上が正解する問題</b>です。合否を分けるのは難問ではなく、この1問。このままだと<b>本番でも同じ場所で落とします。</b>逆に言えば、ここを埋めるだけで一気に安定します。',
+    school:{
+      glyph:'●', label:'埋めるべき領域が 1つ',
+      head:'土台はできています。あと1つだけ。',
+      body:'落としたのは1問。しかも<b>本番では7割以上が正解する問題</b>です。ここを埋めておけば、<b>この5領域はもう心配いりません。</b>いま手をつけておくのが、いちばん効率のいいタイミングです。'
+    }
   },
   C: {
     rank:'C', glyph:'◎', label:'危険度 C ／ 全問正解',
     head:'5問とも正解。この時点で、かなり先行しています。',
-    body:'ただし直前期に最も多いのが、<b>「取れている」と思って難問に手を出し、逆に土台を落とす</b>パターンです。あなたに必要なのは伸ばすことより、<b>本番まで落とさない状態を維持すること</b>。維持のしかたにも型があります。'
+    body:'ただし直前期に最も多いのが、<b>「取れている」と思って難問に手を出し、逆に土台を落とす</b>パターンです。あなたに必要なのは伸ばすことより、<b>本番まで落とさない状態を維持すること</b>。維持のしかたにも型があります。',
+    school:{
+      glyph:'◎', label:'全問正解',
+      head:'5問とも正解。かなり先行しています。',
+      body:'この5領域は、国家試験でそのまま得点源になります。いま取れているなら、<b>あとは本番まで落とさないこと</b>。そして<b>次にどこを伸ばすか</b>で差がつきます。'
+    }
   }
 };
 
@@ -778,12 +795,59 @@ var LP_SOURCE = (function(){
   }catch(e){ return {}; }
 })();
 
+/* ---------- 流入元による出し分け ----------
+   ad     … 広告からの流入。国試を控えた層が中心で、まだWAGONを知らない。
+   school … 学校での無料講義からの流入（?src=school）。
+            ・1〜2年生が混ざるので、国試カウントダウンは出さない
+            ・教室で結果を見せ合うため、「危険度」の煽りは使わない
+            ・LINEは未登録なので、友だち追加がそのままゴールでよい
+------------------------------------------- */
+var VARIANT = (function(){
+  try{
+    var q = new URLSearchParams(location.search);
+    var s = (q.get('src') || q.get('utm_source') || '').toLowerCase();
+    // 流入元の指定があれば、それを優先して保存し直す
+    // （指定なしのリロードや内部遷移では、保存済みのものを引き継ぐ）
+    if (s) {
+      var v = (s === 'school') ? 'school' : 'ad';
+      sessionStorage.setItem('lp_variant', v);
+      return v;
+    }
+    return sessionStorage.getItem('lp_variant') || 'ad';
+  }catch(e){ return 'ad'; }
+})();
+
+// 判定文の出し分け。school の指定があればそちらを、なければ既定を使う。
+function res(r, key){
+  return (VARIANT === 'school' && r.school && r.school[key]) ? r.school[key] : r[key];
+}
+
 function track(name, params){
   if (window.gtag) gtag('event', name, Object.assign({
+    lp_variant: VARIANT,
     utm_source: LP_SOURCE.utm_source || '',
     utm_campaign: LP_SOURCE.utm_campaign || '',
     utm_content: LP_SOURCE.utm_content || ''
   }, params || {}));
+}
+
+/* ---------- 学校での無料講義からの流入向けに調整 ----------
+   1〜2年生が混ざるため国試カウントダウンは意味をなさない。
+   また教室で結果を見せ合う場面なので、煽りの文言は使わない。
+--------------------------------------------------------- */
+if (VARIANT === 'school') {
+  document.getElementById('fv-tag').textContent = '◆ 今日の講義を受けた方へ';
+  document.getElementById('fv-h1').innerHTML =
+    'この5問で、<br><em>次にやること</em>が<br>決まります。';
+  document.getElementById('fv-meta').innerHTML =
+    '<span>所要2分</span><span>その場で採点</span><span>学年は問いません</span>';
+
+  // 国試までの日数は出さない（DAYSをnullにすると結果側の表示も自動で外れる）
+  var cd = document.querySelector('.topbar .cd');
+  if (cd) cd.style.display = 'none';
+  var sm = document.querySelector('.sticky .m .a');
+  if (sm) sm.textContent = '無料・その場で受け取れます';
+  DAYS = null;
 }
 
 /* ---------- 診断エンジン ---------- */
@@ -921,8 +985,10 @@ function showResult(){
     '<div class="score-card">' +
       '<div class="lbl">YOUR SCORE</div>' +
       '<div class="sc mono">' + score + '<small> / ' + QUESTIONS.length + '</small></div>' +
-      '<div class="rank ' + r.rank + '"><span class="g">' + r.glyph + '</span>' + r.label + '</div>' +
-      '<p class="diag"><b>' + r.head + '</b><br>' + r.body + '</p>' +
+      // 学校講義では教室で結果を見せ合うため、赤（危険）の配色は使わない
+      '<div class="rank ' + (VARIANT === 'school' && r.rank === 'A' ? 'B' : r.rank) + '">' +
+        '<span class="g">' + res(r,'glyph') + '</span>' + res(r,'label') + '</div>' +
+      '<p class="diag"><b>' + res(r,'head') + '</b><br>' + res(r,'body') + '</p>' +
     '</div>' +
 
     '<h2 style="margin:28px 0 4px; font-size:19px;">領域別の結果</h2>' +
@@ -935,8 +1001,10 @@ function showResult(){
       ? '<p style="font-size:14.5px; margin:12px 0 0; line-height:1.85;">' +
           'なかでも<b style="color:var(--warn)">' + primary + '</b>は、' +
           '<b>' + primaryQ.rate + '%が正解している問題</b>でした。' +
-          'つまり<b>落としてはいけない側の問題</b>です。このままだと本番でも同じ失点をします。' +
-          'まずここから立て直してください。</p>'
+          (VARIANT === 'school'
+            ? 'つまり<b>最後には取れるようになる問題</b>です。まずここから埋めていきましょう。</p>'
+            : 'つまり<b>落としてはいけない側の問題</b>です。このままだと本番でも同じ失点をします。' +
+              'まずここから立て直してください。</p>')
       : '<p style="font-size:14.5px; margin:12px 0 0; line-height:1.85;">' +
           '<b>5問とも、確実に取りきる側の問題でした。</b>' +
           'そこを全部取れているということは、いまの時点でかなり先行しています。' +
@@ -960,9 +1028,11 @@ function showResult(){
     '<p class="shot">この画面を<b>スクリーンショット</b>して担任に送っていただくと、' +
       'あなたが落とした領域に合わせて、より正確にお答えできます。</p>' +
 
-    '<h2 style="margin:28px 0 4px; font-size:19px;">残り' +
-      (DAYS === null ? '' : '<span class="mono" style="color:var(--amber)"> ' + DAYS + ' </span>日') +
-      'で、あなたがやること</h2>' +
+    '<h2 style="margin:28px 0 4px; font-size:19px;">' +
+      (DAYS === null
+        ? 'あなたが次にやること'
+        : '残り<span class="mono" style="color:var(--amber)"> ' + DAYS + ' </span>日で、あなたがやること') +
+      '</h2>' +
     '<p style="font-size:13px; color:var(--txt-dim); margin-bottom:14px;">' +
       '診断結果から、優先順位の高い順に並べています。</p>' +
 
