@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="/assets/img/favicon.png" type="image/png">
 <meta name="robots" content="noindex, follow">
-<meta name="theme-color" content="#FBFAF7">
+<meta name="theme-color" content="#FBF2F4">
 
 <title>あなたの学習カルテ｜看護師国試 WAGON</title>
 <meta name="description" content="模試がE判定でも、学力不足とは限りません。SOAPで記録すると、原因は時間の配分にあると分かります。循環器の講義動画と演習問題を無料でお送りします。">
@@ -39,12 +39,14 @@
 
 <style>
 :root{
-  --paper:#FBFAF7; --card:#FFFFFF; --ink:#1C2733; --ink-soft:#5C6B7A; --ink-dim:#8D9AA6;
-  --rule:#D8DFE5; --rule2:#C2CCD4; --head:#EDF2F5;
-  --teal:#0E7C7B; --teal-soft:#E6F2F2; --teal-d:#0A5E5D;
-  --alert:#C2453C; --alert-soft:#FBEEED;
+  /* 用紙は淡いピンク。カードは白のままにして、紙の上に記録用紙が乗る形にする */
+  --paper:#FBF2F4; --card:#FFFFFF; --ink:#2B2328; --ink-soft:#6A5B61; --ink-dim:#9E8F95;
+  --rule:#EADCE0; --rule2:#DAC6CC; --head:#F6EAEE;
+  --teal:#0E7C7B; --teal-soft:#E4F1F1; --teal-d:#0A5E5D;
+  /* ピンクの紙と紛れないよう、誤答の赤みは少し濃く取る */
+  --alert:#C2453C; --alert-soft:#F9E2E0;
   --g:#06C755; --g2:#00B900; --g-soft:#EAF8EF;
-  --shadow:0 1px 2px rgba(28,39,51,.05), 0 10px 24px -16px rgba(28,39,51,.26);
+  --shadow:0 1px 2px rgba(43,35,40,.05), 0 10px 24px -16px rgba(43,35,40,.24);
 }
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
 [hidden]{display:none !important;}
@@ -71,7 +73,7 @@ section{padding:40px 0;}
 
 /* ── ヘッダー ── */
 .top{
-  position:sticky; top:0; z-index:40; background:rgba(251,250,247,.95);
+  position:sticky; top:0; z-index:40; background:rgba(251,242,244,.95);
   backdrop-filter:blur(10px); border-bottom:1px solid var(--rule);
 }
 .top .in{max-width:540px; margin:0 auto; padding:10px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px;}
@@ -89,7 +91,9 @@ section{padding:40px 0;}
 .fv h1{font-size:29px; line-height:1.5; font-weight:900; margin:0 0 14px; letter-spacing:-.03em;}
 .fv h1 em{font-style:normal; color:var(--teal);}
 @media (max-width:400px){ .fv h1{font-size:25px;} }
-.fv .lead{font-size:14.5px; color:var(--ink-soft); margin:0;}
+.fv .lead{font-size:14.5px; color:var(--ink-soft); margin:0; line-height:1.9;}
+/* 意味のかたまりごとに折り返す（語の途中で切れないように） */
+.fv .lead span{display:inline-block;}
 
 /* ── カルテ用紙 ── */
 .chart{
@@ -276,7 +280,7 @@ section{padding:40px 0;}
 /* ── sticky ── */
 .sticky{
   position:fixed; left:0; right:0; bottom:0; z-index:50;
-  background:rgba(251,250,247,.96); backdrop-filter:blur(12px);
+  background:rgba(251,242,244,.96); backdrop-filter:blur(12px);
   border-top:1px solid var(--rule); padding:10px 16px calc(10px + env(safe-area-inset-bottom));
   transform:translateY(115%); transition:transform .3s cubic-bezier(.2,.7,.3,1);
 }
@@ -288,7 +292,7 @@ section{padding:40px 0;}
 .sticky .cta{flex:0 0 auto; margin:0; font-size:14.5px; padding:12px 19px;}
 @media (max-width:380px){ .sticky .m .b{font-size:12px;} .sticky .cta{font-size:13px; padding:11px 14px;} }
 
-footer{background:#F0EEE9; border-top:1px solid var(--rule); padding:24px 0 32px; font-size:11.5px; color:var(--ink-dim);}
+footer{background:#F3E6EA; border-top:1px solid var(--rule); padding:24px 0 32px; font-size:11.5px; color:var(--ink-dim);}
 footer a{color:var(--ink-soft); text-decoration:underline;}
 footer .lk{display:flex; flex-wrap:wrap; gap:8px 15px; margin-bottom:12px;}
 </style>
@@ -310,8 +314,8 @@ footer .lk{display:flex; flex-wrap:wrap; gap:8px 15px; margin-bottom:12px;}
     <span class="tag">学習カルテ ／ SOAP</span>
     <h1>模試がE判定でも、<br><em>学力不足とは限りません。</em></h1>
     <p class="lead">
-      毎日書いているあの書式で、あなたのことを記録してみます。
-      原因は、たいてい思っているところにありません。
+      <span>毎日書いているあの書式で、</span><span>あなたのことを記録してみます。</span>
+      <span>原因は、</span><span>たいてい思っているところに</span><span>ありません。</span>
     </p>
   </div>
 
