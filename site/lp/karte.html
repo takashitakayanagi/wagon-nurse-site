@@ -132,7 +132,7 @@ section{padding:40px 0;}
 /* 意味のかたまりごとに折り返す（語の途中で切れないように） */
 .o-lead span{display:inline-block;}
 .o-q{font-size:15px; font-weight:900; line-height:1.7; margin:0 0 11px;}
-.o-q span, .found span{display:inline-block;}
+.o-q span, .found span, .basis span:not(.bh){display:inline-block;}
 /* 対応ブラウザ（Chrome 119+ など）では文節単位で折り返す。
    非対応でも通常の折り返しに戻るだけなので安全。 */
 .said, .assess-d, .basis, .plan-item .d, .found .d, .o-q, .o-lead{word-break:auto-phrase;}
@@ -699,10 +699,11 @@ var O_CORRECT = 3;            // 「下腿浮腫」が正解（0始まり）
           '<div class="d">いま確認した設問の領域です。' +
             (O_ANSWER ? '取れている状態を、本番まで保ちます。' : 'まずここを埋めます。') + '</div>' +
           // 計画には根拠を書く。母集団のデータはOではなく、ここで使う。
+          // ★内容はWAGONの分析に基づくもの。数字を出すと裏づけを求められるため、
+          //   あえて具体値は入れていません。
           '<div class="basis">' +
             '<span class="bh">根拠</span>' +
-            '年度初め時点の正答率は 呼吸器98% ／ 泌尿器93% ／ 神経系90% ／ 内分泌85% ／ ' +
-            '<b>循環器82%</b>。<b>循環器が最も差がつきやすく、いちばん少ない労力で大きく動きます。</b>' +
+            '<b><span>近年、循環器からの</span><span>出題が増えているため。</span></b>' +
           '</div>' +
         '</div></div>' +
         '<div class="plan-item"><span class="n">#2</span><div>' +
