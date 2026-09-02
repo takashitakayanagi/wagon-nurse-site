@@ -127,9 +127,15 @@ section{padding:40px 0;}
 .said::after{content:"」"; color:var(--ink-dim);}
 
 /* O欄：その場で1問 → 所見 */
-.o-lead{font-size:12.5px; color:var(--ink-soft); margin:0 0 11px; line-height:1.8;}
+.o-lead{font-size:12.5px; color:var(--ink-soft); margin:0 0 11px; line-height:1.85;}
 .o-lead b{color:var(--ink); font-weight:900;}
+/* 意味のかたまりごとに折り返す（語の途中で切れないように） */
+.o-lead span{display:inline-block;}
 .o-q{font-size:15px; font-weight:900; line-height:1.7; margin:0 0 11px;}
+.o-q span, .found span{display:inline-block;}
+/* 対応ブラウザ（Chrome 119+ など）では文節単位で折り返す。
+   非対応でも通常の折り返しに戻るだけなので安全。 */
+.said, .assess-d, .basis, .plan-item .d, .found .d, .o-q, .o-lead{word-break:auto-phrase;}
 .o-opts{display:grid; grid-template-columns:1fr 1fr; gap:7px;}
 .o-opts button{
   display:flex; align-items:center; gap:7px; text-align:left;
@@ -343,10 +349,10 @@ footer .lk{display:flex; flex-wrap:wrap; gap:8px 15px; margin-bottom:12px;}
         <!-- Sの訴えを確かめるための観察。1件だけ行い、1件だけ記録する -->
         <div id="o-ask">
           <p class="o-lead">
-            Sの訴えを確かめます。<br>
-            「解いているのに伸びない」なら、<b>多くの受験生が正解している問題を落としていないか</b>を見ます。
+            <span>Sの訴えを確かめます。</span><br>
+            <span>「解いているのに伸びない」なら、</span><span><b>多くの受験生が正解している問題を</b></span><span><b>落としていないか</b>を見ます。</span>
           </p>
-          <p class="o-q">主として右心不全でみられる症状はどれか。</p>
+          <p class="o-q"><span>主として右心不全でみられる</span><span>症状はどれか。</span></p>
           <div class="o-opts" id="o-opts">
             <button type="button" data-i="0"><span class="n">1</span>肺水腫</button>
             <button type="button" data-i="1"><span class="n">2</span>呼吸困難</button>
@@ -654,12 +660,19 @@ var O_CORRECT = 3;            // 「下腿浮腫」が正解（0始まり）
       '<div class="l">所見（本日の観察 1件）</div>' +
       (O_ANSWER
         ? '<div class="v ok">正答率82%の設問 ── 正答</div>' +
-          '<div class="d"><b>多くの受験生が正解する問題を、取れている。</b></div>'
+          '<div class="d"><span><b>多くの受験生が正解する問題を、</b></span>' +
+          '<span><b>取れている。</b></span></div>'
         : '<div class="v ng">正答率82%の設問 ── 誤答</div>' +
-          '<div class="d"><b>多くの受験生が正解する問題を、落としている。</b></div>') +
-      '<div class="d" style="margin-top:8px;">正解は<b>下腿浮腫</b>。右心不全は体循環がうっ滞するため、' +
-      '下腿浮腫・頸静脈怒張が起こります。肺水腫・呼吸困難は肺がうっ血する左心不全の症状。' +
-      '<b>「右は体、左は肺」</b>（循環器）</div>';
+          '<div class="d"><span><b>多くの受験生が正解する問題を、</b></span>' +
+          '<span><b>落としている。</b></span></div>') +
+      '<div class="d" style="margin-top:8px;">' +
+        '<span>正解は<b>下腿浮腫</b>。</span>' +
+        '<span>右心不全は体循環がうっ滞するため、</span>' +
+        '<span>下腿浮腫・頸静脈怒張が起こります。</span>' +
+        '<span>肺水腫・呼吸困難は</span>' +
+        '<span>肺がうっ血する左心不全の症状。</span>' +
+        '<span><b>「右は体、左は肺」</b>（循環器）</span>' +
+      '</div>';
     f.hidden = false;
 
     // A：所見に基づいて記入
