@@ -122,6 +122,47 @@ section{padding:40px 0;}
 .said::before{content:"「"; color:var(--ink-dim);}
 .said::after{content:"」"; color:var(--ink-dim);}
 
+/* O欄：その場で1問 → 所見 */
+.o-lead{font-size:11.5px; font-weight:900; color:var(--teal-d); margin:0 0 8px; letter-spacing:.03em;}
+.o-q{font-size:15px; font-weight:900; line-height:1.7; margin:0 0 11px;}
+.o-opts{display:grid; grid-template-columns:1fr 1fr; gap:7px;}
+.o-opts button{
+  display:flex; align-items:center; gap:7px; text-align:left;
+  background:#fff; border:1.5px solid var(--rule2); border-radius:5px;
+  padding:10px 9px; font-family:inherit; font-size:13.5px; font-weight:800;
+  color:var(--ink); cursor:pointer; line-height:1.4;
+}
+.o-opts button .n{
+  flex:0 0 auto; width:18px; height:18px; border-radius:3px; background:var(--head);
+  color:var(--ink-dim); font-size:10.5px; font-weight:900; display:grid; place-items:center;
+}
+.o-opts.done button{cursor:default; opacity:.45;}
+.o-opts.done button.ok{opacity:1; border-color:var(--teal); background:var(--teal-soft);}
+.o-opts.done button.ok .n{background:var(--teal); color:#fff;}
+.o-opts.done button.ng{opacity:1; border-color:var(--alert); background:var(--alert-soft);}
+.o-opts.done button.ng .n{background:var(--alert); color:#fff;}
+
+.found{
+  border:1px solid var(--rule2); border-radius:5px; padding:12px 13px; margin-top:13px;
+  background:var(--paper);
+}
+.found .l{font-size:10.5px; font-weight:900; color:var(--ink-dim); letter-spacing:.06em; margin-bottom:5px;}
+.found .v{font-size:15px; font-weight:900; line-height:1.7;}
+.found .v.ng{color:var(--alert);} .found .v.ok{color:var(--teal-d);}
+.found .d{font-size:12.5px; color:var(--ink-soft); margin-top:6px; line-height:1.8;}
+.found .d b{color:var(--ink);}
+
+.o-ref{margin-top:15px; padding-top:13px; border-top:1px dashed var(--rule2);}
+.o-ref-h{font-size:10.5px; font-weight:900; color:var(--ink-dim); letter-spacing:.06em; margin:0 0 8px;}
+.o-src{font-size:10.5px; color:var(--ink-dim); margin:8px 0 0; line-height:1.7;}
+.o-src span{color:var(--alert); font-weight:800;}
+
+/* 記入待ちの欄 */
+.pending{
+  font-size:13.5px; font-weight:800; color:var(--ink-dim); margin:0; line-height:1.8;
+}
+.pending span{font-size:12.5px; font-weight:700;}
+
 /* O欄：データ */
 .data-note{font-size:12.5px; color:var(--ink-soft); margin:0 0 10px; line-height:1.75;}
 .dtable{width:100%; border-collapse:collapse; font-size:13px;}
@@ -288,59 +329,51 @@ footer .lk{display:flex; flex-wrap:wrap; gap:8px 15px; margin-bottom:12px;}
     <div class="row">
       <div class="lbl"><span class="a">O</span><span class="j">客観的<br>情報</span></div>
       <div class="body">
-        <p class="data-note">主要5領域の正答率（年度初め・全学年の実績値）。<b>下にいくほど差がつきやすい領域です。</b></p>
-        <table class="dtable">
-          <thead><tr><th>領域</th><th>正答率</th></tr></thead>
-          <tbody>
-            <tr><td class="nm">呼吸器</td><td class="rate">98%</td></tr>
-            <tr><td class="nm">泌尿器</td><td class="rate">93%</td></tr>
-            <tr><td class="nm">神経系</td><td class="rate">90%</td></tr>
-            <tr><td class="nm">内分泌</td><td class="rate">85%</td></tr>
-            <tr class="hit"><td class="nm">循環器<span class="mk">← 最も落としやすい</span></td><td class="rate">82%</td></tr>
-          </tbody>
-        </table>
-        <p class="data-note" style="margin:12px 0 0;">
-          例：<b>右心不全でみられるのはどれか。</b>正解は下腿浮腫。肺水腫・呼吸困難は左心不全の症状です。
-          <b>正答率82%——落としてはいけない側の問題です。</b>
-        </p>
+        <!-- その場で1問。ここで初めて「この人の」観察値が入る -->
+        <div id="o-ask">
+          <p class="o-lead">▼ この場で、ひとつ確認します</p>
+          <p class="o-q">主として右心不全でみられる症状はどれか。</p>
+          <div class="o-opts" id="o-opts">
+            <button type="button" data-i="0"><span class="n">1</span>肺水腫</button>
+            <button type="button" data-i="1"><span class="n">2</span>呼吸困難</button>
+            <button type="button" data-i="2"><span class="n">3</span>不穏状態</button>
+            <button type="button" data-i="3"><span class="n">4</span>下腿浮腫</button>
+          </div>
+        </div>
+
+        <div id="o-found" hidden></div>
+
+        <div class="o-ref">
+          <p class="o-ref-h">参考｜主要5領域の正答率</p>
+          <table class="dtable">
+            <tbody>
+              <tr><td class="nm">呼吸器</td><td class="rate">98%</td></tr>
+              <tr><td class="nm">泌尿器</td><td class="rate">93%</td></tr>
+              <tr><td class="nm">神経系</td><td class="rate">90%</td></tr>
+              <tr><td class="nm">内分泌</td><td class="rate">85%</td></tr>
+              <tr class="hit"><td class="nm">循環器<span class="mk">← 最も落としやすい</span></td><td class="rate">82%</td></tr>
+            </tbody>
+          </table>
+          <!-- ★要確認：この出典名を、実際のデータ元に差し替えてください
+               （例：WAGON模擬試験）。空欄のままの公開は避けてください。 -->
+          <p class="o-src">出典：WAGON模擬試験（年度初め・全学年）<span id="src-todo">※要確認</span></p>
+        </div>
       </div>
     </div>
 
     <!-- A -->
     <div class="row">
       <div class="lbl"><span class="a">A</span><span class="j">アセス<br>メント</span></div>
-      <div class="body">
-        <p class="assess neg">学力不足ではない。</p>
-        <p class="assess pos">時間の配分が、得点につながらない側に寄っている。</p>
-        <p class="assess-d">
-          正答率の低い問題に時間を使っている間に、<b>正答率70%以上の得点源を落としている</b>状態です。
-          国家試験は満点を取る試験ではないため、<b>取るべき問題を取りきれば合格ラインは超えられます。</b>
-          問題は勉強量ではなく、順番です。
-        </p>
+      <div class="body" id="a-body">
+        <p class="pending">Oの記入待ちです。<br><span>上の設問にお答えいただくと、記入します。</span></p>
       </div>
     </div>
 
     <!-- P -->
     <div class="row">
       <div class="lbl"><span class="a">P</span><span class="j">計画</span></div>
-      <div class="body">
-        <div class="plan">
-          <div class="plan-item">
-            <span class="n">#1</span>
-            <div><div class="t">循環器から立て直す</div>
-            <div class="d">5領域で最も差がつきやすく、いちばん少ない労力で大きく動く場所。</div></div>
-          </div>
-          <div class="plan-item">
-            <span class="n">#2</span>
-            <div><div class="t">講義動画（約10分）→ 演習3問</div>
-            <div class="d">「右は体、左は肺」を血液の流れで理解する。解ければ、それが「わかった」ということ。</div></div>
-          </div>
-          <div class="plan-item">
-            <span class="n">#3</span>
-            <div><div class="t">評価して、次の領域へ</div>
-            <div class="d">分からないところが出たらまた送る。原因を特定して、それに合う1本を渡す。国試まで繰り返す。</div></div>
-          </div>
-        </div>
+      <div class="body" id="p-body">
+        <p class="pending">Aが出てから立てます。</p>
       </div>
     </div>
   </div>
@@ -584,11 +617,86 @@ function track(name, params){
   if (window.gtag) gtag('event', name, Object.assign({
     lp_variant: LP_VARIANT,
     exam_year: (EXAM_YEAR === null ? 'unknown' : (EXAM_YEAR ? 'yes' : 'no')),
+    o_answer: (typeof O_ANSWER === 'undefined' || O_ANSWER === null)
+      ? 'none' : (O_ANSWER ? 'correct' : 'wrong'),
     utm_source: LP_SOURCE.utm_source || '',
     utm_campaign: LP_SOURCE.utm_campaign || '',
     utm_content: LP_SOURCE.utm_content || ''
   }, params || {}));
 }
+
+/* ---------- O欄：その場で1問 → 所見を記入し、A・Pを起こす ----------
+   母集団の平均値をOに置くのは形式違反なので、
+   Oには「この人を観察した結果」だけを書く。
+   観察がないうちはA・Pを出さない（SOAPの順序どおり）。
+------------------------------------------------------------------ */
+var O_ANSWER = null;          // true=正答 / false=誤答 / null=未記入
+var O_CORRECT = 3;            // 「下腿浮腫」が正解（0始まり）
+
+(function(){
+  var opts = document.getElementById('o-opts');
+
+  opts.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b || opts.classList.contains('done')) return;
+    var picked = parseInt(b.dataset.i, 10);
+    O_ANSWER = (picked === O_CORRECT);
+
+    opts.classList.add('done');
+    opts.querySelectorAll('button').forEach(function(x){
+      var i = parseInt(x.dataset.i, 10);
+      if (i === O_CORRECT) x.classList.add('ok');
+      else if (i === picked) x.classList.add('ng');
+      x.disabled = true;
+    });
+
+    // O：所見を記入
+    var f = document.getElementById('o-found');
+    f.className = 'found';
+    f.innerHTML =
+      '<div class="l">所見</div>' +
+      (O_ANSWER
+        ? '<div class="v ok">右心不全の設問 ── 正答</div>' +
+          '<div class="d">正答率82%。<b>この領域は取れている。</b></div>'
+        : '<div class="v ng">右心不全の設問 ── 誤答</div>' +
+          '<div class="d">正答率82%。<b>落としてはいけない側の問題を落としている。</b></div>') +
+      '<div class="d" style="margin-top:8px;">右心不全は体循環がうっ滞するため<b>下腿浮腫</b>。' +
+      '肺水腫・呼吸困難は肺がうっ血する左心不全の症状です。<b>「右は体、左は肺」</b></div>';
+    f.hidden = false;
+
+    // A：所見に基づいて記入
+    document.getElementById('a-body').innerHTML = O_ANSWER
+      ? '<p class="assess pos">この設問は取れている。</p>' +
+        '<p class="assess neg">ただし、取れている領域と取れていない領域の区別がついていない。</p>' +
+        '<p class="assess-d">5領域のうちどこが弱いか即答できないうちは、<b>時間の配分は決められません。</b>' +
+        '国家試験は満点を取る試験ではないため、<b>取るべき問題を取りきれば合格ラインは超えられます。</b>' +
+        '問題は勉強量ではなく、順番です。</p>'
+      : '<p class="assess neg">学力不足ではない。</p>' +
+        '<p class="assess pos">時間の配分が、得点につながらない側に寄っている。</p>' +
+        '<p class="assess-d">正答率82%の問題を落としているということは、' +
+        '<b>正答率の低い問題に時間を使っている</b>可能性が高い状態です。' +
+        '国家試験は満点を取る試験ではないため、<b>取るべき問題を取りきれば合格ラインは超えられます。</b>' +
+        '問題は勉強量ではなく、順番です。</p>';
+
+    // P：Aを受けて計画を立てる
+    document.getElementById('p-body').innerHTML =
+      '<div class="plan">' +
+        '<div class="plan-item"><span class="n">#1</span><div>' +
+          '<div class="t">' + (O_ANSWER
+            ? '循環器を、取れているうちに固める'
+            : '循環器から立て直す') + '</div>' +
+          '<div class="d">5領域で最も差がつきやすく、いちばん少ない労力で大きく動く場所。</div></div></div>' +
+        '<div class="plan-item"><span class="n">#2</span><div>' +
+          '<div class="t">講義動画（約10分）→ 演習3問</div>' +
+          '<div class="d">「右は体、左は肺」を血液の流れで理解する。解ければ、それが「わかった」ということ。</div></div></div>' +
+        '<div class="plan-item"><span class="n">#3</span><div>' +
+          '<div class="t">評価して、次の領域へ</div>' +
+          '<div class="d">分からないところが出たらまた送る。原因を特定して、それに合う1本を渡す。国試まで繰り返す。</div></div></div>' +
+      '</div>';
+
+    track('o_answer', { is_correct: O_ANSWER ? 1 : 0 });
+    document.getElementById('sticky').classList.add('on');
+  });
+})();
 
 /* ---------- 記入欄で出し分ける ---------- */
 document.querySelectorAll('#fill button').forEach(function(b){
