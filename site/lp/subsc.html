@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/assets/img/favicon.png" type="image/png">
+
+<!-- ===== 広告専用LP：SEOはsubscription.htmlに集約するためnoindex ===== -->
+<meta name="robots" content="noindex, follow">
+
+<title>看護師国試の残り期間、何をやるべきか担任に相談できます｜WAGON</title>
+<meta name="description" content="正答率70%以上の問題を確実に取る。残り期間で何をどの順番でやるべきか、WAGONの担任がLINEで無料でお答えします。当日中に返信。">
+<link rel="canonical" href="https://wagon-nurse.com/subscription.html">
+<meta property="og:site_name" content="ナース・ライセンススクール WAGON">
+<meta property="og:title" content="サブスクWAGON｜看護師国試対策が月額20,000円で使い放題">
+<meta property="og:description" content="正答率70%以上の問題を確実に取る。講義動画45本・LIVE教室・データ問80%講座・模試解説講義が全部使い放題。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wagon-nurse.com/lp">
+<meta property="og:image" content="https://wagon-nurse.com/assets/img/subscription-hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wagon-nurse.com/assets/img/subscription-hero.jpg">
+<link rel="preload" as="image" href="/assets/img/subscription-hero.jpg">
+
+<!-- ===== 計測タグ ===== -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FXKCWMXKJB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FXKCWMXKJB');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ybfkyv1j57");
+</script>
+
+<!--
+  ★TODO① Google広告のコンバージョンタグ
+  Google広告 > ツール > コンバージョン で「申込ボタンのクリック」を作成し、
+  発行される AW-XXXXXXXXX / ラベル を下の LP_CONFIG に貼ってください。
+  (gtag.js本体は上のGA4タグを共用できるので、config行だけ追加します)
+
+<script>gtag('config', 'AW-XXXXXXXXX');</script>
+-->
+
+<!--
+  ★TODO② Meta広告(Instagram)のピクセル
+  Metaイベントマネージャで発行したピクセルIDを貼ってください。
+-->
+
+<style>
+:root{
+  --sky:#4EC6EC; --page-bg:#F3F8FA; --ink:#1B3A56; --ink-soft:#46586B;
+  --line:#E6EEF2; --accent:#1EA7DE; --grad-a:#1878C4; --grad-b:#17C7C2;
+  --line-green:#06C755; --card-bg:#FFFFFF; --marker:#FFF176;
+  --urgent:#D32F2F; --urgent-soft:#FDECEC;
+  --cv:#FF6B2C; --cv-2:#FF9500;
+  --card-shadow:0 2px 6px rgba(20,60,90,.07), 0 12px 28px -14px rgba(20,60,90,.22);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; background:var(--page-bg); color:var(--ink);
+  font-family:"Hiragino Sans","Yu Gothic","Segoe UI",Meiryo,sans-serif;
+  line-height:1.85; -webkit-font-smoothing:antialiased;
+  padding-bottom:84px; /* sticky CTA分 */
+}
+a{color:inherit; text-decoration:none;}
+img{max-width:100%; height:auto; display:block;}
+.wrap{max-width:720px; margin:0 auto; padding:0 20px;}
+section{padding:44px 0;}
+h2{font-size:22px; line-height:1.5; margin:0 0 18px; font-weight:800;}
+@media (max-width:520px){ h2{font-size:19px;} }
+p{font-size:15px; color:var(--ink-soft); margin:0 0 14px;}
+.hl{
+  background:linear-gradient(120deg,var(--marker),var(--marker));
+  padding:3px 12px; border-radius:20px 6px 20px 6px; display:inline-block;
+  color:var(--ink); box-decoration-break:clone; transform:rotate(-.6deg);
+}
+.em{color:var(--urgent); font-weight:800;}
+.nowrap{white-space:nowrap;}
+
+/* ── カウントダウン帯 ── */
+.countbar{
+  position:sticky; top:0; z-index:45;
+  background:var(--urgent); color:#fff; text-align:center;
+  font-size:13px; font-weight:700; padding:7px 14px; letter-spacing:.02em;
+}
+.countbar b{font-size:17px; margin:0 3px;}
+
+/* ── ヘッダー ── */
+.lp-head{background:#FCFEFF; border-bottom:1px solid var(--line); padding:12px 20px;}
+.lp-head .inner{max-width:720px; margin:0 auto; display:flex; align-items:center; gap:12px;}
+.lp-head .eyebrow{font-size:10px; color:var(--accent); font-weight:700; line-height:1.4;}
+.lp-head img{height:30px; width:auto;}
+
+/* ── FV ── */
+.fv{
+  background:linear-gradient(180deg,#E9F8FD 0%, var(--page-bg) 100%);
+  padding:26px 0 8px; text-align:center;
+}
+.fv .kicker{
+  display:inline-block; background:#fff; border:1.5px solid var(--accent);
+  color:var(--accent); font-size:12px; font-weight:800; border-radius:999px;
+  padding:5px 16px; margin-bottom:14px;
+}
+.fv h1{
+  font-size:29px; line-height:1.45; font-weight:900; margin:0 0 16px; letter-spacing:-.01em;
+}
+@media (max-width:520px){ .fv h1{font-size:23px;} }
+.fv h1 .big{font-size:1.18em; color:var(--accent);}
+.fv .lead{font-size:15px; line-height:1.75; color:var(--ink-soft); margin:0 auto 20px; max-width:34ch; text-align:left;}
+.fv-img{border-radius:16px; overflow:hidden; box-shadow:var(--card-shadow); margin-bottom:20px;}
+.fv-img img{width:100%; aspect-ratio:16/7; object-fit:cover; object-position:center 38%;}
+
+/* ── 価格ボックス ── */
+.pricebox{
+  background:#fff; border:2px solid var(--accent); border-radius:16px;
+  padding:20px 18px; box-shadow:var(--card-shadow); text-align:center;
+}
+.pricebox .label{font-size:12.5px; font-weight:800; color:var(--accent); margin-bottom:2px;}
+.pricebox .price{font-size:15px; color:var(--ink-soft); font-weight:700; line-height:1.3;}
+.pricebox .price b{font-size:40px; color:var(--ink); font-weight:900; letter-spacing:-.02em;}
+.pricebox .price .yen{font-size:20px; font-weight:900;}
+.pricebox .note{font-size:12px; color:var(--ink-soft); margin-top:6px;}
+.pricebox ul{list-style:none; padding:0; margin:14px 0 0; text-align:left; display:grid; gap:7px;}
+.pricebox li{font-size:13.5px; font-weight:700; color:var(--ink); padding-left:24px; position:relative;}
+.pricebox li::before{
+  content:"✓"; position:absolute; left:0; top:0; color:#fff; background:var(--grad-b);
+  width:17px; height:17px; border-radius:50%; font-size:11px; line-height:17px; text-align:center; margin-top:5px;
+}
+
+/* ── CTAボタン ── */
+.cta{
+  display:block; text-align:center; border-radius:999px;
+  background:linear-gradient(100deg,var(--cv),var(--cv-2)); color:#fff;
+  font-weight:900; font-size:18px; padding:19px 20px; line-height:1.35;
+  box-shadow:0 10px 24px -8px rgba(255,107,44,.65);
+  animation:pulse 2.6s ease-in-out infinite;
+}
+.cta small{display:block; font-size:11.5px; font-weight:700; opacity:.92; margin-top:3px;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.022);}}
+@media (prefers-reduced-motion:reduce){ .cta{animation:none;} }
+.cta-note{font-size:11.5px; color:var(--ink-soft); text-align:center; margin:10px 0 0;}
+.cta-block{margin:24px 0 0;}
+
+/* 主導線＝LINE相談 */
+.cta.line{
+  background:linear-gradient(100deg,var(--line-green),#00B900);
+  box-shadow:0 10px 24px -8px rgba(6,199,85,.6);
+}
+.cta.line .ic{
+  display:inline-block; width:19px; height:19px; border-radius:6px; background:#fff;
+  color:#00B900; font-size:11px; font-weight:900; line-height:19px; text-align:center;
+  margin-right:8px; vertical-align:2px; letter-spacing:-.04em;
+}
+/* 副導線＝サブスク直申込 */
+.cta.ghost{
+  background:#fff; border:1.5px solid var(--line); color:var(--ink-soft);
+  box-shadow:none; font-size:14.5px; padding:14px; animation:none;
+}
+.cta.ghost small{color:var(--ink-soft); opacity:.8;}
+.talk-list{list-style:none; padding:0; margin:14px 0 0; display:grid; gap:8px; text-align:left;}
+.talk-list li{font-size:13.5px; font-weight:700; padding-left:25px; position:relative; color:var(--ink);}
+.talk-list li::before{
+  content:"✓"; position:absolute; left:0; top:0; width:18px; height:18px; border-radius:50%;
+  background:var(--line-green); color:#fff; font-size:11px; font-weight:900;
+  display:grid; place-items:center; margin-top:6px;
+}
+
+/* ── 汎用カード ── */
+.card{background:#fff; border-radius:14px; padding:18px 18px; box-shadow:var(--card-shadow);}
+.sec-sky{background:#EAF8FC;}
+.sec-white{background:#fff;}
+
+/* ── 悩みチェック ── */
+.checks{display:grid; gap:10px; margin-top:18px;}
+.check{
+  background:#fff; border:1px solid var(--line); border-radius:12px;
+  padding:13px 15px 13px 44px; position:relative; font-size:14.5px; font-weight:700; color:var(--ink);
+  box-shadow:0 1px 2px rgba(20,60,90,.05);
+}
+.check::before{
+  content:"☑"; position:absolute; left:14px; top:11px; color:var(--accent); font-size:17px;
+}
+
+/* ── 中身4つ ── */
+.feat{display:grid; gap:14px; margin-top:20px;}
+.feat-item{background:#fff; border-radius:14px; padding:18px; box-shadow:var(--card-shadow); border-left:5px solid var(--grad-b);}
+.feat-item .n{font-size:11px; font-weight:900; color:var(--grad-b); letter-spacing:.1em;}
+.feat-item .t{font-size:17px; font-weight:900; margin:2px 0 8px;}
+.feat-item p{margin:0; font-size:14px;}
+.feat-item .tag{
+  display:inline-block; margin-top:10px; font-size:11.5px; font-weight:800;
+  background:#EAF8FC; color:var(--accent); border-radius:999px; padding:3px 11px;
+}
+
+/* ── 価格比較テーブル ── */
+.tbl{width:100%; border-collapse:collapse; margin-top:18px; background:#fff; border-radius:12px; overflow:hidden; box-shadow:var(--card-shadow);}
+.tbl th,.tbl td{padding:12px 10px; font-size:13.5px; border-bottom:1px solid var(--line); text-align:left;}
+.tbl th{background:#F3F8FA; font-weight:800; color:var(--ink); font-size:12.5px;}
+.tbl td:last-child,.tbl th:last-child{text-align:center; white-space:nowrap;}
+.tbl .free{color:var(--grad-b); font-weight:900;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl-scroll{overflow-x:auto;}
+
+/* ── 声 ── */
+.voices{display:grid; gap:13px; margin-top:18px;}
+.voice{
+  background:#FFFCEB; border:1px solid #F5EBB8; border-radius:14px;
+  padding:15px 17px; font-size:13.5px; color:var(--ink-soft); box-shadow:var(--card-shadow);
+}
+.voice:nth-child(odd){transform:rotate(-.3deg);}
+.voice:nth-child(even){transform:rotate(.3deg);}
+.voice .src{margin-top:9px; font-size:11.5px; color:var(--accent); font-weight:700;}
+.voice p{margin:0; font-size:13.5px;}
+
+/* ── ロードマップ ── */
+.road{margin-top:20px; display:grid; gap:0;}
+.road-step{
+  position:relative; padding:0 0 22px 30px; border-left:2px solid var(--sky);
+}
+.road-step:last-child{border-left-color:transparent; padding-bottom:0;}
+.road-step::before{
+  content:""; position:absolute; left:-8px; top:4px; width:14px; height:14px;
+  border-radius:50%; background:var(--accent); border:3px solid var(--page-bg);
+}
+.road-step .when{font-size:12px; font-weight:900; color:var(--accent); letter-spacing:.04em;}
+.road-step .what{font-size:15.5px; font-weight:800; margin:1px 0 5px;}
+.road-step p{margin:0; font-size:13.5px;}
+
+/* ── FAQ ── */
+.faq{background:#fff; border-radius:12px; margin-bottom:10px; box-shadow:0 1px 2px rgba(20,60,90,.06); overflow:hidden;}
+.faq summary{
+  cursor:pointer; list-style:none; padding:15px 44px 15px 16px; position:relative;
+  font-size:14.5px; font-weight:800; color:var(--ink);
+}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{
+  content:"+"; position:absolute; right:16px; top:12px; font-size:22px; font-weight:400; color:var(--accent);
+}
+.faq[open] summary::after{content:"−";}
+.faq .a{padding:0 16px 16px; font-size:13.5px; color:var(--ink-soft); margin:0;}
+
+/* ── 最終CTA ── */
+.final{background:linear-gradient(160deg,#1878C4,#17C7C2); color:#fff; padding:44px 0;}
+.final h2{color:#fff;}
+.final p{color:rgba(255,255,255,.94);}
+.final .pricebox{border-color:#fff;}
+.line-alt{
+  display:block; text-align:center; border:2px solid #fff; border-radius:999px;
+  color:#fff; font-weight:800; font-size:14.5px; padding:13px 18px; margin-top:14px;
+}
+.line-alt small{display:block; font-size:11px; font-weight:600; opacity:.9; margin-top:2px;}
+
+/* ── sticky CTA ── */
+.sticky{
+  position:fixed; left:0; right:0; bottom:0; z-index:50;
+  background:rgba(252,254,255,.97); backdrop-filter:blur(6px);
+  border-top:1px solid var(--line); box-shadow:0 -4px 16px -8px rgba(20,60,90,.25);
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  transform:translateY(110%); transition:transform .25s ease;
+}
+.sticky.on{transform:translateY(0);}
+.sticky .inner{max-width:720px; margin:0 auto; display:flex; align-items:center; gap:12px;}
+.sticky .msg{flex:1; min-width:0;}
+.sticky .msg .m1{font-size:10.5px; font-weight:800; color:var(--urgent); line-height:1.3;}
+.sticky .msg .m2{font-size:14px; font-weight:900; color:var(--ink); line-height:1.3; white-space:nowrap;}
+.sticky .msg .m2 span{font-size:10.5px; font-weight:700; color:var(--ink-soft);}
+.sticky .cta{flex:0 0 auto; font-size:15px; padding:13px 22px; animation:none;}
+@media (max-width:400px){ .sticky .msg .m2{font-size:12.5px;} .sticky .cta{font-size:13.5px; padding:12px 16px;} }
+
+/* ── フッター ── */
+.lp-foot{background:#12324A; color:#B9CBD8; padding:26px 0 34px; font-size:12px;}
+.lp-foot a{color:#B9CBD8; text-decoration:underline;}
+.lp-foot .links{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:14px;}
+</style>
+</head>
+<body>
+
+<!-- カウントダウン帯 -->
+<div class="countbar" id="countbar">
+  第116回 看護師国家試験まで <b id="cd-days">—</b> 日
+</div>
+
+<header class="lp-head">
+  <div class="inner">
+    <div class="eyebrow">看護師国家試験対策<br>ナース・ライセンススクール</div>
+    <img src="/assets/img/wagon-logo.png" alt="WAGON" width="120" height="30">
+  </div>
+</header>
+
+<main>
+
+<!-- ============ FV ============ -->
+<section class="fv">
+  <div class="wrap">
+    <span class="kicker">看護学生・最終学年／既卒の方へ</span>
+    <h1>
+      模試の点が伸びないのは、<br>
+      <span class="big">「難しい問題」</span>を<br>追いかけているからです。
+    </h1>
+    <div class="fv-img">
+      <img src="/assets/img/subscription-hero.jpg" alt="サブスクWAGON" width="1600" height="800" fetchpriority="high">
+    </div>
+
+    <p class="lead">
+      合格に必要なのは、正答率70%以上の問題を<b class="em">確実に取りきること</b>。
+      WAGONは過去の国家試験データを分析し、そこだけに絞った学習法で伴走します。
+    </p>
+
+    <div class="pricebox" style="border-color:var(--line-green);">
+      <div class="label" style="color:var(--line-green);">残り期間の使い方を、担任に相談できます</div>
+      <div style="font-size:19px; font-weight:900; margin-top:6px; line-height:1.55;">
+        いま何を、どの順番でやるべきか。<br>1人で決めなくて大丈夫です。
+      </div>
+      <ul class="talk-list">
+        <li>相談は無料です</li>
+        <li>返信するのは本物の担任です。当日中に返信します</li>
+        <li>合わないと感じたら、それで終わりにして構いません</li>
+      </ul>
+      <div class="cta-block">
+        <a class="cta line" href="https://page.line.me/wvr6857m" target="_blank" rel="noopener"
+           data-cta="fv" data-goal="line"><span class="ic">L</span>まずはLINEで相談する<small>友だち追加は無料・当日中にご返信します</small></a>
+        <p class="cta-note">ご案内しているメインプランは、サブスクWAGON（月額20,000円・税込）です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 共感 ============ -->
+<section>
+  <div class="wrap">
+    <h2><span class="hl">こんな状態、心当たりありませんか？</span></h2>
+    <div class="checks">
+      <div class="check">模試の判定が上がらないまま、時間だけが減っていく</div>
+      <div class="check">何から手をつければいいのか、正直わかっていない</div>
+      <div class="check">実習・レポート・バイトで、まとまった勉強時間が取れない</div>
+      <div class="check">問題集を解いても、なぜその答えなのかが説明できない</div>
+      <div class="check">周りに聞ける人がいなくて、一人で抱え込んでいる</div>
+    </div>
+    <p style="margin-top:18px;">
+      どれも、直前期に入った看護学生から毎年いちばん多く届く声です。<br>
+      そして、この状態から巻き返して合格していく人には、はっきりした共通点があります。
+    </p>
+  </div>
+</section>
+
+<!-- ============ 敵の設定／WAGON式 ============ -->
+<section class="sec-sky">
+  <div class="wrap">
+    <h2><span class="hl">合格ラインは「難問」では超えられない</span></h2>
+    <p>
+      看護師国家試験は、満点を取る試験ではありません。<br>
+      それなのに多くの人が、正答率の低い問題＝<b>ほとんどの受験生が落とす問題</b>に時間を使ってしまいます。
+    </p>
+    <div class="card" style="margin:18px 0;">
+      <p style="margin:0; font-size:15.5px; font-weight:800; color:var(--ink); line-height:1.7;">
+        WAGONがやることは、シンプルです。<br>
+        <span class="hl" style="font-size:16px;">正答率70%以上の問題を、確実に得点する。</span>
+      </p>
+    </div>
+    <p>
+      過去の国家試験データを徹底的に分析し、「今のあなたが次にやるべきこと」の優先順位を、講師が直接示しながら進めます。
+      独学でいちばん失われやすいのは知識ではなく、<b>この優先順位です。</b>
+    </p>
+    <p style="font-size:13px;">
+      ▶ 学習法の詳細は「<a href="/howto.html" target="_blank" rel="noopener" style="color:var(--accent); font-weight:700;">合格の仕組み</a>」で公開しています。
+    </p>
+  </div>
+</section>
+
+<!-- ============ 中身 ============ -->
+<section>
+  <div class="wrap">
+    <h2><span class="hl">月額1つで、4つ全部が使い放題</span></h2>
+    <p>サブスクWAGONは、WAGONのオンライン講義がまとめて開放されるプランです。</p>
+
+    <div class="feat">
+      <div class="feat-item">
+        <div class="n">SERVICE 01</div>
+        <div class="t">WEB教室｜講義動画45本以上が見放題</div>
+        <p>1回約60分の講義動画を、いつでも・何度でも。内分泌／脳・神経系／循環器／腎・排泄／呼吸器／消化器などの解剖生理から、代謝疾患・血液疾患・母性看護学・在宅看護論・小児看護学まで。</p>
+        <span class="tag">実習の合間・移動中でも進められる</span>
+      </div>
+      <div class="feat-item">
+        <div class="n">SERVICE 02</div>
+        <div class="t">LIVE教室｜その場で講師に質問できる生講義</div>
+        <p>月替わりテーマのリアルタイム講義。分からないところをその場でぶつけられます。過去のアーカイブ動画も見放題なので、参加できなかった回も後から追いつけます。</p>
+        <span class="tag">単品1回500円〜 → 会員は追加料金なし</span>
+      </div>
+      <div class="feat-item">
+        <div class="n">SERVICE 03</div>
+        <div class="t">データ問80%講座｜取るべき問題だけを叩き込む</div>
+        <p>WAGONの学習法の中核。データ上「確実に取りきりたい」問題に的を絞って演習します。サブスク会員限定の講座です。</p>
+        <span class="tag">サブスク会員限定</span>
+      </div>
+      <div class="feat-item">
+        <div class="n">SERVICE 04</div>
+        <div class="t">模試解説講義｜受けっぱなしを、得点に変える</div>
+        <p>模試の解き方・考え方・重要ポイントを解説。点数を見て終わりにせず、そこから何を潰すかまで落とし込みます。</p>
+        <span class="tag">単品1,500円〜 → 会員はすべて無料</span>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <a class="cta line" href="https://page.line.me/wvr6857m" target="_blank" rel="noopener"
+         data-cta="features" data-goal="line"><span class="ic">L</span>どれが自分に合うかLINEで聞く<small>友だち追加は無料・当日中にご返信します</small></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 価格の正当化 ============ -->
+<section class="sec-white">
+  <div class="wrap">
+    <h2><span class="hl">月額20,000円は、高いのか</span></h2>
+    <p>
+      講義動画だけでも45本以上（1回約60分）。1本あたりに直すと <b class="em">約440円</b>。
+      そこにLIVE教室・データ問80%講座・模試解説講義が、追加料金なしで乗ります。
+    </p>
+
+    <div class="tbl-scroll">
+      <table class="tbl">
+        <thead>
+          <tr><th>サービス</th><th>単品で使うと</th><th>サブスクなら</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>WEB教室（講義動画45本以上）</td><td>単体購入不可</td><td class="free">見放題</td></tr>
+          <tr><td>LIVE教室（生講義・アーカイブ）</td><td>1回 500円〜</td><td class="free">0円</td></tr>
+          <tr><td>データ問80%講座</td><td>会員限定</td><td class="free">使い放題</td></tr>
+          <tr><td>模試解説講義</td><td>1,500円〜</td><td class="free">0円</td></tr>
+          <tr><td>公式LINEでの質疑応答</td><td class="free">無料</td><td class="free">無料</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="voice" style="margin-top:20px; transform:none;">
+      <p>「サブスクWAGONに入れば月2万円で色々なサポートを受けられるのも良いなと思いました。他の予備校では十万円ほどかかったこともあったので、良い国試対策サービスがあることを後輩にも伝えたいです。」</p>
+      <div class="src">サブスクWAGON受講生</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 受講生の声 ============ -->
+<section class="sec-sky">
+  <div class="wrap">
+    <h2><span class="hl">実際に、ここから巻き返した人たち</span></h2>
+    <p style="font-size:13px;">サブスクWAGONを受講された方から、公式LINEに届いた感想の一部です。</p>
+    <div class="voices">
+      <div class="voice">
+        <p>WAGONの講義を受ける前までは学校の模試で下の方でしたが、WAGONの講義を受けていく中でだんだんと点数と順位が上がっていって、とても嬉しく感じました。国家試験は、WAGONの採点だと必修48点、一般状況178点でした。本当にありがとうございます！</p>
+        <div class="src">サブスクWAGON受講生</div>
+      </div>
+      <div class="voice">
+        <p>冬休みの直前まで模試の結果が思わしくなかったなか、サブスクを利用させていただき、国家試験直前までLIVE講義を受けることができ、とても自信がつきました。国家試験本番に何度もWAGONの先生方の講義を思い出し、緊張しながらも落ち着いて受けることができました！</p>
+        <div class="src">サブスクWAGON受講生</div>
+      </div>
+      <div class="voice">
+        <p>必修も一般・状況も満足いく点数を取ることができました。WAGONのサブスクのおかげで自分の苦手を潰していくことができ、きちんと理解して問題を解けるようになりました。模試では8〜9割を超えるようになりました。</p>
+        <div class="src">サブスクWAGON受講生</div>
+      </div>
+      <div class="voice">
+        <p>始める前は大学に通っているのにまたお金をかけることに抵抗がありましたが、そのお金よりもはるかに大きい価値がある講義やサービスでした。国試のためだけではなく、就職してからも活かせる知識も多く、これからも私の看護の基礎となって残り続けると思います。</p>
+        <div class="src">サブスクWAGON受講生</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ロードマップ ============ -->
+<section>
+  <div class="wrap">
+    <h2><span class="hl">残りの期間、こう使います</span></h2>
+    <p>今から国試当日までの過ごし方は、時期によって変わります。サブスクWAGONなら、そのすべての段階をひとつのプランでカバーできます。</p>
+    <div class="road">
+      <div class="road-step">
+        <div class="when">STEP 1／秋</div>
+        <div class="what">解剖生理を「わかる」に戻す</div>
+        <p>WEB教室の講義動画で、丸暗記に頼っていた領域を理解ベースに置き換えます。ここを飛ばすと、直前期の伸びが止まります。</p>
+      </div>
+      <div class="road-step">
+        <div class="when">STEP 2／冬のはじめ</div>
+        <div class="what">必修と頻出を、取りきる形にする</div>
+        <p>データ問80%講座で、正答率70%以上の問題を落とさない状態へ。模試を受けたら模試解説講義でその場で潰します。</p>
+      </div>
+      <div class="road-step">
+        <div class="when">STEP 3／直前期</div>
+        <div class="what">LIVE教室で、最後まで手を止めない</div>
+        <p>一人だとメンタルが持たない時期。生講義で講師に直接質問しながら、当日まで走り切ります。</p>
+      </div>
+      <div class="road-step">
+        <div class="when">ずっと</div>
+        <div class="what">公式LINEで、いつでも質問できる</div>
+        <p>LINEの先にいるのは本物の担任です。当日中にご返信します。</p>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <a class="cta line" href="https://page.line.me/wvr6857m" target="_blank" rel="noopener"
+         data-cta="roadmap" data-goal="line"><span class="ic">L</span>残り期間の使い方を相談する<small>友だち追加は無料・当日中にご返信します</small></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 運営の信頼 ============ -->
+<section class="sec-white">
+  <div class="wrap">
+    <h2><span class="hl">教えているのは、現場を知る人たちです</span></h2>
+    <p>
+      WAGONの講師陣は、多医療職で構成されたプロフェッショナル集団です。国家試験だけでなく、
+      臨床でも役立つ知識の修得を目指して講義を行っています。結果として、WAGON卒業生の離職率は低く、
+      「臨床現場が楽しい」という声も毎年寄せられています。
+    </p>
+    <p>
+      オンラインに加え、埼玉・東京・神奈川・名古屋・大阪・福岡の<b>全国6会場で対面講義も通年開催</b>。
+      2016年から看護学生の国試対策に向き合ってきたスクールです。
+    </p>
+    <p style="font-size:13px;">
+      ▶ <a href="/about.html" target="_blank" rel="noopener" style="color:var(--accent); font-weight:700;">WAGONについて</a>
+      ／ <a href="https://www.youtube.com/channel/UCifxRY2eXLP5N96EnS72rKw" target="_blank" rel="noopener" style="color:var(--accent); font-weight:700;">実際の講義映像をYouTubeで見る</a>
+    </p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec-sky">
+  <div class="wrap">
+    <h2><span class="hl">よくある質問</span></h2>
+
+    <details class="faq" open>
+      <summary>今から始めて、本当に間に合いますか？</summary>
+      <p class="a">受講生の中には、3年次の夏や、11月からの直前講習で参加して合格した方もいます。WAGONは満点ではなく「正答率70%以上の問題を確実に取る」ことを目標にするため、残り期間が短いほど、やることを絞る効果が大きくなります。残りの期間に合わせた進め方は、お申し込み後にご相談いただけます。</p>
+    </details>
+
+    <details class="faq">
+      <summary>料金と支払い方法を教えてください。</summary>
+      <p class="a">月額20,000円（税込）です。お支払いはクレジット決済および銀行振込に対応しています。この金額以外にかかる費用はありません（インターネット通信料はお客様のご負担となります）。契約・キャンセルの条件は<a href="/law.html" target="_blank" rel="noopener" style="color:var(--accent); font-weight:700;">特定商取引法に基づく表示</a>をご確認ください。</p>
+    </details>
+
+    <details class="faq">
+      <summary>申し込むと、どうなりますか？</summary>
+      <p class="a">お申し込みフォームを送信いただくと、WAGONからご連絡を差し上げ、サブスクWAGONのアカウントを発行します。その後、WEB教室・LIVE教室・データ問80%講座・模試解説講義をすべてご利用いただけます。</p>
+    </details>
+
+    <details class="faq">
+      <summary>講義動画は何本くらいありますか？</summary>
+      <p class="a">1回約60分の講義動画が全部で45本以上あります。内分泌・脳神経系・循環器などの解剖生理から、母性看護学・小児看護学まで幅広くカバーしています。何度でも繰り返し視聴できます。</p>
+    </details>
+
+    <details class="faq">
+      <summary>実習が忙しくて、決まった時間に受けられません。</summary>
+      <p class="a">WEB教室はオンデマンドなので、好きな時間に好きな回数だけ視聴できます。LIVE教室も後からアーカイブで追いつけるため、リアルタイム参加は必須ではありません。</p>
+    </details>
+
+    <details class="faq">
+      <summary>通信制の学校でも受講できますか？既卒でも大丈夫ですか？</summary>
+      <p class="a">はい。通信制の学校に通いながら受講している方、働きながら受講している准看護師の方も多くいます。授業時間が少ない分を、WAGONの講義で補っていただけます。</p>
+    </details>
+
+    <details class="faq">
+      <summary>LINEで相談したら、勧誘されますか？</summary>
+      <p class="a">しつこい勧誘はしません。まずはいまの状況をうかがって、残り期間で何をどの順番でやるべきかをお伝えします。そのうえでWAGONが合いそうであればプランをご案内しますが、合わないと感じたらそこで終わりにしていただいて構いません。返信するのは営業担当ではなく、実際に講義をしている担任です。</p>
+    </details>
+
+    <details class="faq">
+      <summary>相談だけでもいいですか？費用はかかりますか？</summary>
+      <p class="a">相談だけでも大丈夫です。費用は一切かかりません。公式LINEでの質疑応答、LINE担任制での毎日問題（一問一答）、掲示板の閲覧は、サブスクWAGONに入らなくても無料でご利用いただけます。</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 最終CTA ============ -->
+<section class="final">
+  <div class="wrap" style="text-align:center;">
+    <h2 style="margin-bottom:14px;">迷っている時間が、いちばんもったいない。</h2>
+    <p style="max-width:32ch; margin:0 auto 22px;">
+      国家試験まで <b id="cd-days-2">—</b> 日。<br>
+      やることを絞れば、ここからでも十分に間に合います。
+    </p>
+
+    <div class="pricebox" style="border-color:var(--line-green);">
+      <div class="label" style="color:var(--line-green);">何から始めるべきかは、人によって違います</div>
+      <div style="font-size:19px; font-weight:900; margin-top:6px; line-height:1.55;">まずは担任に、<br>ひとこと相談してください。</div>
+      <ul class="talk-list">
+        <li>相談は無料です</li>
+        <li>返信するのは本物の担任です。当日中に返信します</li>
+        <li>あなたの残り期間に合わせた学習計画を、一緒に組み立てます</li>
+        <li>合わないと感じたら、それで終わりにして構いません</li>
+      </ul>
+      <div class="cta-block">
+        <a class="cta line" href="https://page.line.me/wvr6857m" target="_blank" rel="noopener"
+           data-cta="final" data-goal="line"><span class="ic">L</span>LINEで担任に相談する<small>友だち追加は無料・しつこい勧誘はしません</small></a>
+      </div>
+    </div>
+
+    <div class="pricebox" style="margin-top:22px;">
+      <div class="label">相談のなかでご案内しているメインプランはこちらです</div>
+      <div class="price" style="margin-top:6px;"><b>20,000</b><span class="yen">円</span>／月</div>
+      <div class="note">サブスクWAGON ／ 税込・クレジット決済／銀行振込に対応</div>
+      <ul>
+        <li>WEB教室の講義動画 45本以上が見放題</li>
+        <li>LIVE教室（生配信＋アーカイブ）が受け放題</li>
+        <li>データ問80%講座が使い放題</li>
+        <li>模試解説講義がすべて追加料金なし</li>
+      </ul>
+      <div class="cta-block">
+        <a class="cta ghost" href="https://forms.gle/xJ6YhhBAiXSzEJD88" target="_blank" rel="noopener"
+           data-cta="final" data-goal="apply">相談せずに申し込む<small>内容が分かっている方は、こちらから直接どうぞ</small></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="lp-foot">
+  <div class="wrap">
+    <div class="links">
+      <a href="/law.html" target="_blank" rel="noopener">特定商取引法に基づく表示</a>
+      <a href="/privacy_policy.html" target="_blank" rel="noopener">プライバシーポリシー</a>
+      <a href="/about.html" target="_blank" rel="noopener">運営会社</a>
+      <a href="/" target="_blank" rel="noopener">WAGON公式サイト</a>
+    </div>
+    <div>株式会社WAGON ／ 〒337-0051 埼玉県さいたま市見沼区東大宮5丁目35-6 エストレザンⅡ 2階</div>
+    <div>TEL: 048-685-3316 ／ Mail: wagon@nurse-wagon.com</div>
+    <div style="margin-top:10px;">Copyright © 2016 ナースライセンススクールWAGON All Rights Reserved.</div>
+  </div>
+</footer>
+
+<!-- ============ sticky CTA ============ -->
+<div class="sticky" id="sticky">
+  <div class="inner">
+    <div class="msg">
+      <div class="m1">国試まであと <span id="cd-days-3">—</span> 日</div>
+      <div class="m2">担任に相談する<span>（無料・当日返信）</span></div>
+    </div>
+    <a class="cta line" href="https://page.line.me/wvr6857m" target="_blank" rel="noopener"
+       data-cta="sticky" data-goal="line">LINEで相談</a>
+  </div>
+</div>
+
+<script>
+/* ==========================================================================
+   LP設定 — 運用時に触るのはこのブロックだけ
+   ========================================================================== */
+var LP_CONFIG = {
+  // ★要確認：第116回 看護師国家試験の実施日（公式発表の日付に差し替えてください）
+  examDate: '2027-02-14',
+
+  // ★TODO：Google広告のコンバージョンID/ラベル（未設定なら空のまま）
+  // 例: 'AW-123456789/AbCdEfGhIjKlMnOp'
+  googleAdsConversion: '',
+
+  // GA4のキーイベント名
+  //   conversionEvent … 主導線＝LINE相談（広告の最適化はこれに合わせる）
+  //   applyEvent      … 副導線＝サブスク直申込
+  conversionEvent: 'generate_lead',
+  applyEvent: 'begin_checkout'
+};
+
+/* ---------- 国試までのカウントダウン ---------- */
+(function(){
+  var exam = new Date(LP_CONFIG.examDate + 'T09:00:00+09:00');
+  var days = Math.ceil((exam - new Date()) / 86400000);
+  if (!isFinite(days) || days < 0) {
+    var bar = document.getElementById('countbar');
+    if (bar) bar.style.display = 'none';
+    days = null;
+  }
+  ['cd-days','cd-days-2','cd-days-3'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.textContent = (days === null ? '' : days);
+  });
+})();
+
+/* ---------- sticky CTA ---------- */
+(function(){
+  var bar = document.getElementById('sticky');
+  if (!bar) return;
+  function onScroll(){
+    if (window.scrollY > 480) bar.classList.add('on');
+    else bar.classList.remove('on');
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+})();
+
+/* ---------- 流入元(utm)を保持してGA4に添える ---------- */
+var LP_SOURCE = (function(){
+  try {
+    var q = new URLSearchParams(location.search);
+    var s = {
+      utm_source:   q.get('utm_source')   || '',
+      utm_medium:   q.get('utm_medium')   || '',
+      utm_campaign: q.get('utm_campaign') || '',
+      utm_content:  q.get('utm_content')  || ''
+    };
+    if (s.utm_source) sessionStorage.setItem('lp_src', JSON.stringify(s));
+    else {
+      var saved = sessionStorage.getItem('lp_src');
+      if (saved) s = JSON.parse(saved);
+    }
+    return s;
+  } catch(e) { return {}; }
+})();
+
+/* ---------- CTAクリック = コンバージョン計測 ----------
+   主導線：LINE相談  → generate_lead（広告の最適化はこちらに合わせる）
+   副導線：直接申込  → begin_checkout（別イベントなので混ざらない）
+
+   どちらも遷移先が外部（LINE／Googleフォーム）のため、LP側で確実に
+   取れるのは「遷移クリック」まで。実数との突き合わせは、LINE公式の
+   友だち追加経路URLで行う。
+--------------------------------------------------------- */
+document.addEventListener('click', function(e){
+  var a = e.target.closest('a[data-cta]');
+  if (!a) return;
+
+  var goal  = a.getAttribute('data-goal') || 'line';
+  var where = a.getAttribute('data-cta');
+
+  var params = {
+    cta_location: where,
+    cta_goal: goal,
+    link_url: a.href,
+    utm_source: LP_SOURCE.utm_source || '',
+    utm_campaign: LP_SOURCE.utm_campaign || '',
+    utm_content: LP_SOURCE.utm_content || ''
+  };
+
+  // どのボタンが押されたかの内訳（LP改善用）
+  if (window.gtag) gtag('event', 'cta_click', params);
+
+  if (goal === 'line') {
+    // 主コンバージョン：LINE相談への遷移
+    if (window.gtag) gtag('event', LP_CONFIG.conversionEvent, params);
+    if (LP_CONFIG.googleAdsConversion && window.gtag) {
+      gtag('event', 'conversion', { send_to: LP_CONFIG.googleAdsConversion });
+    }
+  } else {
+    // 副コンバージョン：サブスク直申込
+    if (window.gtag) gtag('event', LP_CONFIG.applyEvent, Object.assign({
+      value: 20000, currency: 'JPY', item_name: 'subsc_wagon'
+    }, params));
+  }
+
+  // Clarityでセッションを絞り込めるようにタグ付け
+  if (window.clarity) {
+    try { clarity('set', 'cta', where); clarity('set', 'goal', goal); } catch(err){}
+  }
+}, true);
+
+/* ---------- スクロール到達率（離脱ポイントの特定用） ---------- */
+(function(){
+  var hit = {};
+  function onScroll(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    if (h <= 0) return;
+    var pct = Math.round(window.scrollY / h * 100);
+    [25,50,75,90].forEach(function(m){
+      if (pct >= m && !hit[m]) {
+        hit[m] = true;
+        if (window.gtag) gtag('event', 'scroll_depth', { percent_scrolled: m });
+      }
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+})();
+
+/* ---------- FAQ開閉（どの不安が強いかの計測） ---------- */
+document.querySelectorAll('details.faq').forEach(function(d){
+  d.addEventListener('toggle', function(){
+    if (d.open && window.gtag) {
+      gtag('event', 'faq_open', { faq_title: d.querySelector('summary').textContent.trim() });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
