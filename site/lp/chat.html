@@ -160,6 +160,32 @@ img{max-width:100%; height:auto; display:block;}
 .reply button:active{transform:scale(.99);}
 .reply .note{font-size:11px; color:var(--ink-dim); text-align:center; font-weight:700;}
 
+/* ── サイクル図 ── */
+.cycle{display:grid; gap:0; margin-top:18px;}
+.cycle-step{
+  position:relative; display:flex; align-items:flex-start; gap:13px;
+  padding:0 0 18px 0;
+}
+.cycle-step:last-child{padding-bottom:0;}
+.cycle-step::after{
+  content:""; position:absolute; left:16px; top:34px; bottom:2px; width:2px;
+  background:linear-gradient(var(--g), rgba(6,199,85,.25));
+}
+.cycle-step:last-child::after{display:none;}
+.cycle-step .n{
+  flex:0 0 auto; width:34px; height:34px; border-radius:50%; z-index:1;
+  background:var(--g); color:#fff; font-size:14px; font-weight:900;
+  display:grid; place-items:center;
+}
+.cycle-step .t{font-size:15.5px; font-weight:900; line-height:1.5; margin-top:4px;}
+.cycle-step .d{font-size:13px; color:var(--ink-soft); margin-top:3px; line-height:1.75;}
+.cycle-loop{
+  margin-top:16px; background:var(--g-soft); border:1.5px dashed var(--g);
+  border-radius:14px; padding:14px 16px; text-align:center;
+  font-size:14.5px; font-weight:800; line-height:1.75;
+}
+.cycle-loop .r{font-size:20px; color:var(--g2); display:block; margin-bottom:2px;}
+
 /* ── セクション ── */
 section{padding:40px 0;}
 h2{font-size:21px; font-weight:900; line-height:1.55; margin:0 0 14px;}
@@ -280,25 +306,22 @@ footer .lk{display:flex; flex-wrap:wrap; gap:8px 15px; margin-bottom:12px;}
     <div class="row me"><div class="bub">あ、逆に覚えてました</div></div>
 
     <div class="row them"><div class="ava"><img src="/assets/img/wagon-line-icon.jpg" alt="WAGON" width="34" height="34" loading="lazy"></div><div class="bub">この問題、<b>正答率82%</b>なんです。<br>つまり<b>落としてはいけない側の問題です。</b></div></div>
-    <div class="row them"><div class="ava"><img src="/assets/img/wagon-line-icon.jpg" alt="WAGON" width="34" height="34" loading="lazy"></div><div class="bub">まずは循環器から立て直しましょう。<br>移動中に見られる講義動画と、演習問題をお送りしますね。</div></div>
+    <div class="row them"><div class="ava"><img src="/assets/img/wagon-line-icon.jpg" alt="WAGON" width="34" height="34" loading="lazy"></div><div class="bub">まずは循環器から立て直しましょう。</div></div>
 
-    <div class="ccard">
-      <div class="t"><span class="ic">▶</span>循環器のキホン</div>
-      <div class="d">右心不全と左心不全を、血液の流れから理解する。丸暗記をやめるための1本。</div>
-      <div class="meta">講義動画・約10分</div>
-    </div>
+    <div class="row me"><div class="bub">どうすれば、そこが<br>分かるようになりますか？</div></div>
 
-    <div class="ccard">
-      <div class="t"><span class="ic q">?</span>循環器 演習問題</div>
-      <div class="d">動画で扱った内容から3問。動画を見たあとに解くと、さっき間違えたところが解けるようになります。</div>
-      <div class="meta">3問・解説つき</div>
-    </div>
+    <div class="row them"><div class="ava"><img src="/assets/img/wagon-line-icon.jpg" alt="WAGON" width="34" height="34" loading="lazy"></div><div class="bub">10分の講義動画が1本あります。<br>移動中でも見られますよ。</div></div>
+    <div class="row them"><div class="ava"><img src="/assets/img/wagon-line-icon.jpg" alt="WAGON" width="34" height="34" loading="lazy"></div><div class="bub">見たあとに演習問題を解くと、<br><span class="hl">さっき間違えたところが解けるようになります。</span></div></div>
 
-    <div class="row them"><div class="ava"><img src="/assets/img/wagon-line-icon.jpg" alt="WAGON" width="34" height="34" loading="lazy"></div><div class="bub">解けたら、<span class="hl">それが「わかった」ということです。</span><br>暗記ではないので、初見の問題でも解けるようになります。</div></div>
+    <div class="row me"><div class="bub">見たいです</div></div>
+
+    <div class="row them"><div class="ava"><img src="/assets/img/wagon-line-icon.jpg" alt="WAGON" width="34" height="34" loading="lazy"></div><div class="bub">では、動画と演習問題をお送りしますね。</div></div>
 
     <div class="row me"><div class="bub">実習と両立できますか？</div></div>
 
     <div class="row them"><div class="ava"><img src="/assets/img/wagon-line-icon.jpg" alt="WAGON" width="34" height="34" loading="lazy"></div><div class="bub">できます。動画は<b>いつでも何度でも</b>見られますし、<br>分からないところは、ここで聞いていただければ大丈夫です。</div></div>
+    <div class="row them"><div class="ava"><img src="/assets/img/wagon-line-icon.jpg" alt="WAGON" width="34" height="34" loading="lazy"></div><div class="bub">そしてこれは、<b>1回で終わりではありません。</b></div></div>
+    <div class="row them"><div class="ava"><img src="/assets/img/wagon-line-icon.jpg" alt="WAGON" width="34" height="34" loading="lazy"></div><div class="bub">分からないことが出てくるたびに、またここに送ってください。<br><span class="hl">原因を見つけて、それに合う動画と問題をお送りします。</span></div></div>
     <div class="row them"><div class="ava"><img src="/assets/img/wagon-line-icon.jpg" alt="WAGON" width="34" height="34" loading="lazy"></div><div class="bub">返信するのは<b>本物の担任</b>です。<br>当日中にお返しします。</div></div>
 
     <!-- 学年の分岐（会話の中で聞く） -->
@@ -312,6 +335,44 @@ footer .lk{display:flex; flex-wrap:wrap; gap:8px 15px; margin-bottom:12px;}
     <div id="tail" hidden></div>
   </div>
 </div>
+
+<!-- ============ サイクル ============ -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">HOW IT WORKS</div>
+    <h2>これを、国試まで<br>何度でも繰り返します。</h2>
+    <p>1本の動画で終わりではありません。分からないことが出てくるたびに、同じことをします。</p>
+
+    <div class="cycle">
+      <div class="cycle-step">
+        <div class="n">1</div>
+        <div><div class="t">分からないところを送る</div>
+        <div class="d">「模試のこの問題が解けない」「実習でこの疾患を受け持った」——ひとことで大丈夫です。</div></div>
+      </div>
+      <div class="cycle-step">
+        <div class="n">2</div>
+        <div><div class="t">担任が原因を特定する</div>
+        <div class="d">解けない理由は、その問題ではなく手前にあります。どこが抜けているかを見つけます。</div></div>
+      </div>
+      <div class="cycle-step">
+        <div class="n">3</div>
+        <div><div class="t">それに合う講義動画が届く</div>
+        <div class="d">WEB教室の45本以上から、いまのあなたに必要な1本を。移動中でも見られます。</div></div>
+      </div>
+      <div class="cycle-step">
+        <div class="n">4</div>
+        <div><div class="t">問題を解いて、確かめる</div>
+        <div class="d">解けるようになっていれば、それが「わかった」ということ。次の悩みに進めます。</div></div>
+      </div>
+    </div>
+
+    <div class="cycle-loop">
+      <span class="r">↻</span>
+      このサイクルを、国試まで何度でも。<br>
+      それが<b>サブスクWAGON</b>です。
+    </div>
+  </div>
+</section>
 
 <!-- ============ 声 ============ -->
 <section class="sec-alt">
@@ -545,10 +606,22 @@ document.querySelectorAll('#reply button').forEach(function(b){
         : bubble('でしたら、いま<span class="hl">' + FEATURED + 'を押さえておくと実習が楽になります。</span>') +
           bubble('受け持つ患者さんの疾患は、<br>ほぼこの領域のどれかですので。') +
           bubble('国試の話は、まだ先で大丈夫です。<br>まずは動画と問題をお送りします。')) +
+      // 受け取るものを、CTAの直前で初めて具体的に見せる
+      '<div class="ccard in" style="margin-left:36px;">' +
+        '<div class="t"><span class="ic">▶</span>' + FEATURED + 'のキホン</div>' +
+        '<div class="d">右心不全と左心不全を、血液の流れから理解する。丸暗記をやめるための1本。</div>' +
+        '<div class="meta">講義動画・約10分</div>' +
+      '</div>' +
+      '<div class="ccard in" style="margin-left:36px;">' +
+        '<div class="t"><span class="ic q">?</span>' + FEATURED + ' 演習問題</div>' +
+        '<div class="d">動画で扱った内容から3問。見たあとに解くと、解けるようになっているのが分かります。</div>' +
+        '<div class="meta">3問・解説つき</div>' +
+      '</div>' +
+
       '<div class="reply" style="padding-left:0; margin-top:14px;">' +
         '<a class="cta" href="' + LP_CONFIG.lineUrl + '" target="_blank" rel="noopener" ' +
           'data-cta="chat" data-goal="line" style="margin-top:0;">' +
-          '<span class="ic">L</span>' + FEATURED + 'の動画と問題を受け取る' +
+          '<span class="ic">L</span>この2つを受け取る' +
           '<small>友だち追加は無料・当日中にご返信します</small></a>' +
       '</div>';
     tail.hidden = false;
