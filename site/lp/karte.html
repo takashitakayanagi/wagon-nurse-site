@@ -123,7 +123,8 @@ section{padding:40px 0;}
 .said::after{content:"」"; color:var(--ink-dim);}
 
 /* O欄：その場で1問 → 所見 */
-.o-lead{font-size:11.5px; font-weight:900; color:var(--teal-d); margin:0 0 8px; letter-spacing:.03em;}
+.o-lead{font-size:12.5px; color:var(--ink-soft); margin:0 0 11px; line-height:1.8;}
+.o-lead b{color:var(--ink); font-weight:900;}
 .o-q{font-size:15px; font-weight:900; line-height:1.7; margin:0 0 11px;}
 .o-opts{display:grid; grid-template-columns:1fr 1fr; gap:7px;}
 .o-opts button{
@@ -152,10 +153,18 @@ section{padding:40px 0;}
 .found .d{font-size:12.5px; color:var(--ink-soft); margin-top:6px; line-height:1.8;}
 .found .d b{color:var(--ink);}
 
-.o-ref{margin-top:15px; padding-top:13px; border-top:1px dashed var(--rule2);}
-.o-ref-h{font-size:10.5px; font-weight:900; color:var(--ink-dim); letter-spacing:.06em; margin:0 0 8px;}
-.o-src{font-size:10.5px; color:var(--ink-dim); margin:8px 0 0; line-height:1.7;}
-.o-src span{color:var(--alert); font-weight:800;}
+/* P欄：計画の根拠。母集団のデータはOではなくここで使う */
+.basis{
+  margin-top:9px; background:var(--paper); border:1px solid var(--rule);
+  border-radius:5px; padding:10px 11px; font-size:12px; color:var(--ink-soft); line-height:1.8;
+}
+.basis b{color:var(--ink);}
+.basis .bh{
+  display:inline-block; font-size:9.5px; font-weight:900; color:#fff; background:var(--ink-dim);
+  border-radius:3px; padding:1px 6px; margin-right:6px; vertical-align:1px; letter-spacing:.06em;
+}
+.basis .src{display:block; font-size:10.5px; color:var(--ink-dim); margin-top:6px;}
+.basis .src em{font-style:normal; color:var(--alert); font-weight:800;}
 
 /* 記入待ちの欄 */
 .pending{
@@ -329,9 +338,12 @@ footer .lk{display:flex; flex-wrap:wrap; gap:8px 15px; margin-bottom:12px;}
     <div class="row">
       <div class="lbl"><span class="a">O</span><span class="j">客観的<br>情報</span></div>
       <div class="body">
-        <!-- その場で1問。ここで初めて「この人の」観察値が入る -->
+        <!-- Sの訴えを確かめるための観察。1件だけ行い、1件だけ記録する -->
         <div id="o-ask">
-          <p class="o-lead">▼ この場で、ひとつ確認します</p>
+          <p class="o-lead">
+            Sの訴えを確かめます。<br>
+            「解いているのに伸びない」なら、<b>多くの受験生が正解している問題を落としていないか</b>を見ます。
+          </p>
           <p class="o-q">主として右心不全でみられる症状はどれか。</p>
           <div class="o-opts" id="o-opts">
             <button type="button" data-i="0"><span class="n">1</span>肺水腫</button>
@@ -342,22 +354,6 @@ footer .lk{display:flex; flex-wrap:wrap; gap:8px 15px; margin-bottom:12px;}
         </div>
 
         <div id="o-found" hidden></div>
-
-        <div class="o-ref">
-          <p class="o-ref-h">参考｜主要5領域の正答率</p>
-          <table class="dtable">
-            <tbody>
-              <tr><td class="nm">呼吸器</td><td class="rate">98%</td></tr>
-              <tr><td class="nm">泌尿器</td><td class="rate">93%</td></tr>
-              <tr><td class="nm">神経系</td><td class="rate">90%</td></tr>
-              <tr><td class="nm">内分泌</td><td class="rate">85%</td></tr>
-              <tr class="hit"><td class="nm">循環器<span class="mk">← 最も落としやすい</span></td><td class="rate">82%</td></tr>
-            </tbody>
-          </table>
-          <!-- ★要確認：この出典名を、実際のデータ元に差し替えてください
-               （例：WAGON模擬試験）。空欄のままの公開は避けてください。 -->
-          <p class="o-src">出典：WAGON模擬試験（年度初め・全学年）<span id="src-todo">※要確認</span></p>
-        </div>
       </div>
     </div>
 
@@ -653,29 +649,30 @@ var O_CORRECT = 3;            // 「下腿浮腫」が正解（0始まり）
     var f = document.getElementById('o-found');
     f.className = 'found';
     f.innerHTML =
-      '<div class="l">所見</div>' +
+      '<div class="l">所見（本日の観察 1件）</div>' +
       (O_ANSWER
-        ? '<div class="v ok">右心不全の設問 ── 正答</div>' +
-          '<div class="d">正答率82%。<b>この領域は取れている。</b></div>'
-        : '<div class="v ng">右心不全の設問 ── 誤答</div>' +
-          '<div class="d">正答率82%。<b>落としてはいけない側の問題を落としている。</b></div>') +
-      '<div class="d" style="margin-top:8px;">右心不全は体循環がうっ滞するため<b>下腿浮腫</b>。' +
-      '肺水腫・呼吸困難は肺がうっ血する左心不全の症状です。<b>「右は体、左は肺」</b></div>';
+        ? '<div class="v ok">正答率82%の設問 ── 正答</div>' +
+          '<div class="d"><b>多くの受験生が正解する問題を、取れている。</b></div>'
+        : '<div class="v ng">正答率82%の設問 ── 誤答</div>' +
+          '<div class="d"><b>多くの受験生が正解する問題を、落としている。</b></div>') +
+      '<div class="d" style="margin-top:8px;">正解は<b>下腿浮腫</b>。右心不全は体循環がうっ滞するため、' +
+      '下腿浮腫・頸静脈怒張が起こります。肺水腫・呼吸困難は肺がうっ血する左心不全の症状。' +
+      '<b>「右は体、左は肺」</b>（循環器）</div>';
     f.hidden = false;
 
     // A：所見に基づいて記入
     document.getElementById('a-body').innerHTML = O_ANSWER
-      ? '<p class="assess pos">この設問は取れている。</p>' +
-        '<p class="assess neg">ただし、取れている領域と取れていない領域の区別がついていない。</p>' +
-        '<p class="assess-d">5領域のうちどこが弱いか即答できないうちは、<b>時間の配分は決められません。</b>' +
+      ? '<p class="assess pos">取るべき問題は、取れている。</p>' +
+        '<p class="assess neg">ただし、どこが弱いかを特定できていない。</p>' +
+        '<p class="assess-d">Sの「何をやればいいか分からない」は、学力ではなく<b>現在地が分かっていない</b>ことから来ています。' +
         '国家試験は満点を取る試験ではないため、<b>取るべき問題を取りきれば合格ラインは超えられます。</b>' +
-        '問題は勉強量ではなく、順番です。</p>'
+        'どこを取りきれていないかが分かれば、あとは順番どおりに進めるだけです。</p>'
       : '<p class="assess neg">学力不足ではない。</p>' +
         '<p class="assess pos">時間の配分が、得点につながらない側に寄っている。</p>' +
-        '<p class="assess-d">正答率82%の問題を落としているということは、' +
+        '<p class="assess-d">多くの受験生が正解する問題を落としているということは、' +
         '<b>正答率の低い問題に時間を使っている</b>可能性が高い状態です。' +
-        '国家試験は満点を取る試験ではないため、<b>取るべき問題を取りきれば合格ラインは超えられます。</b>' +
-        '問題は勉強量ではなく、順番です。</p>';
+        'Sの「解いているのに伸びない」は、これで説明がつきます。' +
+        '国家試験は満点を取る試験ではないため、<b>取るべき問題を取りきれば合格ラインは超えられます。</b></p>';
 
     // P：Aを受けて計画を立てる
     document.getElementById('p-body').innerHTML =
@@ -684,7 +681,16 @@ var O_CORRECT = 3;            // 「下腿浮腫」が正解（0始まり）
           '<div class="t">' + (O_ANSWER
             ? '循環器を、取れているうちに固める'
             : '循環器から立て直す') + '</div>' +
-          '<div class="d">5領域で最も差がつきやすく、いちばん少ない労力で大きく動く場所。</div></div></div>' +
+          '<div class="d">いま確認した設問の領域です。' +
+            (O_ANSWER ? '取れている状態を、本番まで保ちます。' : 'まずここを埋めます。') + '</div>' +
+          // 計画には根拠を書く。母集団のデータはOではなく、ここで使う。
+          '<div class="basis">' +
+            '<span class="bh">根拠</span>' +
+            '主要5領域の正答率は 呼吸器98% ／ 泌尿器93% ／ 神経系90% ／ 内分泌85% ／ ' +
+            '<b>循環器82%</b>。<b>循環器が最も差がつきやすく、いちばん少ない労力で大きく動きます。</b>' +
+            '<span class="src">出典：WAGON模擬試験（年度初め・全学年）<em>※要確認</em></span>' +
+          '</div>' +
+        '</div></div>' +
         '<div class="plan-item"><span class="n">#2</span><div>' +
           '<div class="t">講義動画（約10分）→ 演習3問</div>' +
           '<div class="d">「右は体、左は肺」を血液の流れで理解する。解ければ、それが「わかった」ということ。</div></div></div>' +
