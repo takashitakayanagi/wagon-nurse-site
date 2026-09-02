@@ -23,3 +23,4 @@
 # 広告用LP（短縮URL）
 /lp /lp/subsc.html 200
 /quiz /lp/quiz.html 200
+/chat /lp/chat.html 200

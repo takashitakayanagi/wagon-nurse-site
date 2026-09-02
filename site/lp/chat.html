@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="/assets/img/favicon.png" type="image/png">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#FBF8F3">
+
+<title>相談したら、こんなふうに進みます｜看護師国試 WAGON</title>
+<meta name="description" content="模試がE判定でも、順番を変えれば間に合います。WAGONの担任にLINEで相談すると何が起きるのか、そのまま見られます。相談は無料・当日中に返信。">
+<link rel="canonical" href="https://wagon-nurse.com/subscription.html">
+<meta property="og:site_name" content="ナース・ライセンススクール WAGON">
+<meta property="og:title" content="相談したら、こんなふうに進みます｜看護師国試 WAGON">
+<meta property="og:description" content="模試がE判定でも、順番を変えれば間に合います。相談は無料・当日中に返信します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wagon-nurse.com/chat">
+<meta property="og:image" content="https://wagon-nurse.com/assets/img/subscription-hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wagon-nurse.com/assets/img/subscription-hero.jpg">
+
+<!-- ===== 計測タグ ===== -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FXKCWMXKJB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FXKCWMXKJB');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ybfkyv1j57");
+</script>
+<!-- ★TODO Google広告：<script>gtag('config','AW-XXXXXXXXX');</script> を有効化し、下の LP_CONFIG にID/ラベルを記入 -->
+<!-- ★TODO Metaピクセル：ここに貼り付け -->
+
+<style>
+:root{
+  --bg:#FBF8F3; --chat-bg:#E8EFF4; --card:#FFFFFF;
+  --ink:#2A3742; --ink-soft:#5B6B78; --ink-dim:#8A98A4;
+  --line:#E3E0D8; --line2:#D3DDE4;
+  --them:#FFFFFF; --me:#B8E986;
+  --g:#06C755; --g2:#00B900; --g-soft:#E8F8ED;
+  --accent:#1EA7DE; --amber:#E8A317; --warn:#E05A6E;
+  --shadow:0 1px 2px rgba(40,60,75,.06), 0 10px 24px -14px rgba(40,60,75,.28);
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+/* display指定のあるクラスに hidden を効かせる */
+[hidden]{display:none !important;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Hiragino Sans","Yu Gothic","Segoe UI",Meiryo,system-ui,sans-serif;
+  line-height:1.85; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  padding-bottom:86px;
+}
+a{color:inherit; text-decoration:none;}
+img{max-width:100%; height:auto; display:block;}
+.wrap{max-width:520px; margin:0 auto; padding:0 16px;}
+.mono{font-variant-numeric:tabular-nums;}
+
+/* ── ヘッダー ── */
+.top{
+  position:sticky; top:0; z-index:40; background:rgba(251,248,243,.94);
+  backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+}
+.top .in{max-width:520px; margin:0 auto; padding:10px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px;}
+.top img{height:24px; width:auto;}
+.top .cd{font-size:11.5px; font-weight:800; color:var(--ink-soft);}
+.top .cd b{color:var(--warn); font-size:15px; font-weight:900;}
+
+/* ── FV ── */
+.fv{padding:30px 0 18px; text-align:center;}
+.fv .kicker{
+  display:inline-block; background:var(--g-soft); color:var(--g2);
+  font-size:11.5px; font-weight:800; border-radius:999px; padding:5px 15px; margin-bottom:14px;
+}
+.fv h1{font-size:27px; line-height:1.55; font-weight:900; margin:0 0 12px; letter-spacing:-.015em;}
+.fv h1 em{font-style:normal; color:var(--g2);}
+@media (max-width:400px){ .fv h1{font-size:23px;} }
+.fv .lead{font-size:14.5px; color:var(--ink-soft); margin:0 auto; max-width:32ch;}
+.fv .disc{font-size:11.5px; color:var(--ink-dim); margin:14px 0 0;}
+
+/* ── チャット ── */
+.thread{
+  background:var(--chat-bg); border-radius:20px; padding:18px 14px 20px;
+  margin-top:18px; box-shadow:inset 0 1px 3px rgba(40,60,75,.06);
+}
+.thread-head{
+  display:flex; align-items:center; gap:9px; padding:0 4px 14px;
+  border-bottom:1px solid rgba(255,255,255,.6); margin-bottom:16px;
+}
+.ava{
+  width:34px; height:34px; border-radius:50%; flex:0 0 auto;
+  background:linear-gradient(140deg,var(--g),var(--accent));
+  color:#fff; font-size:12px; font-weight:900; display:grid; place-items:center;
+}
+.thread-head .nm{font-size:14px; font-weight:900; line-height:1.3;}
+.thread-head .st{font-size:11px; color:var(--ink-dim); font-weight:700;}
+
+.row{display:flex; gap:8px; margin-bottom:11px; align-items:flex-end;}
+.row.me{flex-direction:row-reverse;}
+.row .ava{width:28px; height:28px; font-size:10px; align-self:flex-start;}
+.row.me .ava{display:none;}
+.bub{
+  max-width:78%; border-radius:16px; padding:10px 14px;
+  font-size:14.5px; line-height:1.75; box-shadow:0 1px 2px rgba(40,60,75,.07);
+  position:relative;
+}
+.row.them .bub{background:var(--them); border-top-left-radius:5px;}
+.row.me .bub{background:var(--me); border-top-right-radius:5px;}
+.bub b{font-weight:900;}
+.bub .hl{background:linear-gradient(transparent 62%, #FFF176 62%); font-weight:800;}
+
+/* スクロールで1つずつ現れる */
+.row{opacity:0; transform:translateY(10px); transition:opacity .4s ease, transform .4s ease;}
+.row.in{opacity:1; transform:none;}
+@media (prefers-reduced-motion:reduce){ .row{opacity:1; transform:none; transition:none;} }
+
+/* チャット内カード */
+.ccard{
+  background:#fff; border-radius:14px; padding:13px 14px; margin:2px 0 11px 36px;
+  box-shadow:var(--shadow); border:1px solid var(--line2);
+  opacity:0; transform:translateY(10px); transition:opacity .4s ease, transform .4s ease;
+}
+.ccard.in{opacity:1; transform:none;}
+@media (prefers-reduced-motion:reduce){ .ccard{opacity:1; transform:none;} }
+.ccard .t{display:flex; align-items:center; gap:9px; font-size:14px; font-weight:900;}
+.ccard .ic{
+  width:30px; height:30px; border-radius:9px; flex:0 0 auto; display:grid; place-items:center;
+  font-size:13px; color:#fff; background:var(--accent);
+}
+.ccard .ic.q{background:var(--amber);} .ccard .ic.y{background:#E0405A;}
+.ccard .d{font-size:12.5px; color:var(--ink-soft); margin-top:6px; line-height:1.7;}
+.ccard .meta{font-size:11px; color:var(--ink-dim); font-weight:700; margin-top:7px;}
+
+/* 料金カード */
+.ccard.price{border:1.5px solid var(--accent); background:#F5FBFE;}
+.ccard.price .pr{font-size:13px; color:var(--ink-soft); font-weight:800; margin-top:8px;}
+.ccard.price .pr b{font-size:30px; color:var(--ink); font-weight:900; letter-spacing:-.02em;}
+.ccard.price ul{list-style:none; padding:0; margin:10px 0 0; display:grid; gap:6px;}
+.ccard.price li{font-size:12.5px; font-weight:700; padding-left:20px; position:relative;}
+.ccard.price li::before{
+  content:"✓"; position:absolute; left:0; top:0; width:15px; height:15px; border-radius:50%;
+  background:var(--accent); color:#fff; font-size:9px; display:grid; place-items:center; margin-top:5px;
+}
+
+/* 会話内の分岐ボタン */
+.reply{display:grid; gap:8px; margin:4px 0 11px; padding-left:36px;}
+.reply button{
+  background:#fff; border:1.5px solid var(--g); border-radius:999px;
+  color:var(--g2); font-size:14px; font-weight:900; font-family:inherit;
+  padding:12px 16px; cursor:pointer; text-align:center;
+  box-shadow:0 1px 2px rgba(40,60,75,.07);
+}
+.reply button:active{transform:scale(.99);}
+.reply .note{font-size:11px; color:var(--ink-dim); text-align:center; font-weight:700;}
+
+/* ── セクション ── */
+section{padding:40px 0;}
+h2{font-size:21px; font-weight:900; line-height:1.55; margin:0 0 14px;}
+p{font-size:14.5px; color:var(--ink-soft); margin:0 0 13px;}
+p b{color:var(--ink);}
+.eyebrow{font-size:11px; font-weight:900; letter-spacing:.14em; color:var(--g2); margin-bottom:7px;}
+.sec-alt{background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+
+.voice{
+  background:#FFFCF0; border:1px solid #F0E6C8; border-left:3px solid var(--amber);
+  border-radius:0 13px 13px 0; padding:14px 16px; margin-top:11px;
+}
+.voice p{margin:0; font-size:13.5px;}
+.voice .src{margin-top:8px; font-size:11.5px; font-weight:800; color:var(--amber);}
+
+.faq{border-bottom:1px solid var(--line);}
+.faq summary{cursor:pointer; list-style:none; padding:15px 36px 15px 0; position:relative; font-size:14.5px; font-weight:800;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:"+"; position:absolute; right:4px; top:12px; font-size:21px; font-weight:400; color:var(--g2);}
+.faq[open] summary::after{content:"−";}
+.faq .a{padding:0 0 15px; font-size:13.5px; color:var(--ink-soft); margin:0;}
+.faq .a a{color:var(--accent); font-weight:700; text-decoration:underline;}
+
+/* ── CTA ── */
+.cta{
+  display:block; text-align:center; border-radius:14px; margin-top:16px;
+  background:linear-gradient(100deg,var(--g),var(--g2)); color:#fff;
+  font-weight:900; font-size:17px; padding:17px 16px; line-height:1.35;
+  box-shadow:0 12px 28px -10px rgba(6,199,85,.65);
+}
+.cta small{display:block; font-size:11.5px; font-weight:700; opacity:.95; margin-top:3px;}
+.cta .ic{
+  display:inline-block; width:19px; height:19px; border-radius:6px; background:#fff;
+  color:var(--g2); font-size:11px; font-weight:900; line-height:19px; text-align:center;
+  margin-right:8px; vertical-align:2px; letter-spacing:-.04em;
+}
+.cta.ghost{
+  background:#fff; border:1.5px solid var(--line2); color:var(--ink-soft);
+  box-shadow:none; font-size:14px; padding:13px;
+}
+.cta.ghost small{color:var(--ink-dim); opacity:1;}
+
+.final{background:linear-gradient(165deg,#EAF9EF,#F7FDF9); border-top:1px solid var(--line);}
+.final .box{
+  background:#fff; border:1.5px solid var(--g); border-radius:18px; padding:22px 18px;
+  box-shadow:0 0 0 5px rgba(6,199,85,.06), var(--shadow);
+}
+.final ul{list-style:none; padding:0; margin:14px 0 0; display:grid; gap:8px;}
+.final li{font-size:13.5px; font-weight:700; padding-left:24px; position:relative; color:var(--ink);}
+.final li::before{
+  content:"✓"; position:absolute; left:0; top:0; width:17px; height:17px; border-radius:50%;
+  background:var(--g); color:#fff; font-size:10px; display:grid; place-items:center; margin-top:6px;
+}
+#final-price{margin-top:22px;}
+
+/* ── sticky ── */
+.sticky{
+  position:fixed; left:0; right:0; bottom:0; z-index:50;
+  background:rgba(251,248,243,.96); backdrop-filter:blur(12px);
+  border-top:1px solid var(--line); box-shadow:0 -4px 16px -10px rgba(40,60,75,.3);
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  transform:translateY(115%); transition:transform .3s cubic-bezier(.2,.7,.3,1);
+}
+.sticky.on{transform:none;}
+.sticky .in{max-width:520px; margin:0 auto; display:flex; align-items:center; gap:12px;}
+.sticky .m{flex:1; min-width:0;}
+.sticky .m .a{font-size:10.5px; font-weight:800; color:var(--warn); line-height:1.35;}
+.sticky .m .b{font-size:13.5px; font-weight:900; line-height:1.35; white-space:nowrap;}
+.sticky .m .b span{font-size:10.5px; color:var(--ink-dim); font-weight:700;}
+.sticky .cta{flex:0 0 auto; margin:0; font-size:14.5px; padding:12px 20px; border-radius:12px;}
+@media (max-width:380px){ .sticky .m .b{font-size:12px;} .sticky .cta{font-size:13px; padding:11px 15px;} }
+
+footer{background:#F0EDE6; border-top:1px solid var(--line); padding:24px 0 32px; font-size:11.5px; color:var(--ink-dim);}
+footer a{color:var(--ink-soft); text-decoration:underline;}
+footer .lk{display:flex; flex-wrap:wrap; gap:8px 15px; margin-bottom:12px;}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="in">
+    <img src="/assets/img/wagon-logo.png" alt="WAGON" width="96" height="24">
+    <div class="cd" id="cd-wrap">国試まであと <b class="mono" id="cd">—</b> 日</div>
+  </div>
+</div>
+
+<main>
+
+<!-- ============ FV ＋ 会話 ============ -->
+<div class="wrap">
+  <div class="fv">
+    <span class="kicker">相談は無料・当日中に返信します</span>
+    <h1>LINEで相談すると、<br><em>こんなふうに</em>進みます。</h1>
+    <p class="lead">模試がE判定でも、順番を変えれば間に合います。実際に何が起きるのか、そのまま見てください。</p>
+    <p class="disc">※やりとりの一例です。実在の個人のものではありません。</p>
+  </div>
+
+  <div class="thread" id="thread">
+    <div class="thread-head">
+      <div class="ava">W</div>
+      <div>
+        <div class="nm">WAGONの担任</div>
+        <div class="st">ナース・ライセンススクール WAGON</div>
+      </div>
+    </div>
+
+    <div class="row me"><div class="bub">模試、E判定でした…</div></div>
+    <div class="row me"><div class="bub">もう間に合わない気がして</div></div>
+
+    <div class="row them"><div class="ava">W</div><div class="bub">大丈夫。落ちる人は<b>「難しい問題」を追いかけてる</b>んです。<br>間に合わないんじゃなくて、<span class="hl">順番が違うだけ。</span></div></div>
+    <div class="row them"><div class="ava">W</div><div class="bub">ひとつ聞いていい？<br><b>右心不全の症状</b>、パッと出る？</div></div>
+
+    <div class="row me"><div class="bub">…肺水腫、ですか？</div></div>
+
+    <div class="row them"><div class="ava">W</div><div class="bub">そこ、みんな間違えるところ。<br>正解は<b>下腿浮腫</b>です。</div></div>
+    <div class="row them"><div class="ava">W</div><div class="bub"><span class="hl">右は体、左は肺。</span><br>血液の流れで覚えると、もう間違えません。</div></div>
+
+    <div class="row me"><div class="bub">あ、逆に覚えてました</div></div>
+
+    <div class="row them"><div class="ava">W</div><div class="bub">この問題、<b>正答率82%</b>なんです。<br>つまり<b>落としちゃいけない側の問題。</b></div></div>
+    <div class="row them"><div class="ava">W</div><div class="bub">まずは循環器から立て直そう。<br>移動中に見れる動画、送るね。</div></div>
+
+    <div class="ccard">
+      <div class="t"><span class="ic">▶</span>循環器のキホン</div>
+      <div class="d">右心不全と左心不全を、血液の流れから理解する。丸暗記をやめるための1本。</div>
+      <div class="meta">講義動画・約10分</div>
+    </div>
+
+    <div class="row me"><div class="bub">見ました！<br>つながった気がします</div></div>
+
+    <div class="row them"><div class="ava">W</div><div class="bub">じゃあ、これ解いてみて。</div></div>
+
+    <div class="ccard">
+      <div class="t"><span class="ic q">?</span>循環器 演習問題</div>
+      <div class="d">いまの動画で扱った内容から3問。解けたら、それが「わかった」ということです。</div>
+      <div class="meta">3問・解説つき</div>
+    </div>
+
+    <div class="row me"><div class="bub">3問とも解けました</div></div>
+    <div class="row me"><div class="bub">さっき間違えたのに…</div></div>
+
+    <div class="row them"><div class="ava">W</div><div class="bub">それが<span class="hl">「わかる」ということ。</span><br>暗記じゃないから、初見の問題でも解けるようになります。</div></div>
+    <div class="row them"><div class="ava">W</div><div class="bub">WAGONのWEB教室には、<br>これが<b>45本以上</b>あります。</div></div>
+
+    <div class="ccard price" id="chat-price">
+      <div class="t"><span class="ic y">¥</span>サブスクWAGON</div>
+      <div class="pr"><b class="mono">20,000</b>円／月（税込）</div>
+      <ul>
+        <li>WEB教室の講義動画 45本以上が見放題</li>
+        <li>LIVE教室（生配信＋アーカイブ）が受け放題</li>
+        <li>データ問80%講座が使い放題</li>
+        <li>模試解説講義がすべて追加料金なし</li>
+      </ul>
+      <div class="meta">クレジット決済／銀行振込に対応</div>
+    </div>
+
+    <div class="row me"><div class="bub">実習と両立できますか？</div></div>
+
+    <div class="row them"><div class="ava">W</div><div class="bub">できます。動画は<b>いつでも何度でも</b>見れるし、<br>分からなければ、ここで聞いてくれればいい。</div></div>
+    <div class="row them"><div class="ava">W</div><div class="bub">返信するのは<b>本物の担任</b>です。<br>当日中に返します。</div></div>
+
+    <!-- 学年の分岐（会話の中で聞く） -->
+    <div class="row them" id="ask-row"><div class="ava">W</div><div class="bub">ところで、<b>今年度の国家試験</b>は受ける？</div></div>
+    <div class="reply" id="reply">
+      <button type="button" data-exam="1">受験します（最終学年・既卒）</button>
+      <button type="button" data-exam="0">まだ先です（低学年）</button>
+      <div class="note">▲ 選ぶと、この先の話が変わります</div>
+    </div>
+
+    <div id="tail" hidden></div>
+  </div>
+</div>
+
+<!-- ============ 声 ============ -->
+<section class="sec-alt">
+  <div class="wrap">
+    <div class="eyebrow">VOICES</div>
+    <h2>同じように、<br>ここから巻き返した人たち</h2>
+    <p style="font-size:12.5px; color:var(--ink-dim);">サブスクWAGON受講生から公式LINEに届いた感想の一部です。</p>
+
+    <div class="voice">
+      <p>WAGONの講義を受ける前までは学校の模試で下の方でしたが、受けていく中でだんだんと点数と順位が上がっていって、とても嬉しく感じました。国家試験は、WAGONの採点だと必修48点、一般状況178点でした。</p>
+      <div class="src">サブスクWAGON受講生</div>
+    </div>
+    <div class="voice">
+      <p>冬休みの直前まで模試の結果が思わしくなかったなか、サブスクを利用させていただき、国家試験直前までLIVE講義を受けることができ、とても自信がつきました。本番で何度もWAGONの先生方の講義を思い出し、落ち着いて受けることができました。</p>
+      <div class="src">サブスクWAGON受講生</div>
+    </div>
+    <div class="voice">
+      <p>私たちがわからないというと何度も何度も嫌な顔ひとつみせずわかりやすく教えてくださいました。その教えは臨床にたずさわる私にとってとても役立ち、宝物になっています。</p>
+      <div class="src">通信制から正看護師を目指した受講生</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">FAQ</div>
+    <h2>よくある質問</h2>
+
+    <details class="faq" open>
+      <summary>相談したら、勧誘されますか？</summary>
+      <p class="a">しつこい勧誘はしません。まずはいまの状況をうかがって、何をどの順番でやるべきかをお伝えします。そのうえでWAGONが合いそうであればプランをご案内しますが、合わないと感じたらそこで終わりにしていただいて構いません。返信するのは営業担当ではなく、実際に講義をしている担任です。</p>
+    </details>
+    <details class="faq">
+      <summary>相談だけでもいいですか？費用はかかりますか？</summary>
+      <p class="a">相談だけでも大丈夫です。費用は一切かかりません。公式LINEでの質疑応答、LINE担任制での毎日問題（一問一答）、掲示板の閲覧は、サブスクWAGONに入らなくても無料でご利用いただけます。</p>
+    </details>
+    <details class="faq">
+      <summary>本当に当日中に返信が来ますか？</summary>
+      <p class="a">はい。公式LINEに届いたご相談には、当日中にご返信しています。返信するのはチャットボットではなく、実際に講義を担当している担任です。</p>
+    </details>
+    <details class="faq">
+      <summary>料金と支払い方法を教えてください。</summary>
+      <p class="a">サブスクWAGONは月額20,000円（税込）です。クレジット決済および銀行振込に対応しています。この金額以外にかかる費用はありません（インターネット通信料はお客様のご負担となります）。契約・キャンセルの条件は<a href="/law.html" target="_blank" rel="noopener">特定商取引法に基づく表示</a>をご確認ください。</p>
+    </details>
+    <details class="faq">
+      <summary>実習が忙しくて、決まった時間に受けられません。</summary>
+      <p class="a">WEB教室はオンデマンドなので、好きな時間に好きな回数だけ視聴できます。LIVE教室も後からアーカイブで追いつけるため、リアルタイム参加は必須ではありません。</p>
+    </details>
+    <details class="faq">
+      <summary>通信制の学校でも受講できますか？既卒でも大丈夫ですか？</summary>
+      <p class="a">はい。通信制の学校に通いながら受講している方、働きながら受講している准看護師の方も多くいます。授業時間が少ない分を、WAGONの講義で補っていただけます。</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 最終CTA ============ -->
+<section class="final">
+  <div class="wrap">
+    <h2 style="text-align:center;" id="final-h2">この担任と、今日から。</h2>
+    <p style="text-align:center;" id="final-lead">いまの状況をひとこと送るだけで大丈夫です。</p>
+
+    <div class="box">
+      <ul id="final-list">
+        <li>相談は無料です</li>
+        <li>返信するのは本物の担任です。当日中に返信します</li>
+        <li>循環器の講義動画と演習問題を、無料でお送りします</li>
+        <li>合わないと感じたら、それで終わりにして構いません</li>
+      </ul>
+      <a class="cta" href="https://page.line.me/wvr6857m" target="_blank" rel="noopener"
+         data-cta="final" data-goal="line">
+        <span class="ic">L</span>LINEで担任に相談する<small>友だち追加は無料・しつこい勧誘はしません</small>
+      </a>
+    </div>
+
+    <div class="box" id="final-price">
+      <div style="text-align:center; font-size:12.5px; font-weight:800; color:var(--ink-soft);">
+        相談のなかでご案内しているメインプラン
+      </div>
+      <div style="text-align:center; margin-top:6px;">
+        <span style="font-size:17px; font-weight:900;">サブスクWAGON</span><br>
+        <span style="font-size:34px; font-weight:900; letter-spacing:-.02em;" class="mono">20,000</span><span style="font-size:15px; font-weight:900;">円／月</span>
+        <div style="font-size:11.5px; color:var(--ink-dim);">税込・クレジット決済／銀行振込に対応</div>
+      </div>
+      <a class="cta ghost" href="https://forms.gle/xJ6YhhBAiXSzEJD88" target="_blank" rel="noopener"
+         data-cta="final" data-goal="apply">
+        相談せずに申し込む<small>内容が分かっている方は、こちらから直接どうぞ</small>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="lk">
+      <a href="/law.html" target="_blank" rel="noopener">特定商取引法に基づく表示</a>
+      <a href="/privacy_policy.html" target="_blank" rel="noopener">プライバシーポリシー</a>
+      <a href="/about.html" target="_blank" rel="noopener">運営会社</a>
+      <a href="/" target="_blank" rel="noopener">WAGON公式サイト</a>
+    </div>
+    <div>本ページのやりとりは、相談の流れをご説明するための一例です。実在の個人のものではありません。</div>
+    <div style="margin-top:8px;">株式会社WAGON ／ 〒337-0051 埼玉県さいたま市見沼区東大宮5丁目35-6 エストレザンⅡ 2階<br>
+    TEL: 048-685-3316 ／ Mail: wagon@nurse-wagon.com<br>
+    Copyright © 2016 ナースライセンススクールWAGON All Rights Reserved.</div>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky">
+  <div class="in">
+    <div class="m">
+      <div class="a" id="st-a">国試まであと <span class="mono" id="cd3">—</span> 日</div>
+      <div class="b">担任に相談する<span>（無料・当日返信）</span></div>
+    </div>
+    <a class="cta" href="https://page.line.me/wvr6857m" target="_blank" rel="noopener"
+       data-cta="sticky" data-goal="line">LINEで相談</a>
+  </div>
+</div>
+
+<script>
+/* ==========================================================================
+   ▼ 運用時に触るのはこのブロックだけ（quiz.html と同じ構成）
+   ========================================================================== */
+var LP_CONFIG = {
+  // ★要確認：第116回 看護師国家試験の実施日
+  examDate: '2027-02-14',
+  // ★TODO：Google広告 コンバージョンID/ラベル
+  googleAdsConversion: '',
+  conversionEvent: 'generate_lead',   // 主導線＝LINE相談
+  applyEvent: 'begin_checkout',       // 副導線＝直申込
+  lineUrl: 'https://page.line.me/wvr6857m',
+  applyUrl: 'https://forms.gle/xJ6YhhBAiXSzEJD88',
+  // いま無料教材を用意できている領域（quiz.html と揃える）
+  featuredDomain: '循環器'
+};
+
+var LP_VARIANT = 'chat';   // GA4でクイズLPと比較するための識別子
+
+/* ---------- 国試までの日数 ---------- */
+var DAYS_RAW = (function(){
+  var d = Math.ceil((new Date(LP_CONFIG.examDate + 'T09:00:00+09:00') - new Date()) / 86400000);
+  return (!isFinite(d) || d < 0) ? null : d;
+})();
+var DAYS = DAYS_RAW;
+function paintDays(){
+  ['cd','cd3'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.textContent = (DAYS === null ? '—' : DAYS);
+  });
+}
+paintDays();
+
+/* ---------- 流入元(utm) ---------- */
+var LP_SOURCE = (function(){
+  try{
+    var q = new URLSearchParams(location.search);
+    var s = {
+      utm_source:q.get('utm_source')||'', utm_medium:q.get('utm_medium')||'',
+      utm_campaign:q.get('utm_campaign')||'', utm_content:q.get('utm_content')||''
+    };
+    if (s.utm_source) sessionStorage.setItem('lp_src', JSON.stringify(s));
+    else { var v = sessionStorage.getItem('lp_src'); if (v) s = JSON.parse(v); }
+    return s;
+  }catch(e){ return {}; }
+})();
+
+/* 今年度の国試を受験するか。会話の途中で本人に聞く。 */
+var EXAM_YEAR = null;
+
+function track(name, params){
+  if (window.gtag) gtag('event', name, Object.assign({
+    lp_variant: LP_VARIANT,
+    exam_year: (EXAM_YEAR === null ? 'unknown' : (EXAM_YEAR ? 'yes' : 'no')),
+    utm_source: LP_SOURCE.utm_source || '',
+    utm_campaign: LP_SOURCE.utm_campaign || '',
+    utm_content: LP_SOURCE.utm_content || ''
+  }, params || {}));
+}
+
+/* ---------- 吹き出しをスクロールで1つずつ出す ---------- */
+(function(){
+  var items = document.querySelectorAll('.row, .ccard');
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
+  items.forEach(function(el){ io.observe(el); });
+})();
+
+/* ---------- 会話の中で学年を聞き、その先を出し分ける ---------- */
+var FEATURED = LP_CONFIG.featuredDomain;
+
+function hideExamUI(){
+  DAYS = null;
+  paintDays();
+  var cd = document.getElementById('cd-wrap');
+  if (cd) cd.style.display = 'none';
+  var sa = document.getElementById('st-a');
+  if (sa) sa.textContent = '無料・その場で受け取れます';
+  // 低学年に月額20,000円は早すぎる。まず無料で伴走し、LINE側で状況を確認してから案内する。
+  ['chat-price','final-price'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.hidden = true;
+  });
+}
+
+function bubble(html){
+  return '<div class="row them in"><div class="ava">W</div><div class="bub">' + html + '</div></div>';
+}
+
+document.querySelectorAll('#reply button').forEach(function(b){
+  b.addEventListener('click', function(){
+    EXAM_YEAR = (b.dataset.exam === '1');
+    track('exam_year_select', { exam_year: EXAM_YEAR ? 'yes' : 'no' });
+
+    document.getElementById('reply').hidden = true;
+    var meText = EXAM_YEAR ? '受験します' : 'まだ先です';
+    var tail = document.getElementById('tail');
+
+    tail.innerHTML =
+      '<div class="row me in"><div class="bub">' + meText + '</div></div>' +
+      (EXAM_YEAR
+        ? bubble('じゃあ、残り<b class="mono">' + (DAYS === null ? '' : DAYS) + '</b>日。<br>' +
+                 '<span class="hl">やることを絞れば、十分に間に合います。</span>') +
+          bubble('まず' + FEATURED + 'から。<br>動画と問題、いま送るね。')
+        : bubble('なら、いま<span class="hl">' + FEATURED + 'を押さえておくと実習が楽になります。</span>') +
+          bubble('受け持つ患者さんの疾患は、<br>ほぼこの領域のどれかだから。') +
+          bubble('国試の話は、まだ先で大丈夫。<br>まず動画と問題を送るね。')) +
+      '<div class="reply" style="padding-left:0; margin-top:14px;">' +
+        '<a class="cta" href="' + LP_CONFIG.lineUrl + '" target="_blank" rel="noopener" ' +
+          'data-cta="chat" data-goal="line" style="margin-top:0;">' +
+          '<span class="ic">L</span>' + FEATURED + 'の動画と問題を受け取る' +
+          '<small>友だち追加は無料・当日中にご返信します</small></a>' +
+      '</div>';
+    tail.hidden = false;
+
+    if (!EXAM_YEAR) {
+      hideExamUI();
+      document.getElementById('final-h2').textContent = '実習が楽になるのは、ここからです。';
+      document.getElementById('final-lead').textContent = 'いまの学年と、困っていることを送るだけで大丈夫です。';
+      document.getElementById('final-list').innerHTML =
+        '<li>相談は無料です</li>' +
+        '<li>返信するのは本物の担任です。当日中に返信します</li>' +
+        '<li>' + FEATURED + 'の講義動画と演習問題を、無料でお送りします</li>' +
+        '<li>実習で受け持つ疾患は、ほぼこの5領域のどれかです</li>';
+    }
+
+    tail.scrollIntoView({ behavior:'smooth', block:'center' });
+    document.getElementById('sticky').classList.add('on');
+  }, { once:true });
+});
+
+/* ---------- CTAクリック＝コンバージョン計測 ---------- */
+document.addEventListener('click', function(e){
+  var a = e.target.closest('a[data-cta]');
+  if (!a) return;
+  var goal = a.getAttribute('data-goal') || 'line';
+  var p = { cta_location: a.getAttribute('data-cta'), cta_goal: goal, link_url: a.href };
+
+  track('cta_click', p);
+
+  if (goal === 'line'){
+    track(LP_CONFIG.conversionEvent, p);
+    if (LP_CONFIG.googleAdsConversion && window.gtag){
+      gtag('event', 'conversion', { send_to: LP_CONFIG.googleAdsConversion });
+    }
+  } else {
+    track(LP_CONFIG.applyEvent, Object.assign({
+      value: 20000, currency: 'JPY', item_name: 'subsc_wagon'
+    }, p));
+  }
+  if (window.clarity){ try{ clarity('set','cta',p.cta_location); clarity('set','goal',goal); }catch(err){} }
+}, true);
+
+/* ---------- スクロール到達率／スティッキー ---------- */
+(function(){
+  var hit = {}, bar = document.getElementById('sticky');
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    if (h > 0){
+      var pct = Math.round(window.scrollY / h * 100);
+      [25,50,75,90].forEach(function(m){
+        if (pct >= m && !hit[m]){ hit[m] = true; track('scroll_depth', { percent_scrolled:m }); }
+      });
+    }
+    if (window.scrollY > 1200) bar.classList.add('on');
+  }, { passive:true });
+})();
+
+/* ---------- FAQ開閉 ---------- */
+document.querySelectorAll('details.faq').forEach(function(d){
+  d._was = d.open;
+  d.addEventListener('toggle', function(){
+    if (d.open && !d._was) track('faq_open', { faq_title: d.querySelector('summary').textContent.trim() });
+    d._was = d.open;
+  });
+});
+</script>
+
+</body>
+</html>
