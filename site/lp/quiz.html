@@ -54,6 +54,8 @@ body{
   margin:0; background:var(--bg); color:var(--txt);
   font-family:"Hiragino Sans","Yu Gothic","Segoe UI",Meiryo,system-ui,sans-serif;
   line-height:1.8; -webkit-font-smoothing:antialiased;
+  /* 日本語の禁則処理。長音符や小書き仮名を行頭に落とさない */
+  line-break:strict; overflow-wrap:break-word;
   overflow-x:hidden;
 }
 body::before{
@@ -665,7 +667,14 @@ var LP_CONFIG = {
   //   QUESTIONS の domain と完全一致させること。空文字にすると誘導は出ない。
   featuredDomain: '循環器',
 
-  // 主導線：公式LINE（友だち追加）— 広告など、まだ友だちでない層向け
+  // 主導線：公式LINE（友だち追加）
+  //
+  // ★重要：会話LP(chat.html)とA/Bするなら、ここを「このLP専用の
+  //   友だち追加経路URL」に差し替えてください。
+  //   LINE公式アカウント管理画面 > 友だち追加ガイド > 友だち追加経路 で
+  //   クイズLP用の経路URLを1本発行して貼る。
+  //   同じURLのままだと、どちらのLPから来た友だちかLINE側で区別できず、
+  //   最終的な成約率での勝ち負けが判定できません。
   lineUrl: 'https://page.line.me/wvr6857m',
 
   // 副導線：サブスク申込フォーム
@@ -803,6 +812,20 @@ function paintDays(){
 }
 paintDays();
 
+
+/* ---------- 遷移先を LP_CONFIG に一本化 ----------
+   HTMLに直書きしたURLも起動時に上書きするので、
+   リンク先を変えるときは LP_CONFIG だけ直せばよい。
+   （A/B用の友だち追加経路URLもここで一括反映される）
+------------------------------------------------- */
+(function(){
+  document.querySelectorAll('a[data-goal="line"]').forEach(function(a){
+    if (LP_CONFIG.lineUrl) a.href = LP_CONFIG.lineUrl;
+  });
+  document.querySelectorAll('a[data-goal="apply"]').forEach(function(a){
+    if (LP_CONFIG.applyUrl) a.href = LP_CONFIG.applyUrl;
+  });
+})();
 /* ---------- 流入元(utm) ---------- */
 var LP_SOURCE = (function(){
   try{

@@ -54,7 +54,9 @@ html{scroll-behavior:smooth;}
 body{
   margin:0; background:var(--bg); color:var(--ink);
   font-family:"Hiragino Sans","Yu Gothic","Segoe UI",Meiryo,system-ui,sans-serif;
-  line-height:1.85; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  line-height:1.85; -webkit-font-smoothing:antialiased;
+  /* 日本語の禁則処理。長音符や小書き仮名を行頭に落とさない */
+  line-break:strict; overflow-wrap:break-word; overflow-x:hidden;
   padding-bottom:86px;
 }
 a{color:inherit; text-decoration:none;}
@@ -81,8 +83,11 @@ img{max-width:100%; height:auto; display:block;}
 .fv h1{font-size:27px; line-height:1.55; font-weight:900; margin:0 0 12px; letter-spacing:-.015em;}
 .fv h1 em{font-style:normal; color:var(--g2);}
 @media (max-width:400px){ .fv h1{font-size:23px;} }
-.fv .lead{font-size:14.5px; color:var(--ink-soft); margin:0 auto; max-width:32ch;}
-.fv .disc{font-size:11.5px; color:var(--ink-dim); margin:14px 0 0;}
+.fv .lead{font-size:14.5px; color:var(--ink-soft); margin:0 auto; max-width:34ch;}
+.fv .disc{font-size:11.5px; color:var(--ink-dim); margin:14px auto 0; max-width:34ch;}
+/* 日本語が語の途中で折り返さないよう、意味のかたまりごとに折る */
+.fv .lead span, .fv .disc span{display:inline-block;}
+.fv .lead, .fv .disc{line-break:strict; overflow-wrap:anywhere;}
 
 /* ── チャット ── */
 .thread{
@@ -279,8 +284,14 @@ footer .lk{display:flex; flex-wrap:wrap; gap:8px 15px; margin-bottom:12px;}
   <div class="fv">
     <span class="kicker">相談は無料・当日中に返信します</span>
     <h1>あなたが相談したら、<br><em>こうなります。</em></h1>
-    <p class="lead">模試がE判定でも、順番を変えれば間に合います。相談すると何が起きるのか、そのまま読んでみてください。</p>
-    <p class="disc">※右側の吹き出しが、あなたです。やりとりの一例で、実在の個人のものではありません。</p>
+    <p class="lead">
+      <span>模試がE判定でも、</span><span>順番を変えれば間に合います。</span><br>
+      <span>相談すると何が起きるのか、</span><span>そのまま読んでみてください。</span>
+    </p>
+    <p class="disc">
+      <span>※右側の吹き出しが、あなたです。</span>
+      <span>やりとりの一例で、</span><span>実在の個人のものではありません。</span>
+    </p>
   </div>
 
   <div class="thread" id="thread">
@@ -505,6 +516,12 @@ var LP_CONFIG = {
   googleAdsConversion: '',
   conversionEvent: 'generate_lead',   // 主導線＝LINE相談
   applyEvent: 'begin_checkout',       // 副導線＝直申込
+  // ★重要：クイズLP(quiz.html)とA/Bするなら、ここを「このLP専用の
+  //   友だち追加経路URL」に差し替えてください。
+  //   LINE公式アカウント管理画面 > 友だち追加ガイド > 友だち追加経路 で
+  //   会話LP用の経路URLを1本発行して貼る。
+  //   同じURLのままだと、どちらのLPから来た友だちかLINE側で区別できず、
+  //   最終的な成約率での勝ち負けが判定できません。
   lineUrl: 'https://page.line.me/wvr6857m',
   applyUrl: 'https://forms.gle/xJ6YhhBAiXSzEJD88',
   // いま無料教材を用意できている領域（quiz.html と揃える）
@@ -527,6 +544,20 @@ function paintDays(){
 }
 paintDays();
 
+
+/* ---------- 遷移先を LP_CONFIG に一本化 ----------
+   HTMLに直書きしたURLも起動時に上書きするので、
+   リンク先を変えるときは LP_CONFIG だけ直せばよい。
+   （A/B用の友だち追加経路URLもここで一括反映される）
+------------------------------------------------- */
+(function(){
+  document.querySelectorAll('a[data-goal="line"]').forEach(function(a){
+    if (LP_CONFIG.lineUrl) a.href = LP_CONFIG.lineUrl;
+  });
+  document.querySelectorAll('a[data-goal="apply"]').forEach(function(a){
+    if (LP_CONFIG.applyUrl) a.href = LP_CONFIG.applyUrl;
+  });
+})();
 /* ---------- 流入元(utm) ---------- */
 var LP_SOURCE = (function(){
   try{
