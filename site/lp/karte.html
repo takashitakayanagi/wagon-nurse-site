@@ -132,10 +132,10 @@ section{padding:40px 0;}
 /* 意味のかたまりごとに折り返す（語の途中で切れないように） */
 .o-lead span{display:inline-block;}
 .o-q{font-size:15px; font-weight:900; line-height:1.7; margin:0 0 11px;}
-.o-q span, .found span, .basis span:not(.bh){display:inline-block;}
+.o-q span, .found span{display:inline-block;}
 /* 対応ブラウザ（Chrome 119+ など）では文節単位で折り返す。
    非対応でも通常の折り返しに戻るだけなので安全。 */
-.said, .assess-d, .basis, .plan-item .d, .found .d, .o-q, .o-lead{word-break:auto-phrase;}
+.said, .assess-d, .plan-item .d, .found .d, .o-q, .o-lead{word-break:auto-phrase;}
 .o-opts{display:grid; grid-template-columns:1fr 1fr; gap:7px;}
 .o-opts button{
   display:flex; align-items:center; gap:7px; text-align:left;
@@ -163,16 +163,6 @@ section{padding:40px 0;}
 .found .d{font-size:12.5px; color:var(--ink-soft); margin-top:6px; line-height:1.8;}
 .found .d b{color:var(--ink);}
 
-/* P欄：計画の根拠。母集団のデータはOではなくここで使う */
-.basis{
-  margin-top:9px; background:var(--paper); border:1px solid var(--rule);
-  border-radius:5px; padding:10px 11px; font-size:12px; color:var(--ink-soft); line-height:1.8;
-}
-.basis b{color:var(--ink);}
-.basis .bh{
-  display:inline-block; font-size:9.5px; font-weight:900; color:#fff; background:var(--ink-dim);
-  border-radius:3px; padding:1px 6px; margin-right:6px; vertical-align:1px; letter-spacing:.06em;
-}
 
 /* 記入待ちの欄 */
 .pending{
@@ -180,21 +170,6 @@ section{padding:40px 0;}
 }
 .pending span{font-size:12.5px; font-weight:700;}
 
-/* O欄：データ */
-.data-note{font-size:12.5px; color:var(--ink-soft); margin:0 0 10px; line-height:1.75;}
-.dtable{width:100%; border-collapse:collapse; font-size:13px;}
-.dtable th{
-  text-align:left; font-size:10.5px; font-weight:900; color:var(--ink-dim);
-  padding:0 0 6px; border-bottom:1px solid var(--rule);
-}
-.dtable th:last-child, .dtable td:last-child{text-align:right;}
-.dtable td{padding:8px 0; border-bottom:1px solid var(--rule);}
-.dtable tr:last-child td{border-bottom:none;}
-.dtable .rate{font-weight:900; font-variant-numeric:tabular-nums;}
-.dtable tr.hit td{background:var(--alert-soft);}
-.dtable tr.hit .nm{font-weight:900;}
-.dtable tr.hit .rate{color:var(--alert);}
-.dtable .mk{font-size:10.5px; font-weight:900; color:var(--alert); margin-left:6px;}
 
 /* A欄：アセスメント */
 .assess{font-size:15px; font-weight:800; line-height:1.85; margin:0 0 8px;}
@@ -698,13 +673,6 @@ var O_CORRECT = 3;            // 「下腿浮腫」が正解（0始まり）
             : '循環器から立て直す') + '</div>' +
           '<div class="d">いま確認した設問の領域です。' +
             (O_ANSWER ? '取れている状態を、本番まで保ちます。' : 'まずここを埋めます。') + '</div>' +
-          // 計画には根拠を書く。母集団のデータはOではなく、ここで使う。
-          // ★内容はWAGONの分析に基づくもの。数字を出すと裏づけを求められるため、
-          //   あえて具体値は入れていません。
-          '<div class="basis">' +
-            '<span class="bh">根拠</span>' +
-            '<b><span>近年、循環器からの</span><span>出題が増えているため。</span></b>' +
-          '</div>' +
         '</div></div>' +
         '<div class="plan-item"><span class="n">#2</span><div>' +
           '<div class="t">講義動画（約10分）→ 演習3問</div>' +
