@@ -378,7 +378,7 @@ footer .lk{display:flex; flex-wrap:wrap; gap:8px 15px; margin-bottom:12px;}
         循環器の講義動画と<br>演習問題を、無料でお送りします。
       </div>
       <ul id="offer-list">
-        <li>講義動画 約20分。通学中に1本で終わります</li>
+        <li>講義動画を1本。通学中に終わります</li>
         <li>そのあと演習問題3問。解ければ「わかった」ということです</li>
         <li>すべて無料です。返信するのは本物の担任で、当日中に返信します</li>
         <li>合わないと感じたら、それで終わりにして構いません</li>
@@ -675,7 +675,7 @@ var O_CORRECT = 3;            // 「下腿浮腫」が正解（0始まり）
             (O_ANSWER ? '取れている状態を、本番まで保ちます。' : 'まずここを埋めます。') + '</div>' +
         '</div></div>' +
         '<div class="plan-item"><span class="n">#2</span><div>' +
-          '<div class="t">講義動画（約20分）→ 演習3問</div>' +
+          '<div class="t">講義動画 → 演習3問</div>' +
           '<div class="d">「右は体、左は肺」を血液の流れで理解する。解ければ、それが「わかった」ということ。</div></div></div>' +
         '<div class="plan-item"><span class="n">#3</span><div>' +
           '<div class="t">評価して、次の領域へ</div>' +
@@ -701,11 +701,11 @@ document.querySelectorAll('#fill button').forEach(function(b){
       DAYS = null; paintDays();
       var cd = document.getElementById('cd-wrap'); if (cd) cd.style.display = 'none';
       var pb = document.getElementById('price-box'); if (pb) pb.hidden = true;
-      document.getElementById('st-a').textContent = '無料・通学中に1本で終わります';
+      document.getElementById('st-a').textContent = '無料・通学中に終わります';
       document.getElementById('kw-word').textContent = '診断-' + LP_CONFIG.featuredDomain + '-実習';
       document.getElementById('offer-kick').textContent = '実習で受け持つ疾患の、いちばん多い領域です。';
       document.getElementById('offer-list').innerHTML =
-        '<li>講義動画 約20分。通学中に1本で終わります</li>' +
+        '<li>講義動画を1本。通学中に終わります</li>' +
         '<li>そのあと演習問題3問。解ければ「わかった」ということです</li>' +
         '<li>すべて無料です。返信するのは本物の担任で、当日中に返信します</li>' +
         '<li>実習で受け持つ患者さんの疾患は、ほぼこの5領域のどれかです</li>';
