@@ -66,6 +66,8 @@ body{
   margin:0; background:var(--page-bg); color:var(--ink);
   font-family:"Hiragino Sans","Yu Gothic","Segoe UI",Meiryo,sans-serif;
   line-height:1.85; -webkit-font-smoothing:antialiased;
+  /* 日本語の禁則処理。長音符や小書き仮名を行頭に落とさない */
+  line-break:strict; overflow-wrap:break-word;
   padding-bottom:84px; /* sticky CTA分 */
 }
 a{color:inherit; text-decoration:none;}
@@ -647,7 +649,7 @@ p{font-size:15px; color:var(--ink-soft); margin:0 0 14px;}
    LP設定 — 運用時に触るのはこのブロックだけ
    ========================================================================== */
 var LP_CONFIG = {
-  // ★要確認：第116回 看護師国家試験の実施日（公式発表の日付に差し替えてください）
+  // 第116回 看護師国家試験の実施日（確認済み・2027年2月14日 日曜）
   examDate: '2027-02-14',
 
   // ★TODO：Google広告のコンバージョンID/ラベル（未設定なら空のまま）

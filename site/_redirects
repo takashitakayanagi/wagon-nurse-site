@@ -21,5 +21,13 @@
 /form_thanks /contact.html 301
 
 # 広告用LP（短縮URL）
-/lp /lp/subsc.html 200
+# 採用中の3枚。この3枚でA/Bする。
 /quiz /lp/quiz.html 200
+/chat /lp/chat.html 200
+/karte /lp/karte.html 200
+
+# 以下は未採用。ファイルはリポジトリに残してあるが、公開URLは持たせない。
+# 次のテストで使うときは、この行のコメントを外す。
+#/lp /lp/subsc.html 200
+#/roi /lp/roi.html 200
+#/board /lp/board.html 200
