@@ -1273,6 +1273,7 @@ document.addEventListener('click', function(e){
     if (LP_CONFIG.googleAdsConversion && window.gtag){
       gtag('event', 'conversion', { send_to: LP_CONFIG.googleAdsConversion });
     }
+    if (window.fbq) fbq('track', 'Lead', { content_name: where });
   } else {
     // 副コンバージョン：サブスク直申込
     track(LP_CONFIG.applyEvent, Object.assign({
