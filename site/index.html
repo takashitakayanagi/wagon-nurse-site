@@ -57,7 +57,10 @@
 {"@context":"https://schema.org","@type":"WebPage","url":"https://wagon-nurse.com/","dateModified":"2026-09-01","speakable":{"@type":"SpeakableSpecification","cssSelector":[".faq-a"]}}
 </script>
 <style>
-  .hero img{ width:100%; height:auto; }
+  .hero img{ width:100%; height:auto; display:block; }
+  @media (max-width:600px){
+    .hero img{ height:145px; object-fit:cover; object-position:center 56%; }
+  }
   .cta-zone{ max-width:1040px; margin:0 auto; padding:28px 24px 56px; }
   .primary-cta{
     display:block; flex:1; border-radius:16px; overflow:hidden; box-shadow: var(--card-shadow);
@@ -65,8 +68,11 @@
   }
   .primary-cta img{ width:100%; height:auto; display:block; }
   @media (max-width:600px){
-    .primary-cta{ max-height:165px; }
+    .primary-cta{ max-height:165px; margin-bottom:8px; }
     .primary-cta img{ height:165px; object-fit:cover; object-position:top; }
+    .cta-zone{ padding:14px 16px 40px; }
+    .hero-grid{ gap:8px; }
+    .deadline-note{ padding:4px 10px; margin-top:6px; font-size:11px; }
   }
   .secondary-label{ font-size:12px; color:var(--ink-soft); font-weight:700; margin:22px 2px 10px; }
   .secondary-row{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
