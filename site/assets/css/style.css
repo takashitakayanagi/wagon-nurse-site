@@ -238,6 +238,15 @@ details.faq .faq-a{ padding:0 20px 18px; color:var(--ink-soft); font-size:14px; 
 .deadline-note{ display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; color:var(--deadline); background:var(--deadline-soft); padding:5px 12px; border-radius:999px; margin-top:10px; }
 .deadline-note.urgent{ color:var(--urgent); background:var(--urgent-soft); }
 
+/* trust stat */
+.trust-stat{
+  display:inline-flex; align-items:baseline; gap:8px; background:var(--card-bg);
+  border:1px solid var(--line); border-radius:999px; padding:10px 22px;
+  font-size:13px; color:var(--ink-soft); box-shadow:var(--card-shadow); margin-top:18px;
+}
+.trust-stat strong{ font-size:22px; color:var(--accent); font-weight:800; }
+.trust-stat-wrap{ text-align:center; }
+
 /* sticky CTA bar */
 .sticky-cta{
   position:fixed; left:0; right:0; bottom:0; z-index:50;
