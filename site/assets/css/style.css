@@ -247,7 +247,8 @@ details.faq .faq-a{ padding:0 20px 18px; color:var(--ink-soft); font-size:14px; 
 .trust-stat strong{ font-size:22px; color:var(--accent); font-weight:800; white-space:nowrap; }
 .trust-stat-wrap{ text-align:center; }
 @media (max-width:480px){
-  .trust-stat{ display:inline-flex; flex-direction:column; align-items:center; gap:2px; padding:12px 20px; text-align:center; }
+  .trust-stat{ display:inline-flex; flex-direction:column; align-items:center; gap:2px; padding:12px 16px; text-align:center; font-size:11px; white-space:nowrap; }
+  .trust-stat strong{ font-size:20px; }
 }
 
 /* sticky CTA bar */
