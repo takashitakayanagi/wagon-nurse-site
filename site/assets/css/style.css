@@ -218,7 +218,7 @@ details.faq .faq-a{ padding:0 20px 18px; color:var(--ink-soft); font-size:14px; 
 .news-compact-item a{ color:var(--ink-soft); }
 .news-compact-item a:hover{ color:var(--accent); }
 .news-compact-more{ margin-top:12px; font-size:12px; font-weight:700; color:var(--accent); }
-.news-compact-panel.theme-news{ background:#FFFCEB; border-color:#F5EBB8; }
+.news-compact-panel.theme-news{ background:var(--news-soft); border-color:#D3EFF7; }
 .news-compact-panel.theme-magazine{ background:var(--magazine-soft); border-color:#F6DEE6; }
 .news-compact-panel.theme-magazine .t{ border-bottom-color:var(--magazine-accent); }
 .news-compact-panel.theme-magazine .news-compact-item .dot{ background:var(--magazine-accent); }
