@@ -64,6 +64,10 @@
     margin-bottom:14px; line-height:0;
   }
   .primary-cta img{ width:100%; height:auto; display:block; }
+  @media (max-width:600px){
+    .primary-cta{ max-height:190px; }
+    .primary-cta img{ height:190px; object-fit:cover; object-position:top; }
+  }
   .secondary-label{ font-size:12px; color:var(--ink-soft); font-weight:700; margin:22px 2px 10px; }
   .secondary-row{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
   @media (max-width:1000px){ .secondary-row{ grid-template-columns:repeat(3,1fr); } }
