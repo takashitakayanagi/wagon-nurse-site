@@ -146,17 +146,23 @@ function printClarity(data) {
 
   const conversions = await runGA4Report(accessToken, {
     dateRanges: [{ startDate, endDate }],
-    dimensions: [{ name: 'eventName' }],
+    dimensions: [{ name: 'eventName' }, { name: 'pagePath' }],
     metrics: [{ name: 'eventCount' }],
     dimensionFilter: {
-      filter: {
-        fieldName: 'eventName',
-        inListFilter: { values: ['generate_lead', 'begin_checkout', 'cta_click'] },
+      andGroup: {
+        expressions: [
+          {
+            filter: {
+              fieldName: 'eventName',
+              inListFilter: { values: ['generate_lead', 'begin_checkout', 'cta_click'] },
+            },
+          },
+        ],
       },
     },
   });
-  console.log('\n=== GA4: コンバージョンイベント ===');
-  printGA4Rows('イベント別', conversions);
+  console.log('\n=== GA4: コンバージョンイベント（ページ別） ===');
+  printGA4Rows('イベント×ページ', conversions);
 
   const clarity = await getClarityInsights();
   printClarity(clarity);
