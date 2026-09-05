@@ -1,3 +1,29 @@
+# ============================================================================
+#  ⚠ このファイルは現在の配信環境（GitHub Pages）では読み込まれません。
+#
+#  _redirects は Netlify / Cloudflare Pages の記法です。本サイトは
+#  .github/workflows/pages.yml で GitHub Pages に配信しているため、
+#  ここに書いたルールはサーバー側では一切適用されません
+#  （2026-09-05、実URLへのHTTPリクエストで404になることを確認）。
+#
+#  実際に効いている転送は、site/ 配下に置いた転送用HTMLです：
+#    /form_web_school        → site/form_web_school.html
+#    /form_venue_seminar     → site/form_venue_seminar.html
+#    /form_moshi             → site/form_moshi.html
+#    /form_general_contact   → site/form_general_contact.html
+#    /form_for_school        → site/form_for_school.html
+#    /form_recruitment       → site/form_recruitment.html
+#    /form_thanks            → site/form_thanks.html
+#    /terms-of-service/moshi → site/terms-of-service/moshi.html
+#    /quiz /chat /karte      → site/quiz.html / chat.html / karte.html
+#
+#  転送先を変えるときは、このファイルではなく上記のHTMLを直してください。
+#  （Netlify等へ移す可能性に備えて、以下のルール記述はそのまま残しています）
+#
+#  拡張子なしの通常ページ（/about /plan /howto など）は GitHub Pages が
+#  自動で .html を補完するため、転送用HTMLは不要です。
+# ============================================================================
+
 # STUDIO(旧サイト)の拡張子なしURL → 新サイトの.htmlページへの301リダイレクト
 /about /about.html 301
 /subscription /subscription.html 301
