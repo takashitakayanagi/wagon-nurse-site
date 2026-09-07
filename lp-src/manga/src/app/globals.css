@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #fffdf7;
+  color: #4a3b34;
+  font-family: var(--font-sans);
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* 追従CTA分の余白（ページ最下部が隠れないように） */
+.has-sticky-cta {
+  padding-bottom: 88px;
+}
+@media (min-width: 768px) {
+  .has-sticky-cta {
+    padding-bottom: 0;
+  }
+}
+
+@layer components {
+  .container-lp {
+    @apply mx-auto w-full max-w-container px-5;
+  }
+  .section-heading {
+    @apply text-2xl font-bold leading-snug text-ink sm:text-3xl;
+    /* 見出しの行を均等割りし、末尾に1文字だけ落ちるのを防ぐ */
+    text-wrap: balance;
+    /* 対応ブラウザ（Chrome等）では文節（意味のまとまり）で改行 */
+    word-break: auto-phrase;
+  }
+}
+
+/* 本文の読みやすさ：孤立行を減らし、対応ブラウザでは文節で改行 */
+.jp-body {
+  text-wrap: pretty;
+  word-break: auto-phrase;
+  line-break: strict;
+}
+
+/* 「文節ごと改行」用：各まとまりを inline-block にして、
+   途中ではなくまとまりの境界でだけ改行させる（全ブラウザ対応） */
+.phrase > span {
+  display: inline-block;
+}
+
+:focus-visible {
+  outline: 3px solid #f45d9b;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

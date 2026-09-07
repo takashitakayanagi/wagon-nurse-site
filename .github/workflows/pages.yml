@@ -24,6 +24,45 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: |
+            lp-src/manga/package-lock.json
+            lp-src/nurse/package-lock.json
+
+      # lp-src/ 配下のNext.js製LPを静的HTMLに書き出し、site/lp/ に配置します。
+      # 生成物はリポジトリにコミットせず、毎回ここで作ります。
+      - name: Build 漫画LP -> /lp/manga/
+        working-directory: lp-src/manga
+        env:
+          NEXT_PUBLIC_BASE_PATH: /lp/manga
+          NEXT_PUBLIC_SITE_URL: https://wagon-nurse.com
+          NEXT_PUBLIC_LINE_URL: https://page.line.me/wvr6857m
+          NEXT_PUBLIC_GA4_ID: G-FXKCWMXKJB
+          NEXT_PUBLIC_META_PIXEL_ID: "2817935241910493"
+        run: |
+          npm ci
+          npm run build
+          mkdir -p "$GITHUB_WORKSPACE/site/lp/manga"
+          cp -r out/. "$GITHUB_WORKSPACE/site/lp/manga/"
+
+      - name: Build 看護師国試対策LP -> /lp/nurse/
+        working-directory: lp-src/nurse
+        env:
+          NEXT_PUBLIC_BASE_PATH: /lp/nurse
+          NEXT_PUBLIC_SITE_URL: https://wagon-nurse.com
+          NEXT_PUBLIC_LINE_URL: https://page.line.me/wvr6857m
+          NEXT_PUBLIC_GA4_ID: G-FXKCWMXKJB
+          NEXT_PUBLIC_META_PIXEL_ID: "2817935241910493"
+        run: |
+          npm ci
+          npm run build
+          mkdir -p "$GITHUB_WORKSPACE/site/lp/nurse"
+          cp -r out/. "$GITHUB_WORKSPACE/site/lp/nurse/"
+
       - name: Upload site folder
         uses: actions/upload-pages-artifact@v3
         with:

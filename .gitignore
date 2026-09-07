@@ -1,1 +1,10 @@
 secrets/
+
+# Node（LPのビルドに使用）
+node_modules/
+.next/
+out/
+
+# LPのビルド成果物。GitHub Actions が公開時に生成するのでコミットしません。
+site/lp/manga/
+site/lp/nurse/
