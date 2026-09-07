@@ -238,7 +238,7 @@ export const videoSection = {
 
 export const lineBenefits: string[] = [
   "国試頻出ポイント",
-  "無料問題や解説",
+  "毎日1問の国試問題",
   "講義動画の案内",
   "イベントや講座情報",
   "看護師国家試験の最新情報",
@@ -246,13 +246,17 @@ export const lineBenefits: string[] = [
 ];
 
 /* ---------------------------------------------------------------------- *
- * LINE登録から学習開始までの流れ
+ * LINE登録から毎日1問が届くまで
  * ---------------------------------------------------------------------- */
 
 export const steps = [
   { no: 1, title: "公式LINEを友だち追加", description: "登録は無料です。" },
-  { no: 2, title: "国試情報や講座案内を確認", description: "LINEで届く情報をチェック。" },
-  { no: 3, title: "自分に合った動画講座で学習開始", description: "内容を確認して学習をスタート。" },
+  {
+    no: 2,
+    title: "オープンチャットに参加",
+    description: "参加すると、毎日の問題が届くようになります。",
+  },
+  { no: 3, title: "毎日1問が届く", description: "1日1問ずつ、自分のペースで進められます。" },
 ] as const;
 
 /* ---------------------------------------------------------------------- *
@@ -293,9 +297,9 @@ export const faqs: Faq[] = [
  * ---------------------------------------------------------------------- */
 
 export const cta = {
-  mainLabel: "LINEで国試対策を始める",
-  benefitLabel: "LINEで国試対策を始める",
-  finalLabel: "WAGONのLINEを友だち追加",
+  mainLabel: "毎日1問ずつ、LINEで始めてみる",
+  benefitLabel: "毎日1問を受け取る",
+  finalLabel: "LINEで毎日1問を受け取る",
   notesFree: "友だち追加は無料です",
   notesOptional: "有料講座のお申し込みは任意です",
 } as const;

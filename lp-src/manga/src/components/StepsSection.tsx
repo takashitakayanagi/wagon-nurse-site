@@ -1,14 +1,14 @@
 import { steps } from "@/config/site";
 
 /**
- * LINE登録から学習開始までの流れ（3ステップ）。
+ * LINE登録から毎日1問が届くまで（3ステップ）。
  */
 export default function StepsSection() {
   return (
     <section className="bg-wagon-50 py-14" aria-labelledby="steps-heading">
       <div className="container-lp">
         <h2 id="steps-heading" className="section-heading text-center">
-          LINE登録から学習開始までの流れ
+          LINE登録から毎日1問が届くまで
         </h2>
 
         <ol className="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-3">

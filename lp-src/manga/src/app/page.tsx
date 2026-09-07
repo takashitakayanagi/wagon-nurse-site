@@ -33,7 +33,7 @@ export default function Home() {
         <VideoPreviewSection />
         {/* 9. LINE登録の訴求 */}
         <LineBenefitsSection />
-        {/* 10. 登録から学習開始までの流れ */}
+        {/* 10. 登録から毎日1問が届くまでの流れ */}
         <StepsSection />
         {/* 11. よくある質問 */}
         <FaqSection />
