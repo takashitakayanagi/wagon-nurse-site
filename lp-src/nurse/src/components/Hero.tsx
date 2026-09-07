@@ -40,7 +40,7 @@ export default function Hero() {
 
             {/* CTA（スクロール前に見える位置） */}
             <div className="mt-6 flex flex-col items-center gap-2 md:items-start">
-              <LineButton event="line_click_hero" label={hero.ctaLabel} />
+              <LineButton cta="hero" label={hero.ctaLabel} />
               <p className="flex items-center gap-1 text-xs font-medium text-line-dark">
                 <Check className="h-4 w-4" aria-hidden="true" />
                 {hero.ctaNoteFree}・{hero.ctaNotes[0]}

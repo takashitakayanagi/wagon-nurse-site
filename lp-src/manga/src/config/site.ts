@@ -89,6 +89,7 @@ export const site = {
   analytics: {
     ga4Id: process.env.NEXT_PUBLIC_GA4_ID ?? "",
     metaPixelId: process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "",
+    clarityId: process.env.NEXT_PUBLIC_CLARITY_ID ?? "", // 例: "ybfkyv1j57"
   },
 
   /** 表示制御フラグ */

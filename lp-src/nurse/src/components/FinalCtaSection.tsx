@@ -38,7 +38,7 @@ export default function FinalCtaSection() {
 
           <div className="mt-8 flex flex-col items-center gap-3">
             <LineButton
-              event="line_click_footer"
+              cta="footer"
               label={finalCta.ctaLabel}
               variant="onDark"
             />

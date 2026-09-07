@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
 import { site } from "@/config/site";
-import { trackLineClick, type LineClickEvent } from "@/lib/tracking";
+import { trackCta, type CtaLocation } from "@/lib/tracking";
 
 type Variant = "primary" | "onDark";
 
 type Props = {
-  event: LineClickEvent;
+  /** CTAの設置位置。GA4に cta_location として送られます。 */
+  cta: CtaLocation;
   label: string;
   variant?: Variant;
   className?: string;
@@ -21,7 +22,7 @@ type Props = {
  * - クリックは GA4 / Meta Pixel の両方へ計測。
  */
 export default function LineButton({
-  event,
+  cta,
   label,
   variant = "primary",
   className = "",
@@ -68,9 +69,9 @@ export default function LineButton({
       href={ready ? url : undefined}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => trackLineClick(event)}
+      onClick={() => trackCta(cta, url)}
       className={`${base} ${skin} ${className}`}
-      data-event={event}
+      data-cta={cta}
     >
       <MessageCircle className="h-5 w-5" aria-hidden="true" />
       <span>{label}</span>

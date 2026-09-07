@@ -2,12 +2,12 @@ import Script from "next/script";
 import { site } from "@/config/site";
 
 /**
- * GA4 / Meta Pixel のタグを注入します。
+ * GA4 / Meta Pixel / Microsoft Clarity のタグを注入します。
  * - ID が未設定の場合は何も出力しません（エラーになりません）。
  * - 実際のイベント送信は lib/tracking.ts の track() 経由で行います。
  */
 export default function Analytics() {
-  const { ga4Id, metaPixelId } = site.analytics;
+  const { ga4Id, metaPixelId, clarityId } = site.analytics;
 
   return (
     <>
@@ -43,6 +43,18 @@ export default function Analytics() {
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '${metaPixelId}');
             fbq('track', 'PageView');
+          `}
+        </Script>
+      ) : null}
+
+      {clarityId ? (
+        <Script id="ms-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "${clarityId}");
           `}
         </Script>
       ) : null}

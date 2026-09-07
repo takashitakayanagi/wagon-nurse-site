@@ -43,6 +43,7 @@ jobs:
           NEXT_PUBLIC_LINE_URL: https://page.line.me/wvr6857m
           NEXT_PUBLIC_GA4_ID: G-FXKCWMXKJB
           NEXT_PUBLIC_META_PIXEL_ID: "2817935241910493"
+          NEXT_PUBLIC_CLARITY_ID: ybfkyv1j57
         run: |
           npm ci
           npm run build
@@ -57,6 +58,7 @@ jobs:
           NEXT_PUBLIC_LINE_URL: https://page.line.me/wvr6857m
           NEXT_PUBLIC_GA4_ID: G-FXKCWMXKJB
           NEXT_PUBLIC_META_PIXEL_ID: "2817935241910493"
+          NEXT_PUBLIC_CLARITY_ID: ybfkyv1j57
         run: |
           npm ci
           npm run build

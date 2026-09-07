@@ -34,7 +34,7 @@ export default function ProblemSection() {
         </ul>
 
         <div className="mt-10 flex flex-col items-center gap-2">
-          <LineButton event="line_click_problem" label={cta.mainLabel} />
+          <LineButton cta="problem" label={cta.mainLabel} />
           <p className="text-xs text-inkSoft">{cta.notesFree}</p>
         </div>
       </div>

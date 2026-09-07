@@ -15,7 +15,7 @@ export default function ContactPage() {
       <p>講座や学習に関するご質問・ご相談は、公式LINEからお気軽にお問い合わせください。</p>
 
       <div className="flex justify-center py-2">
-        <LineButton event="line_click_footer" label={cta.finalLabel} />
+        <LineButton cta="footer" label={cta.finalLabel} />
       </div>
 
       <p className="text-sm text-inkSoft">

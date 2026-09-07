@@ -20,7 +20,7 @@ export default function ContactPage() {
       </p>
 
       <div className="flex justify-center py-2">
-        <LineButton event="line_click_footer" label="LINEで問い合わせる" />
+        <LineButton cta="footer" label="LINEで問い合わせる" />
       </div>
 
       <p className="text-sm text-inkSoft">

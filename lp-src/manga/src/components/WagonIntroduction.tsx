@@ -16,7 +16,7 @@ export default function WagonIntroduction() {
         <FeaturesSection />
 
         <div className="mt-10 flex flex-col items-center gap-2">
-          <LineButton event="line_click_solution" label={cta.mainLabel} />
+          <LineButton cta="solution" label={cta.mainLabel} />
           <p className="text-xs text-inkSoft">{cta.notesOptional}</p>
         </div>
       </div>

@@ -9,7 +9,7 @@ import { cta } from "@/config/site";
 export default function StickyLineCta() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-wagon-100 bg-cream/95 px-4 py-2.5 backdrop-blur md:hidden">
-      <LineButton event="line_click_sticky" label={cta.mainLabel} className="py-2.5" />
+      <LineButton cta="sticky" label={cta.mainLabel} className="py-2.5" />
     </div>
   );
 }

@@ -35,7 +35,7 @@ export default function FinalCtaSection() {
           </div>
 
           <div className="mt-8 flex flex-col items-center gap-3">
-            <LineButton event="line_click_footer" label={cta.finalLabel} variant="onDark" />
+            <LineButton cta="footer" label={cta.finalLabel} variant="onDark" />
             <p className="text-xs text-white/90">{finalCta.notes.join("・")}</p>
           </div>
         </div>

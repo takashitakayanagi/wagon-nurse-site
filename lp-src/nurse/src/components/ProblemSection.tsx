@@ -34,7 +34,7 @@ export default function ProblemSection() {
         </ul>
 
         <div className="mt-10 flex flex-col items-center gap-2">
-          <LineButton event="line_click_problem" label="まずはLINEで相談してみる" />
+          <LineButton cta="problem" label="まずはLINEで相談してみる" />
           <p className="text-xs text-inkSoft">登録無料・いつでも解除できます</p>
         </div>
       </div>

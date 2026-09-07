@@ -36,7 +36,7 @@ export default function FeaturesSection() {
         </div>
 
         <div className="mt-10 flex justify-center">
-          <LineButton event="line_click_feature" label="LINEで国試対策を始める" />
+          <LineButton cta="features" label="LINEで国試対策を始める" />
         </div>
       </div>
     </section>

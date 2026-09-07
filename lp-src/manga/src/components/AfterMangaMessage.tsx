@@ -24,7 +24,7 @@ export default function AfterMangaMessage() {
         </div>
 
         <div className="mt-8 flex flex-col items-center gap-2">
-          <LineButton event="line_click_after_manga" label={cta.mainLabel} />
+          <LineButton cta="after_manga" label={cta.mainLabel} />
           <p className="text-xs text-inkSoft">{cta.notesFree}</p>
         </div>
       </div>

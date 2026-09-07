@@ -32,7 +32,7 @@ export default function LineBenefitsSection() {
         </p>
 
         <div className="mt-8 flex flex-col items-center gap-2">
-          <LineButton event="line_click_benefits" label={cta.benefitLabel} />
+          <LineButton cta="benefits" label={cta.benefitLabel} />
           <p className="text-xs text-inkSoft">
             {cta.notesFree}・{cta.notesOptional}
           </p>

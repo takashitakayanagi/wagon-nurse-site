@@ -35,7 +35,7 @@ export default function LineBenefitsSection() {
         </p>
 
         <div className="mt-8 flex justify-center">
-          <LineButton event="line_click_benefit" label="LINEで受け取る" />
+          <LineButton cta="benefits" label="LINEで受け取る" />
         </div>
       </div>
     </section>
