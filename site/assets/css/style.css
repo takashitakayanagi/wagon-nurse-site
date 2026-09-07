@@ -231,8 +231,16 @@ details.faq .faq-a{ padding:0 20px 18px; color:var(--ink-soft); font-size:14px; 
 .news-compact-panel.theme-magazine .news-compact-item a:hover{ color:var(--magazine-accent); }
 .news-compact-panel.theme-magazine .news-compact-more{ color:var(--magazine-accent); }
 .news-compact-item.pickup{ background:var(--deadline-soft); border-radius:8px; padding:8px 10px; margin:-8px -10px 4px; }
-.news-compact-item.pickup .badge{ display:inline-block; background:var(--deadline); color:#fff; font-size:9.5px; font-weight:800; padding:1px 7px; border-radius:999px; margin-right:6px; vertical-align:2px; }
 .news-compact-item.pickup a{ color:var(--ink); font-weight:700; }
+.badge-star{
+  position:relative; display:inline-flex; align-items:center; justify-content:center;
+  width:32px; height:32px; margin-right:5px; vertical-align:-9px; flex-shrink:0;
+}
+.badge-star svg{ position:absolute; inset:0; width:100%; height:100%; }
+.badge-star span{
+  position:relative; z-index:1; color:#fff; font-size:8.5px; font-weight:800;
+  letter-spacing:-.03em; line-height:1; white-space:nowrap;
+}
 
 /* deadline note */
 .deadline-note{ display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; color:var(--deadline); background:var(--deadline-soft); padding:5px 12px; border-radius:999px; margin-top:10px; }
