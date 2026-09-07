@@ -58,7 +58,7 @@ const asset = (path: string) => `${basePath}${path}`;
  * 基本情報
  * ---------------------------------------------------------------------- */
 export const site = {
-  serviceName: "看護師国家試験対策スクール WAGON",
+  serviceName: "ナース・ライセンススクール WAGON",
   serviceNameShort: "WAGON",
 
   /** 運営者名（※正式名称に差し替えてください） */
