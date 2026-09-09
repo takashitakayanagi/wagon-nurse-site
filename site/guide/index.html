@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ページの移動中｜看護師国試対策WAGON</title>
+<link rel="canonical" href="https://wagon-nurse.com/guide.html">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FXKCWMXKJB"></script>
+<script>
+  // 学習ガイドの目次は /guide.html にあり、/guide/ 配下には記事しか置いていない。
+  // 記事URL（/guide/xxx.html）から親を推測して /guide/ を叩くと404になっていたので、
+  // ここで目次へ送る。GitHub Pagesはサーバー側リダイレクトを持たないため、
+  // form_*.html と同じくこのページ自体を転送用に置いている。
+  (function () {
+    var t = '/guide.html';
+    var moved = false;
+    // replace＝履歴を汚さないので、戻るボタンで元の場所に戻れる
+    function go() { if (moved) return; moved = true; location.replace(t); }
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    // send_page_view:false ＋ 明示のpage_viewで、計測は1回だけにする。
+    // 送信できてから転送したいので、コールバックを取れる形にしている。
+    gtag('config', 'G-FXKCWMXKJB', {
+      page_location: 'https://wagon-nurse.com/guide/',
+      send_page_view: false
+    });
+    gtag('event', 'page_view', {
+      event_callback: go,  // 送信できたら即座に転送する
+      event_timeout: 800   // 応答が返らなくても800msで転送する
+    });
+
+    // gtag.js がブロックされていると event_callback は呼ばれないため、
+    // ここで必ず転送する。計測は落としても転送は落とさない。
+    setTimeout(go, 900);
+  })();
+</script>
+<meta http-equiv="refresh" content="2; url=/guide.html">
+<style>
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+         font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
+         color:#1b2a3a; background:#fff; line-height:1.9; }
+  main { padding:24px; text-align:center; }
+  a { color:#0b6e8f; }
+</style>
+</head>
+<body>
+<main>
+  <p>学習ガイドの一覧へ移動します。</p>
+  <p>移動しない場合は <a href="/guide.html">看護師国試のお悩み・学習ガイド</a> を開いてください。</p>
+</main>
+</body>
+</html>
