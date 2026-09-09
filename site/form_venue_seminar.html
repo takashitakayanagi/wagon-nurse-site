@@ -22,7 +22,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'G-FXKCWMXKJB');
+    // 旧サイトの拡張子なしURL(/about など)には、GitHub Pagesが .html を補って
+    // 200を返す（301はしない）。そのままだとGA4で /about と /about.html が
+    // 別ページとして積み上がるため、計測上のURLだけをこのページの実体に寄せる。
+    // ?utm_* などのクエリとハッシュは、キャンペーン計測が壊れないよう残す。
+    gtag('config', 'G-FXKCWMXKJB', {
+      page_location: 'https://wagon-nurse.com/form_venue_seminar.html' + location.search + location.hash
+    });
     gtag('event', 'form_open', {
       form_name: 'venue_seminar',
       event_callback: go,  // 送信できたら即座に転送する
