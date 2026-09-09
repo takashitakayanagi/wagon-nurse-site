@@ -32,6 +32,7 @@ jobs:
           cache-dependency-path: |
             lp-src/manga/package-lock.json
             lp-src/nurse/package-lock.json
+            lp-src/moshi/package-lock.json
 
       # lp-src/ 配下のNext.js製LPを静的HTMLに書き出し、site/lp/ に配置します。
       # 生成物はリポジトリにコミットせず、毎回ここで作ります。
@@ -64,6 +65,22 @@ jobs:
           npm run build
           mkdir -p "$GITHUB_WORKSPACE/site/lp/nurse"
           cp -r out/. "$GITHUB_WORKSPACE/site/lp/nurse/"
+
+      - name: Build 模試LP -> /lp/moshi/
+        working-directory: lp-src/moshi
+        env:
+          NEXT_PUBLIC_BASE_PATH: /lp/moshi
+          NEXT_PUBLIC_SITE_URL: https://wagon-nurse.com
+          NEXT_PUBLIC_LINE_URL: https://page.line.me/wvr6857m
+          NEXT_PUBLIC_MOSHI_FORM_URL: https://forms.gle/QWdwTxHozDBj5ThL8
+          NEXT_PUBLIC_GA4_ID: G-FXKCWMXKJB
+          NEXT_PUBLIC_META_PIXEL_ID: "2817935241910493"
+          NEXT_PUBLIC_CLARITY_ID: ybfkyv1j57
+        run: |
+          npm ci
+          npm run build
+          mkdir -p "$GITHUB_WORKSPACE/site/lp/moshi"
+          cp -r out/. "$GITHUB_WORKSPACE/site/lp/moshi/"
 
       - name: Upload site folder
         uses: actions/upload-pages-artifact@v3
