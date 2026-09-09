@@ -6,37 +6,66 @@
 <title>ページの移動中｜看護師国試対策WAGON</title>
 <meta name="robots" content="noindex">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FXKCWMXKJB"></script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2817935241910493');
+fbq('track', 'PageView');
+// フォームを開く直前は、サイト内で最も意図が強い地点。転送先はGoogleフォームの
+// 別ドメインで追えないので、ここで custom event として残しておく。
+// Lead は撃たない。LPのLINEクリックがキャンペーンのコンバージョンイベントなので、
+// ここで混ぜると広告の最適化シグナルが濁る。
+fbq('trackCustom', 'FormOpen', { form_name: 'for_school' });
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2817935241910493&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <script>
   // 旧URLの転送。GitHub Pagesはサーバー側リダイレクトを持たないため、
   // このページ自体を転送用に置いている（詳細は site/_redirects の冒頭）。
   //
-  // 2026-09-05にこの転送用HTMLを置いてから、フォームへの遷移がGA4から
-  // 消えていた（それ以前は該当URLが404で、タグの入った404.htmlが拾っていた）。
-  // 転送先はGoogleフォームの別ドメインで追えないので、ここで1回だけ計測してから転送する。
+  // GA4とMetaの両方を送ってから転送する。どちらが落ちても転送は落とさない。
   (function () {
     var t = 'https://forms.gle/ckU7QtrpbpYACsZB9';
-    var moved = false;
+    var moved = false, gaDone = false, fbDone = false;
     // replace＝履歴を汚さないので、戻るボタンで元の場所に戻れる
     function go() { if (moved) return; moved = true; location.replace(t); }
+    function ready(who) { if (who === 'ga') { gaDone = true; } else { fbDone = true; }
+      if (gaDone && fbDone) { go(); } }
 
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    // 旧サイトの拡張子なしURL(/about など)には、GitHub Pagesが .html を補って
-    // 200を返す（301はしない）。そのままだとGA4で /about と /about.html が
-    // 別ページとして積み上がるため、計測上のURLだけをこのページの実体に寄せる。
-    // ?utm_* などのクエリとハッシュは、キャンペーン計測が壊れないよう残す。
     gtag('config', 'G-FXKCWMXKJB', {
       page_location: 'https://wagon-nurse.com/form_for_school.html' + location.search + location.hash
     });
     gtag('event', 'form_open', {
       form_name: 'for_school',
-      event_callback: go,  // 送信できたら即座に転送する
-      event_timeout: 800   // 応答が返らなくても800msで転送する
+      event_callback: function () { ready('ga'); },
+      event_timeout: 800   // 応答が返らなくても800msで先へ進む
     });
 
-    // gtag.js がブロックされていると event_callback は呼ばれないため、
-    // ここで必ず転送する。計測は落としても転送は落とさない。
+    // Metaには送信完了のコールバックが無い。fbq.loaded は上のインラインの
+    // スニペットが読み込み前から true にしてしまうので判定に使えない。
+    // fbevents.js が実行されて初めて生える fbq.getState を印にする。
+    var poll = setInterval(function () {
+      if (window.fbq && typeof window.fbq.getState === 'function') {
+        clearInterval(poll);
+        setTimeout(function () { ready('fb'); }, 120);  // ビーコンが出る余裕
+      }
+    }, 30);
+    setTimeout(function () { clearInterval(poll); }, 900);
+
+    // 上限。GA4もMetaもブロックされていても、ここで必ず転送する。
+    // 計測は落としても、申込導線は落とさない。
     setTimeout(go, 900);
   })();
 </script>
