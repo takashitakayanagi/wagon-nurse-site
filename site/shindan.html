@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="/assets/img/favicon.png" type="image/png">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#F3F8FA">
+<title>あなたに合う勉強のしかた診断｜ナース・ライセンススクール WAGON</title>
+<meta name="description" content="9つの質問に答えるだけ。国家試験に向けて、あなたに合う勉強のしかたがわかります。">
+
+<!-- ===== 計測タグ =====
+  公式LINEのリッチメニューから開く前提のページ（広告LPではない）。
+  リッチメニューのリンクは https://wagon-nurse.com/shindan.html?src=richmenu にする。
+  既存の友だち向けなので、Metaピクセルと generate_lead は入れていない
+  （広告LPのCV集計に混ざらないように、イベント名を diag_* に分けている）。
+-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FXKCWMXKJB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FXKCWMXKJB', {
+    page_location: 'https://wagon-nurse.com/shindan.html' + location.search + location.hash
+  });
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ybfkyv1j57");
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#F3F8FA; --card:#FFFFFF; --ink:#1B3A56; --ink-soft:#4F6478; --ink-dim:#8597A8;
+  --line:#E3ECF1; --grad-a:#1878C4; --grad-b:#17C7C2; --sky:#4EC6EC; --sky-soft:#EAF7FC;
+  --peach:#FFF1E6; --peach-ink:#C8702E; --marker:#FFF3A3;
+  --line-g:#06C755; --line-g2:#05B04B;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{margin:0;}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+  font-weight:500; line-height:1.8; -webkit-font-smoothing:antialiased;
+  line-break:strict; overflow-wrap:break-word;
+  min-height:100svh;
+}
+button{font:inherit; color:inherit;}
+.wrap{max-width:480px; margin:0 auto; padding:0 16px calc(32px + env(safe-area-inset-bottom));}
+.nb{display:inline-block;}  /* 文節を途中で折り返さない */
+
+/* ── ヘッダ ── */
+.top{padding:14px 0 6px; display:flex; justify-content:center;}
+.top img{height:22px; width:auto;}
+
+/* ── 共通カード ── */
+.card{
+  background:var(--card); border-radius:24px; padding:26px 20px;
+  box-shadow:0 1px 0 var(--line), 0 10px 30px rgba(27,58,86,.06);
+}
+[hidden]{display:none !important;}
+.screen{animation:fade .35s ease both;}
+@keyframes fade{from{opacity:0; transform:translateY(6px);}to{opacity:1; transform:none;}}
+
+/* ── はじめの画面 ── */
+.intro{text-align:center; padding-top:18px;}
+.blob{
+  width:132px; height:132px; margin:6px auto 14px; border-radius:50%;
+  background:linear-gradient(135deg,#DDF2FB,#DDF7F4); display:grid; place-items:center;
+}
+.intro .eyebrow{font-size:13px; color:var(--grad-a); font-weight:700; letter-spacing:.06em; margin:0;}
+.intro h1{font-size:26px; line-height:1.5; font-weight:900; margin:6px 0 12px;}
+.intro h1 .hl{background:linear-gradient(transparent 62%, var(--marker) 62%);}
+.intro .lead{font-size:15px; color:var(--ink-soft); margin:0 0 22px;}
+.chips{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:24px;}
+.chips span{font-size:12.5px; background:var(--sky-soft); color:var(--grad-a); border-radius:999px; padding:4px 12px; font-weight:700;}
+
+.btn{
+  display:flex; align-items:center; justify-content:center; gap:8px; width:100%;
+  border:0; border-radius:999px; padding:17px 20px; font-size:17px; font-weight:700;
+  cursor:pointer; text-decoration:none; transition:transform .12s ease, filter .12s ease;
+}
+.btn:active{transform:scale(.98);}
+.btn.main{background:linear-gradient(90deg,var(--grad-a),var(--grad-b)); color:#fff; box-shadow:0 8px 20px rgba(24,120,196,.25);}
+.btn.line{background:var(--line-g); color:#fff; box-shadow:0 8px 20px rgba(6,199,85,.25);}
+.btn.line:active{background:var(--line-g2);}
+.btn.ghost{background:transparent; color:var(--ink-soft); font-size:14px; padding:12px; font-weight:500;}
+.note{font-size:12.5px; color:var(--ink-dim); margin:12px 0 0; text-align:center;}
+
+/* ── 質問 ── */
+.qtop{display:flex; align-items:center; gap:12px; padding:8px 0 16px;}
+.back{
+  flex:none; width:36px; height:36px; border-radius:50%; border:0; background:#fff;
+  box-shadow:0 1px 0 var(--line); display:grid; place-items:center; cursor:pointer;
+}
+.back:disabled{visibility:hidden;}
+.bar{flex:1; height:8px; background:#E1EAEF; border-radius:999px; overflow:hidden;}
+.bar i{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--grad-a),var(--grad-b)); border-radius:999px; transition:width .35s ease;}
+.count{flex:none; font-size:13px; color:var(--ink-dim); font-variant-numeric:tabular-nums; min-width:36px; text-align:right;}
+
+.q .num{font-size:13px; font-weight:700; color:var(--grad-a); margin:0 0 4px;}
+.q h2{font-size:21px; line-height:1.55; font-weight:900; margin:0 0 6px;}
+.q .sub{font-size:13px; color:var(--ink-dim); margin:0 0 4px;}
+.opts{display:grid; gap:10px; margin-top:18px;}
+.opts.grid2{grid-template-columns:1fr 1fr;}
+.opt{
+  text-align:left; border:2px solid var(--line); background:#fff; border-radius:16px;
+  padding:14px 16px; font-size:15.5px; line-height:1.6; cursor:pointer;
+  transition:border-color .15s ease, background .15s ease;
+}
+.opts.grid2 .opt{text-align:center; padding:13px 8px;}
+.opt.wide{grid-column:1 / -1;}
+@media (hover:hover){ .opt:hover{border-color:#BFDDEB;} }
+.opt.on{border-color:var(--grad-a); background:var(--sky-soft);}
+
+/* ── 結果 ── */
+.res-head{text-align:center; padding:10px 0 4px;}
+.res-head .eyebrow{font-size:13px; color:var(--ink-dim); margin:0;}
+.res-head .icon{width:112px; height:112px; margin:12px auto 8px; border-radius:50%; display:grid; place-items:center;}
+.res-head h1{font-size:27px; line-height:1.45; font-weight:900; margin:0;}
+.res-head .catch{font-size:15px; color:var(--ink-soft); margin:6px 0 0;}
+
+.sec{margin-top:16px;}
+.sec h2{font-size:16px; font-weight:900; margin:0 0 10px; display:flex; align-items:center; gap:8px;}
+.sec h2::before{content:""; width:6px; height:18px; border-radius:3px; background:linear-gradient(var(--grad-a),var(--grad-b));}
+.sec p{margin:0; font-size:15px;}
+.points{list-style:none; margin:0; padding:0; display:grid; gap:10px;}
+.points li{display:flex; gap:10px; font-size:15px; line-height:1.7;}
+.points li b{
+  flex:none; width:24px; height:24px; border-radius:50%; background:var(--sky-soft); color:var(--grad-a);
+  font-size:13px; display:grid; place-items:center; margin-top:2px;
+}
+.plan{
+  border-radius:18px; padding:18px; background:linear-gradient(135deg,#EAF6FC,#E8F8F6);
+}
+.plan .lbl{font-size:12.5px; font-weight:700; color:var(--grad-a); margin:0;}
+.plan .name{font-size:21px; font-weight:900; margin:2px 0 6px;}
+.plan p{font-size:14.5px; color:var(--ink-soft);}
+.plan .aside{margin-top:10px; font-size:13.5px; background:#fff; border-radius:12px; padding:10px 12px; color:var(--ink-soft);}
+
+.send{margin-top:16px; text-align:center;}
+.send h2{font-size:20px; font-weight:900; line-height:1.5; margin:0 0 8px;}
+.send .body{font-size:14.5px; color:var(--ink-soft); margin:0 0 18px; text-align:left;}
+.send .btn small{font-size:12px; font-weight:500; opacity:.9;}
+.send .how{font-size:12.5px; color:var(--ink-dim); margin:10px 0 0;}
+details.msg{margin-top:16px; text-align:left; font-size:13px;}
+details.msg summary{cursor:pointer; color:var(--ink-soft); list-style:none; text-align:center;}
+details.msg summary::-webkit-details-marker{display:none;}
+details.msg summary::after{content:" ▾";}
+details.msg[open] summary::after{content:" ▴";}
+details.msg pre{
+  white-space:pre-wrap; font-family:inherit; background:var(--bg); border-radius:12px;
+  padding:12px 14px; margin:10px 0; font-size:13px; line-height:1.7; color:var(--ink-soft);
+}
+.copy{
+  width:100%; border:1.5px solid var(--line); background:#fff; border-radius:999px;
+  padding:11px; font-size:14px; cursor:pointer; color:var(--ink-soft);
+}
+.copy.done{border-color:var(--line-g); color:var(--line-g2);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><img src="/assets/img/wagon-logo.png" alt="ナース・ライセンススクール WAGON"></header>
+
+  <!-- ===== はじめ ===== -->
+  <section class="screen intro" id="s-intro">
+    <div class="card">
+      <div class="blob" aria-hidden="true">
+        <svg width="76" height="76" viewBox="0 0 76 76" fill="none">
+          <rect x="14" y="12" width="40" height="52" rx="8" fill="#fff" stroke="#1878C4" stroke-width="3"/>
+          <path d="M23 26h22M23 35h22M23 44h13" stroke="#4EC6EC" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="52" cy="50" r="12" fill="#17C7C2"/>
+          <path d="M46.5 50.5l4 4 7-8" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p class="eyebrow">国家試験に向けて</p>
+      <h1><span class="hl">あなたに合う</span><br>勉強のしかた診断</h1>
+      <p class="lead">がんばり方は、人によって違います。<br>9つの質問で、<span class="nb">あなたに合うやり方を</span><span class="nb">見つけましょう。</span></p>
+      <div class="chips"><span>約1分</span><span>登録なし</span><span>無料</span></div>
+      <button class="btn main" id="start" type="button">診断をはじめる</button>
+      <p class="note">結果は、LINEで担任に送ることができます</p>
+    </div>
+  </section>
+
+  <!-- ===== 質問 ===== -->
+  <section class="screen" id="s-quiz" hidden>
+    <div class="qtop">
+      <button class="back" id="back" type="button" aria-label="前の質問に戻る">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 3.5L5.5 9l5.5 5.5" stroke="#4F6478" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="bar"><i id="bar"></i></div>
+      <div class="count" id="count"></div>
+    </div>
+    <div class="card q" id="q"></div>
+  </section>
+
+  <!-- ===== 結果 ===== -->
+  <section class="screen" id="s-result" hidden></section>
+</div>
+
+<script>
+/* ============================================================
+   設定
+   ============================================================ */
+var CONFIG = {
+  // 公式LINEのベーシックID（page.line.me/wvr6857m で確認済み）
+  lineId: '@wvr6857m',
+  // 送る文面の先頭につける見出し。担任がトーク一覧で見分けるための目印
+  msgTitle: '【勉強のしかた診断】'
+};
+
+/* ============================================================
+   質問
+   x … サポートの範囲。＋なら全体を任せたい（サブスクWAGON）、
+       −なら必要なところだけ（対面講義）
+   y … 学び方。＋なら自分のペースで毎日、−なら講師の前で・まとめて
+   short … LINEに送る文面での表記
+   ============================================================ */
+var QUESTIONS = [
+  { id:'exam', q:'国家試験を受けるのは、いつですか？',
+    opts:[
+      { t:'次の国試（いちばん近い回）', short:'次の国試' },
+      { t:'その次の国試',               short:'その次の国試' },
+      { t:'もっと先',                   short:'もっと先' },
+      { t:'一度受けたことがある',       short:'再受験' }
+    ]},
+  { id:'start', q:'勉強を始めようとすると、どうなりがちですか？',
+    opts:[
+      { t:'何から手をつければいいか、迷ってしまう',   short:'何からやるか迷う', x:2 },
+      { t:'計画は立てるけれど、続かない',             short:'計画が続かない',   x:1 },
+      { t:'やることは決まっていて、時間が足りない',   short:'時間が足りない',   x:-1 },
+      { t:'自分で決めて、それなりに進められている',   short:'自分で進められている', x:-2 }
+    ]},
+  { id:'range', q:'不安な分野は、どのくらいありますか？',
+    opts:[
+      { t:'ほとんど全部が不安',                 short:'ほとんど全部', x:2 },
+      { t:'解剖生理など、土台からあやふや',     short:'土台からあやふや', x:1 },
+      { t:'まだ、よくわからない',               short:'まだわからない' },
+      { t:'苦手な分野が2〜3個、はっきりしている', short:'苦手が2〜3個に絞れている', x:-2 }
+    ]},
+  { id:'review', q:'模試や過去問を解いたあと、どうしていますか？',
+    opts:[
+      { t:'点数を見て、そのままにしがち',             short:'そのままにしがち', x:2 },
+      { t:'解説は読むけれど、また同じところを間違える', short:'また同じところを間違える', x:1 },
+      { t:'まだ模試や過去問を解いたことがない',       short:'まだ解いていない' },
+      { t:'間違えた分野を確かめて、そこを復習している', short:'間違えた分野を復習している', x:-2 }
+    ]},
+  { id:'ask', q:'わからないところがあったら、どうしたいですか？',
+    opts:[
+      { t:'説明を、納得するまで何度も見返したい', short:'何度も見返したい', y:2 },
+      { t:'自分で調べて、あとで確かめられれば十分', short:'自分で調べたい', y:1 },
+      { t:'友だちと話しながら考えたい',           short:'人と話しながら考えたい', y:-1 },
+      { t:'講師に直接聞いて、その場で解決したい', short:'講師に直接聞きたい', y:-2 }
+    ]},
+  { id:'focus', q:'勉強がはかどるのは、どんなときですか？',
+    opts:[
+      { t:'家で、自分のペースで進めるとき',       short:'家で自分のペース', y:2 },
+      { t:'通学中などの、すきま時間',             short:'すきま時間', y:1 },
+      { t:'予定や締め切りが決まっているとき',     short:'予定が決まっているとき', y:-1 },
+      { t:'人がいる場所で、ほどよく緊張感があるとき', short:'人がいる場所', y:-2 }
+    ]},
+  { id:'time', q:'勉強の時間は、どう取りやすいですか？',
+    opts:[
+      { t:'平日に、毎日少しずつ',               short:'毎日少しずつ', y:2 },
+      { t:'実習や仕事で、ほとんど取れていない', short:'ほとんど取れていない', y:1, x:1 },
+      { t:'日によってばらばら',                 short:'日によってばらばら', y:-1 },
+      { t:'休みの日に、まとめて',               short:'休みの日にまとめて', y:-2 }
+    ]},
+  { id:'venue', q:'通いやすい場所はありますか？', sub:'WAGONの対面講義を開いている会場です', grid:true,
+    opts:[
+      { t:'埼玉' }, { t:'東京' }, { t:'神奈川' },
+      { t:'名古屋' }, { t:'大阪' }, { t:'福岡' },
+      { t:'どこも遠い', short:'どこも遠い', far:true, wide:true }
+    ]},
+  { id:'member', q:'いま、WAGONで使っているものはありますか？',
+    opts:[
+      { t:'LINEの毎日問題などの、無料のもの',     short:'無料のもの' },
+      { t:'対面講義・LIVE教室に参加したことがある', short:'対面講義・LIVE教室の参加経験あり' },
+      { t:'オンラインサロン',                     short:'オンラインサロン' },
+      { t:'サブスクWAGON（受講中）',              short:'サブスクWAGON受講中', subsc:true }
+    ]}
+];
+
+/* 同点のときは、この質問の向きで決める（いちばん直接その軸を聞いている質問） */
+var TIEBREAK = { x:'range', y:'ask' };
+
+/* ============================================================
+   タイプ
+   値段は出さない。低学年に月額を先に見せない方針のため、
+   料金の話は担任がLINEで学年を見てから行う。
+   ============================================================ */
+var TYPES = {
+  // 全体を任せたい × 自分のペースで毎日
+  steady: {
+    name:'コツコツ|伴走タイプ',
+    catch:'道筋さえ見えれば、ちゃんと続けられる人',
+    color:['#DDF2FB','#1878C4'],
+    body:'何から手をつけるかが決まれば、毎日こつこつ進められるタイプです。いま足りないのは、やる気ではなく「今日はこれをやる」が決まっている状態です。',
+    points:[
+      '範囲を自分で選ぶより、順番の決まった講義を最初から進める',
+      '1日の量は少なくていいので、毎日同じ時間に続ける',
+      'わからないところは、その日のうちに聞いて解消する'
+    ],
+    plan:'subsc',
+    planText:'講義動画が順番どおりにそろっていて、わからないところはLINEで何度でも質問できます。担任と「今日やること」を決めながら進められます。'
+  },
+  // 全体を任せたい × 講師の前で
+  rebuild: {
+    name:'土台から|組み直しタイプ',
+    catch:'一度つながれば、一気に伸びる人',
+    color:['#E3F6F1','#0F9E8A'],
+    body:'不安な分野が広いのは、分野ごとにばらばらに覚えているからかもしれません。解剖生理の土台からつなぎ直すと、疾患の理解がまとめて進みます。人から説明を聞くと入りやすいあなたには、すぐ質問できる環境が大切です。',
+    points:[
+      '過去問を解く前に、解剖生理から順番に理解する',
+      '覚えるより先に「なぜそうなるか」を説明してもらう',
+      'わからないまま、次の分野に進まない'
+    ],
+    plan:'subsc',
+    planText:'解剖生理から疾患まで、順番に学べる講義動画がそろっています。生配信のLIVE教室では、講師にその場で質問もできます。'
+  },
+  // 必要なところだけ × 自分のペースで毎日
+  target: {
+    name:'ねらい撃ち|タイプ',
+    catch:'やるべき場所が、もう見えている人',
+    color:['#FFF1E6','#C8702E'],
+    body:'自分で進める力があって、苦手もはっきりしています。全部をやり直す必要はありません。弱いところにだけ、濃い時間を使うのがいちばんの近道です。',
+    points:[
+      'ふだんの勉強は、いまのやり方をそのまま続ける',
+      '苦手な分野を1つずつ選んで、集中して固める',
+      '固めた分野が取れているか、模試や過去問で確かめる'
+    ],
+    plan:'venue',
+    planText:'1回ごとに申し込めるので、苦手な分野に合わせて必要な回だけを受けられます。'
+  },
+  // 必要なところだけ × 講師の前で
+  live: {
+    name:'その場で聞いて|スッキリタイプ',
+    catch:'人から聞くと、すっと頭に入る人',
+    color:['#FDEFF4','#C94C74'],
+    body:'ひとりで読むより、講師の説明を聞いて、その場で質問したほうが頭に残るタイプです。まとまった時間に集中したほうが、力を出しやすいはずです。',
+    points:[
+      '苦手な分野は、講師に直接聞いて一度で理解する',
+      '休みの日などのまとまった時間を、勉強の山場にする',
+      '聞いた内容は、その週のうちに問題で使ってみる'
+    ],
+    plan:'venue',
+    planText:'少人数の講義なので、講師に直接質問しながら学べます。1回ごとに申し込めるので、必要な回だけを受けられます。'
+  }
+};
+
+var PLANS = {
+  subsc: { name:'サブスクWAGON', lbl:'まるごとサポートしてもらう' },
+  venue: { name:'対面講義',       lbl:'必要なところだけ選ぶ' }
+};
+
+var ICONS = {
+  steady:'<path d="M14 50c8 0 10-10 18-10s10 10 18 10 8-6 10-8" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="14" cy="50" r="5" fill="currentColor"/><circle cx="58" cy="40" r="5" fill="currentColor"/><path d="M52 20l6 6-6 6" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>',
+  rebuild:'<rect x="12" y="44" width="48" height="10" rx="4" fill="currentColor"/><rect x="18" y="31" width="36" height="10" rx="4" fill="currentColor" opacity=".7"/><rect x="24" y="18" width="24" height="10" rx="4" fill="currentColor" opacity=".45"/>',
+  target:'<circle cx="36" cy="36" r="22" stroke="currentColor" stroke-width="4" fill="none"/><circle cx="36" cy="36" r="12" stroke="currentColor" stroke-width="4" fill="none" opacity=".6"/><circle cx="36" cy="36" r="4" fill="currentColor"/>',
+  live:'<path d="M14 18h32a6 6 0 016 6v14a6 6 0 01-6 6H30l-10 8v-8h-6a6 6 0 01-6-6V24a6 6 0 016-6z" fill="currentColor" opacity=".85"/><circle cx="23" cy="31" r="2.6" fill="#fff"/><circle cx="31" cy="31" r="2.6" fill="#fff"/><circle cx="39" cy="31" r="2.6" fill="#fff"/><path d="M58 30v18" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="58" cy="55" r="3" fill="currentColor"/>'
+};
+
+/* ============================================================
+   計測
+   ============================================================ */
+var SRC = (location.search.match(/[?&]src=([^&]+)/) || [])[1] || 'direct';
+function track(name, params){
+  params = params || {};
+  params.diag_src = SRC;
+  try { gtag('event', name, params); } catch(e){}
+}
+
+/* ============================================================
+   画面
+   ============================================================ */
+var $ = function(id){ return document.getElementById(id); };
+var answers = [];   // 質問ごとの選択肢の番号
+var qi = 0;
+
+function show(id){
+  ['s-intro','s-quiz','s-result'].forEach(function(s){ $(s).hidden = (s !== id); });
+  window.scrollTo(0, 0);
+}
+
+function esc(s){
+  return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; });
+}
+
+$('start').addEventListener('click', function(){
+  answers = []; qi = 0;
+  track('diag_start');
+  show('s-quiz');
+  renderQ();
+});
+
+$('back').addEventListener('click', function(){
+  if (qi > 0){ qi--; renderQ(); }
+});
+
+function renderQ(){
+  var q = QUESTIONS[qi];
+  $('bar').style.width = (qi / QUESTIONS.length * 100) + '%';
+  $('count').textContent = (qi + 1) + '/' + QUESTIONS.length;
+  $('back').disabled = (qi === 0);
+
+  var el = $('q');
+  el.innerHTML =
+    '<p class="num">Q' + (qi + 1) + '</p>' +
+    '<h2>' + esc(q.q) + '</h2>' +
+    (q.sub ? '<p class="sub">' + esc(q.sub) + '</p>' : '') +
+    '<div class="opts' + (q.grid ? ' grid2' : '') + '">' +
+      q.opts.map(function(o, i){
+        return '<button type="button" class="opt' + (o.wide ? ' wide' : '') +
+               (answers[qi] === i ? ' on' : '') + '" data-i="' + i + '">' + esc(o.t) + '</button>';
+      }).join('') +
+    '</div>';
+  el.classList.remove('screen'); void el.offsetWidth; el.classList.add('screen');
+}
+
+var busy = false;
+$('q').addEventListener('click', function(e){
+  var b = e.target.closest('.opt');
+  if (!b || busy) return;
+  busy = true;
+  answers[qi] = +b.getAttribute('data-i');
+  Array.prototype.forEach.call(this.querySelectorAll('.opt'), function(x){ x.classList.remove('on'); });
+  b.classList.add('on');
+  setTimeout(function(){
+    busy = false;
+    if (qi < QUESTIONS.length - 1){ qi++; renderQ(); }
+    else { showResult(); }
+  }, 220);
+});
+
+/* ============================================================
+   判定
+   ============================================================ */
+function picked(id){
+  var i = QUESTIONS.findIndex(function(q){ return q.id === id; });
+  return QUESTIONS[i].opts[answers[i]];
+}
+
+function judge(){
+  var x = 0, y = 0;
+  QUESTIONS.forEach(function(q, i){
+    var o = q.opts[answers[i]];
+    x += o.x || 0; y += o.y || 0;
+  });
+  if (x === 0) x = picked(TIEBREAK.x).x || 1;
+  if (y === 0) y = picked(TIEBREAK.y).y || 1;
+  var key = x > 0 ? (y > 0 ? 'steady' : 'rebuild') : (y > 0 ? 'target' : 'live');
+  return { key:key, x:x, y:y };
+}
+
+function buildMessage(t){
+  var lines = [
+    CONFIG.msgTitle,
+    'タイプ：' + t.name.replace('|', ''),
+    '合う学び方：' + PLANS[t.plan].name,
+    ''
+  ];
+  QUESTIONS.forEach(function(q, i){
+    var o = q.opts[answers[i]];
+    var label = {
+      exam:'国試', start:'勉強を始めると', range:'不安な分野', review:'模試や過去問のあと',
+      ask:'わからないとき', focus:'はかどるとき', time:'勉強の時間', venue:'通いやすい会場', member:'WAGONの利用'
+    }[q.id];
+    lines.push(label + '：' + (o.short || o.t));
+  });
+  lines.push('', 'この結果に合う進め方を教えてください。');
+  return lines.join('\n');
+}
+
+function showResult(){
+  $('bar').style.width = '100%';
+  var r = judge();
+  var t = TYPES[r.key];
+  var plan = PLANS[t.plan];
+  var far = !!picked('venue').far;
+  var member = !!picked('member').subsc;
+  var msg = buildMessage(t);
+  var lineUrl = 'https://line.me/R/oaMessage/' + encodeURIComponent(CONFIG.lineId) + '/?' + encodeURIComponent(msg);
+
+  track('diag_complete', {
+    diag_type: r.key, diag_plan: t.plan,
+    exam_timing: picked('exam').short, venue_far: far ? 'yes' : 'no', member: picked('member').short
+  });
+
+  // 対面講義が合うのに会場が遠い人／すでにサブスク受講中の人には、ひとこと添える
+  var aside = '';
+  if (t.plan === 'venue' && far){
+    aside = '近くに会場がない場合の進め方も、担任からご案内します。';
+  } else if (member){
+    aside = 'いま受講中の講座のなかで、このタイプに合う進め方を担任からお伝えします。';
+  }
+
+  $('s-result').innerHTML =
+    '<div class="card">' +
+      '<div class="res-head">' +
+        '<p class="eyebrow">あなたは</p>' +
+        '<div class="icon" style="background:' + t.color[0] + '; color:' + t.color[1] + '">' +
+          '<svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true">' + ICONS[r.key] + '</svg></div>' +
+        '<h1>' + t.name.split('|').map(function(s){ return '<span class="nb">' + esc(s) + '</span>'; }).join('') + '</h1>' +
+        '<p class="catch">' + esc(t.catch) + '</p>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="card sec">' +
+      '<h2>あなたの勉強のしかた</h2>' +
+      '<p>' + esc(t.body) + '</p>' +
+    '</div>' +
+
+    '<div class="card sec">' +
+      '<h2>合う進め方</h2>' +
+      '<ul class="points">' +
+        t.points.map(function(p, i){ return '<li><b>' + (i + 1) + '</b><span>' + esc(p) + '</span></li>'; }).join('') +
+      '</ul>' +
+    '</div>' +
+
+    '<div class="card sec">' +
+      '<h2>WAGONなら、この形</h2>' +
+      '<div class="plan">' +
+        '<p class="lbl">' + esc(plan.lbl) + '</p>' +
+        '<p class="name">' + esc(plan.name) + '</p>' +
+        '<p>' + esc(t.planText) + '</p>' +
+        (aside ? '<p class="aside">' + esc(aside) + '</p>' : '') +
+      '</div>' +
+    '</div>' +
+
+    '<div class="card send">' +
+      '<h2>この結果を、<br>担任に送ってみませんか</h2>' +
+      '<p class="body">担任があなたの結果を読んで、<b>いまの状況に合わせた具体的な進め方</b>をLINEでお返事します。</p>' +
+      '<a class="btn line" id="send" href="' + lineUrl + '">LINEで担任に送る</a>' +
+      '<p class="how">LINEが開いたら、そのまま送信してください</p>' +
+      '<details class="msg">' +
+        '<summary>送られる内容を見る・うまく開かないとき</summary>' +
+        '<pre id="msg">' + esc(msg) + '</pre>' +
+        '<button type="button" class="copy" id="copy">内容をコピーする</button>' +
+        '<p class="note">コピーしたら、WAGONのLINEのトークに貼りつけて送ってください。</p>' +
+      '</details>' +
+    '</div>' +
+
+    '<button type="button" class="btn ghost" id="retry">もう一度診断する</button>';
+
+  show('s-result');
+
+  $('send').addEventListener('click', function(){
+    track('diag_send', { method:'line', diag_type:r.key, diag_plan:t.plan });
+  });
+  $('copy').addEventListener('click', function(){
+    var btn = this;
+    var done = function(){
+      btn.textContent = 'コピーしました';
+      btn.classList.add('done');
+      track('diag_send', { method:'copy', diag_type:r.key, diag_plan:t.plan });
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(msg).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = msg; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); } catch(e){}
+      document.body.removeChild(ta);
+    }
+  });
+  $('retry').addEventListener('click', function(){ show('s-intro'); });
+}
+</script>
+</body>
+</html>
