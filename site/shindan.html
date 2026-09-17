@@ -244,6 +244,14 @@ var CONFIG = {
   msgTitle: '【勉強のしかた診断】'
 };
 
+/* 公式LINEのトーク画面を、文面を入れた状態で開くリンク。
+   IDの「@」はエンコードしない（%40にすると公式アカウントに遷移しない）。
+   公式アカウントのページ page.line.me/wvr6857m 自身が使っている形
+   https://line.me/R/oaMessage/@wvr6857m/?本文 に合わせている */
+function lineHref(text){
+  return 'https://line.me/R/oaMessage/' + CONFIG.lineId + '/?' + encodeURIComponent(text);
+}
+
 /* ============================================================
    質問
    x … 誰が選ぶか。＋なら何を見て次に何をするかを決めてほしい（サブスクWAGON）、
@@ -595,7 +603,7 @@ function showResult(){
   var mbtiTip = mbti ? MBTI_TIPS[mbti.charAt(0) + mbti.charAt(3)] : '';
   profile = {};
   var msg = buildMessage(t);
-  var lineUrl = 'https://line.me/R/oaMessage/' + encodeURIComponent(CONFIG.lineId) + '/?' + encodeURIComponent(msg);
+  var lineUrl = lineHref(msg);
 
   track('diag_complete', {
     diag_type: r.key, diag_plan: t.plan, mbti: mbti || 'unknown',
@@ -687,7 +695,7 @@ function showResult(){
   // 選ぶたびに、送る文面とLINEのリンクを作り直す
   function refresh(){
     msg = buildMessage(t);
-    $('send').href = 'https://line.me/R/oaMessage/' + encodeURIComponent(CONFIG.lineId) + '/?' + encodeURIComponent(msg);
+    $('send').href = lineHref(msg);
     $('msg').textContent = msg;
     Array.prototype.forEach.call(document.querySelectorAll('.pf-row'), function(row){
       var f = PROFILE.filter(function(p){ return p.id === row.getAttribute('data-f'); })[0];
