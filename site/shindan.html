@@ -6,14 +6,15 @@
 <link rel="icon" href="/assets/img/favicon.png" type="image/png">
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#F3F8FA">
-<title>MBTI×あなたに合う勉強のしかた診断｜ナース・ライセンススクール WAGON</title>
-<meta name="description" content="MBTIと9つの質問に答えるだけ。国家試験に向けて、あなたに合う勉強のしかたがわかります。">
+<title>MBTI×今日の敵診断｜ナース・ライセンススクール WAGON</title>
+<meta name="description" content="今日のあなたの勉強をジャマする敵は？6つの質問で見つけて、今日の作戦と1問で倒しましょう。">
 
 <!-- ===== 計測タグ =====
   公式LINEのリッチメニューから開く前提のページ（広告LPではない）。
   リッチメニューのリンクは https://wagon-nurse.com/shindan.html?src=richmenu にする。
   既存の友だち向けなので、Metaピクセルと generate_lead は入れていない
   （広告LPのCV集計に混ざらないように、イベント名を diag_* に分けている）。
+  2026-09-17 に「勉強のしかた診断」から「今日の敵診断」に置きかえた。
 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FXKCWMXKJB"></script>
 <script>
@@ -41,6 +42,7 @@
   --bg:#F3F8FA; --card:#FFFFFF; --ink:#1B3A56; --ink-soft:#4F6478; --ink-dim:#8597A8;
   --line:#E3ECF1; --grad-a:#1878C4; --grad-b:#17C7C2; --sky:#4EC6EC; --sky-soft:#EAF7FC;
   --peach:#FFF1E6; --peach-ink:#C8702E; --marker:#FFF3A3;
+  --ok:#0FA37F; --ok-soft:#E4F7F1; --ng:#D9534F; --ng-soft:#FDECEC;
   --line-g:#06C755; --line-g2:#05B04B;
 }
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
@@ -55,37 +57,35 @@ body{
 button{font:inherit; color:inherit;}
 .wrap{max-width:480px; margin:0 auto; padding:0 16px calc(32px + env(safe-area-inset-bottom));}
 .nb{display:inline-block;}  /* 文節を途中で折り返さない */
+[hidden]{display:none !important;}
 
-/* ── ヘッダ ── */
 .top{padding:14px 0 6px; display:flex; justify-content:center;}
 .top img{height:22px; width:auto;}
 
-/* ── 共通カード ── */
 .card{
-  background:var(--card); border-radius:24px; padding:26px 20px;
+  background:var(--card); border-radius:24px; padding:24px 20px;
   box-shadow:0 1px 0 var(--line), 0 10px 30px rgba(27,58,86,.06);
 }
-[hidden]{display:none !important;}
+.card + .card, .card + .btn{margin-top:16px;}
 .screen{animation:fade .35s ease both;}
-@keyframes fade{from{opacity:0; transform:translateY(6px);}to{opacity:1; transform:none;}}
+@keyframes fade{from{opacity:.3; transform:translateY(6px);}to{opacity:1; transform:none;}}
+@media (prefers-reduced-motion:reduce){ .screen, .pop{animation:none !important;} .bar i{transition:none;} }
 
 /* ── はじめの画面 ── */
-.intro{text-align:center; padding-top:18px;}
-.blob{
-  width:132px; height:132px; margin:6px auto 14px; border-radius:50%;
-  background:linear-gradient(135deg,#DDF2FB,#DDF7F4); display:grid; place-items:center;
-}
+.intro{text-align:center; padding-top:14px;}
 .intro .eyebrow{font-size:13px; color:var(--grad-a); font-weight:700; letter-spacing:.06em; margin:0;}
-.intro h1{font-size:26px; line-height:1.5; font-weight:900; margin:6px 0 12px;}
+.intro h1{font-size:25px; line-height:1.5; font-weight:900; margin:6px 0 10px;}
 .intro h1 .hl{background:linear-gradient(transparent 62%, var(--marker) 62%);}
-.intro .lead{font-size:15px; color:var(--ink-soft); margin:0 0 22px;}
-.chips{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:24px;}
+.intro .lead{font-size:14.5px; color:var(--ink-soft); margin:0 0 18px;}
+.lineup{display:grid; grid-template-columns:repeat(6,1fr); gap:4px; margin:4px 0 16px;}
+.lineup svg{width:100%; height:auto; display:block;}
+.chips{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:22px;}
 .chips span{font-size:12.5px; background:var(--sky-soft); color:var(--grad-a); border-radius:999px; padding:4px 12px; font-weight:700;}
 
 .btn{
   display:flex; align-items:center; justify-content:center; gap:8px; width:100%;
   border:0; border-radius:999px; padding:17px 20px; font-size:17px; font-weight:700;
-  cursor:pointer; text-decoration:none; transition:transform .12s ease, filter .12s ease;
+  cursor:pointer; text-decoration:none; transition:transform .12s ease;
 }
 .btn:active{transform:scale(.98);}
 .btn.main{background:linear-gradient(90deg,var(--grad-a),var(--grad-b)); color:#fff; box-shadow:0 8px 20px rgba(24,120,196,.25);}
@@ -93,6 +93,7 @@ button{font:inherit; color:inherit;}
 .btn.line:active{background:var(--line-g2);}
 .btn.ghost{background:transparent; color:var(--ink-soft); font-size:14px; padding:12px; font-weight:500;}
 .note{font-size:12.5px; color:var(--ink-dim); margin:12px 0 0; text-align:center;}
+.btn:focus-visible, .opt:focus-visible, .chip:focus-visible, .choice:focus-visible{outline:3px solid var(--sky); outline-offset:2px;}
 
 /* ── 質問 ── */
 .qtop{display:flex; align-items:center; gap:12px; padding:8px 0 16px;}
@@ -109,61 +110,71 @@ button{font:inherit; color:inherit;}
 .q h2{font-size:21px; line-height:1.55; font-weight:900; margin:0 0 6px;}
 .q .sub{font-size:13px; color:var(--ink-dim); margin:0 0 4px;}
 .opts{display:grid; gap:10px; margin-top:18px;}
-.opts.grid2{grid-template-columns:1fr 1fr;}
 .opt{
   text-align:left; border:2px solid var(--line); background:#fff; border-radius:16px;
   padding:14px 16px; font-size:15.5px; line-height:1.6; cursor:pointer;
   transition:border-color .15s ease, background .15s ease;
 }
 .opts.grid4{grid-template-columns:repeat(4,1fr); gap:8px;}
-.opts.grid2 .opt, .opts.grid4 .opt{text-align:center; padding:13px 8px;}
-.opts.grid4 .opt{padding:12px 2px; font-size:15px; letter-spacing:.02em; font-variant-numeric:tabular-nums;}
+.opts.grid4 .opt{text-align:center; padding:12px 2px; font-size:15px; letter-spacing:.02em;}
+.opts.grid2{grid-template-columns:1fr 1fr; gap:8px;}
+.opts.grid2 .opt{text-align:center; padding:13px 4px;}
 .opt.wide{grid-column:1 / -1;}
 @media (hover:hover){ .opt:hover{border-color:#BFDDEB;} }
 .opt.on{border-color:var(--grad-a); background:var(--sky-soft);}
 
-/* ── 結果 ── */
-.res-head{text-align:center; padding:10px 0 4px;}
-.res-head .eyebrow{font-size:13px; color:var(--ink-dim); margin:0;}
-.res-head .icon{width:112px; height:112px; margin:12px auto 8px; border-radius:50%; display:grid; place-items:center;}
-.res-head h1{font-size:27px; line-height:1.45; font-weight:900; margin:0;}
-.res-head .catch{font-size:15px; color:var(--ink-soft); margin:6px 0 0;}
+/* ── 結果：今日の敵 ── */
+.enemy{text-align:center; padding-top:20px;}
+.enemy .eyebrow{font-size:13px; color:var(--ink-dim); margin:0;}
+.enemy .art{width:170px; height:170px; margin:10px auto 6px; border-radius:50%; display:grid; place-items:center;}
+.enemy .art svg{width:140px; height:140px;}
+.pop{animation:pop .5s cubic-bezier(.2,1.4,.4,1) both;}
+@keyframes pop{from{transform:scale(.6); opacity:.2;}to{transform:none; opacity:1;}}
+.enemy h1{font-size:27px; line-height:1.4; font-weight:900; margin:0;}
+/* 敵のセリフ（吹き出し） */
+.say{
+  position:relative; margin:14px auto 0; max-width:320px; background:#fff; border:2px solid var(--ink);
+  border-radius:18px; padding:10px 16px; font-size:16px; font-weight:700; line-height:1.6;
+}
+.say::before{content:""; position:absolute; left:50%; top:-9px; width:14px; height:14px; margin-left:-7px; background:#fff; border-left:2px solid var(--ink); border-top:2px solid var(--ink); transform:rotate(45deg);}
+.enemy .say{box-shadow:0 3px 0 var(--ink);}
+.enemy .art{position:relative;}
+.enemy .scene{
+  margin:14px 0 0; background:var(--bg); border-radius:14px; padding:12px 14px;
+  font-size:14.5px; color:var(--ink-soft); text-align:left;
+}
+.enemy .scene b{display:block; font-size:12px; color:var(--ink-dim); margin-bottom:2px;}
+.mbti{margin-top:12px; background:var(--peach); border-radius:14px; padding:12px 14px; text-align:left;}
+.mbti .lbl{font-size:13px; font-weight:900; color:var(--peach-ink); margin:0 0 2px; letter-spacing:.03em;}
+.mbti p{margin:0; font-size:14.5px;}
+.mbti p.fine{margin-top:6px; font-size:12px; line-height:1.7; color:var(--ink-dim);}
 
-.sec{margin-top:16px;}
 .sec h2{font-size:16px; font-weight:900; margin:0 0 10px; display:flex; align-items:center; gap:8px;}
 .sec h2::before{content:""; width:6px; height:18px; border-radius:3px; background:linear-gradient(var(--grad-a),var(--grad-b));}
 .sec p{margin:0; font-size:15px;}
-.mbti{margin-top:14px; background:var(--peach); border-radius:14px; padding:12px 14px;}
-.mbti .lbl{font-size:13px; font-weight:900; color:var(--peach-ink); margin:0 0 2px; letter-spacing:.03em;}
-.mbti p{font-size:14.5px;}
-.mbti p.fine{margin-top:8px; font-size:12px; line-height:1.7; color:var(--ink-dim);}
-.points{list-style:none; margin:0; padding:0; display:grid; gap:10px;}
-.points li{display:flex; gap:10px; font-size:15px; line-height:1.7;}
-.points li b{
-  flex:none; width:24px; height:24px; border-radius:50%; background:var(--sky-soft); color:var(--grad-a);
-  font-size:13px; display:grid; place-items:center; margin-top:2px;
-}
-.plan{
-  border-radius:18px; padding:18px; background:linear-gradient(135deg,#EAF6FC,#E8F8F6);
-}
-.plan .lbl{font-size:12.5px; font-weight:700; color:var(--grad-a); margin:0;}
-.plan .name{font-size:21px; font-weight:900; margin:2px 0 6px;}
-.plan p{font-size:14.5px; color:var(--ink-soft);}
-.cycle{list-style:none; margin:14px 0 0; padding:0; display:grid; gap:0; background:#fff; border-radius:14px; padding:6px 14px;}
-.cycle li{display:flex; gap:10px; align-items:flex-start; padding:9px 0; font-size:14px; line-height:1.6; position:relative;}
-.cycle li + li{border-top:1px dashed var(--line);}
-.cycle li b{
-  flex:none; width:22px; height:22px; border-radius:50%; margin-top:1px;
-  background:linear-gradient(135deg,var(--grad-a),var(--grad-b)); color:#fff; font-size:12px; display:grid; place-items:center;
-}
-.plan p.loop{margin-top:8px; font-size:13px; font-weight:700; color:var(--grad-a); text-align:center;}
-.plan .aside{margin-top:10px; font-size:13.5px; background:#fff; border-radius:12px; padding:10px 12px; color:var(--ink-soft);}
+.plan-main{font-size:19px !important; font-weight:900; line-height:1.6; margin:0 0 8px !important;}
+.plan-main .hl{background:linear-gradient(transparent 62%, var(--marker) 62%);}
+.weak{margin-top:12px !important; font-size:14px !important; color:var(--ink-soft); border-top:1px dashed var(--line); padding-top:12px;}
+.weak b{color:var(--ink);}
 
-.send{margin-top:16px; text-align:center;}
+
+/* ── LINEで送る ── */
+.send{text-align:center;}
 .send h2{font-size:20px; font-weight:900; line-height:1.5; margin:0 0 8px;}
-.send .body{font-size:14.5px; color:var(--ink-soft); margin:0 0 18px; text-align:left;}
-.send .btn small{font-size:12px; font-weight:500; opacity:.9;}
+.send .body{font-size:14.5px; color:var(--ink-soft); margin:0 0 14px; text-align:left;}
+.subsc{font-size:13.5px; color:var(--ink-soft); text-align:left; background:var(--sky-soft); border-radius:14px; padding:12px 14px; margin:0 0 16px;}
+.subsc b{color:var(--grad-a);}
 .send .how{font-size:12.5px; color:var(--ink-dim); margin:10px 0 0;}
+.pf{text-align:left; background:var(--bg); border-radius:18px; padding:16px 14px; margin:0 0 18px; display:grid; gap:16px;}
+.pf-head{margin:0; font-size:13.5px; font-weight:700; color:var(--ink); text-align:center;}
+.pf-lbl{margin:0 0 8px; font-size:13.5px; font-weight:700; color:var(--ink);}
+.pf-chips{display:flex; flex-wrap:wrap; gap:8px;}
+.chip{
+  border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); border-radius:999px;
+  padding:7px 13px; font-size:13.5px; line-height:1.5; cursor:pointer; text-align:left;
+}
+.chip[aria-pressed="true"]{border-color:var(--grad-a); background:var(--sky-soft); color:var(--grad-a); font-weight:700;}
+.pf-note{margin:-6px 0 0; font-size:12px; color:var(--ink-dim); text-align:center;}
 details.msg{margin-top:16px; text-align:left; font-size:13px;}
 details.msg summary{cursor:pointer; color:var(--ink-soft); list-style:none; text-align:center;}
 details.msg summary::-webkit-details-marker{display:none;}
@@ -173,19 +184,6 @@ details.msg pre{
   white-space:pre-wrap; font-family:inherit; background:var(--bg); border-radius:12px;
   padding:12px 14px; margin:10px 0; font-size:13px; line-height:1.7; color:var(--ink-soft);
 }
-.pf{text-align:left; background:var(--bg); border-radius:18px; padding:16px 14px; margin:0 0 18px; display:grid; gap:16px;}
-.pf-head{margin:0; font-size:13.5px; font-weight:700; color:var(--ink); text-align:center;}
-.pf-lbl{margin:0 0 8px; font-size:13.5px; font-weight:700; color:var(--ink);}
-.pf-lbl small{font-size:12px; font-weight:500; color:var(--ink-dim); margin-left:8px;}
-.pf-chips{display:flex; flex-wrap:wrap; gap:8px;}
-.chip{
-  border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); border-radius:999px;
-  padding:7px 13px; font-size:13.5px; line-height:1.5; cursor:pointer; text-align:left;
-  transition:border-color .15s ease, background .15s ease, color .15s ease;
-}
-.chip[aria-pressed="true"]{border-color:var(--grad-a); background:var(--sky-soft); color:var(--grad-a); font-weight:700;}
-.chip:focus-visible, .opt:focus-visible, .btn:focus-visible{outline:3px solid var(--sky); outline-offset:2px;}
-.pf-note{margin:-6px 0 0; font-size:12px; color:var(--ink-dim); text-align:center;}
 .copy{
   width:100%; border:1.5px solid var(--line); background:#fff; border-radius:999px;
   padding:11px; font-size:14px; cursor:pointer; color:var(--ink-soft);
@@ -200,20 +198,12 @@ details.msg pre{
   <!-- ===== はじめ ===== -->
   <section class="screen intro" id="s-intro">
     <div class="card">
-      <div class="blob" aria-hidden="true">
-        <svg width="76" height="76" viewBox="0 0 76 76" fill="none">
-          <rect x="14" y="12" width="40" height="52" rx="8" fill="#fff" stroke="#1878C4" stroke-width="3"/>
-          <path d="M23 26h22M23 35h22M23 44h13" stroke="#4EC6EC" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="52" cy="50" r="12" fill="#17C7C2"/>
-          <path d="M46.5 50.5l4 4 7-8" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <p class="eyebrow">MBTI × 国家試験</p>
-      <h1><span class="hl">あなたに合う</span><br>勉強のしかた診断</h1>
-      <p class="lead">がんばり方は、人によって違います。<br>MBTIと9つの質問で、<span class="nb">あなたに合うやり方を</span><span class="nb">見つけましょう。</span></p>
-      <div class="chips"><span>約1分</span><span>登録なし</span><span>無料</span></div>
-      <button class="btn main" id="start" type="button">診断をはじめる</button>
-      <p class="note">結果は、LINEで担任に送ることができます</p>
+      <p class="eyebrow">MBTI × 今日の勉強</p>
+      <h1>今日のあなたの勉強を<br><span class="hl">ジャマする敵</span>は？</h1>
+      <div class="lineup" id="lineup" aria-hidden="true"></div>
+      <p class="lead">6つの質問で今日の敵を見つけて、<br><span class="nb">5分の作戦で</span><span class="nb">倒しましょう。</span></p>
+      <div class="chips"><span>約1分</span><span>登録なし</span><span>毎日かわる</span></div>
+      <button class="btn main" id="start" type="button">敵をさがす</button>
     </div>
   </section>
 
@@ -241,186 +231,235 @@ var CONFIG = {
   // 公式LINEのベーシックID（page.line.me/wvr6857m で確認済み）
   lineId: '@wvr6857m',
   // 送る文面の先頭につける見出し。担任がトーク一覧で見分けるための目印
-  msgTitle: '【勉強のしかた診断】'
+  msgTitle: '【今日の敵診断】'
 };
 
 /* 公式LINEのトーク画面を、文面を入れた状態で開くリンク。
-   IDの「@」はエンコードしない（%40にすると公式アカウントに遷移しない）。
-   公式アカウントのページ page.line.me/wvr6857m 自身が使っている形
-   https://line.me/R/oaMessage/@wvr6857m/?本文 に合わせている */
+   IDの「@」はエンコードしない（公式アカウントのページ自身が使っている形に合わせている）。
+   スマホのLINEでだけ動く。パソコンのブラウザではLINEのトップページに飛ぶ（仕様） */
 function lineHref(text){
   return 'https://line.me/R/oaMessage/' + CONFIG.lineId + '/?' + encodeURIComponent(text);
 }
 
 /* ============================================================
-   質問
-   x … 誰が選ぶか。＋なら何を見て次に何をするかを決めてほしい（サブスクWAGON）、
-       −なら自分で選べる（対面講義）
-   y … 学び方。＋なら自分のペースで毎日、−なら講師の前で・まとめて
-   short … LINEに送る文面での表記
+   敵
+   kind … どんな敵か（「こんなときに現れる」に出す）／line … 敵のセリフ
+   plan … 今日の作戦／weak … 倒し方のコツ（WAGONの価値につながる一言）
+   名前・種類・セリフは2026-09-17にユーザーが決めたもの
    ============================================================ */
-var QUESTIONS = [
-  // MBTIは判定（x/y）には使わない。結果画面の一言と、担任との会話のきっかけにだけ使う
-  { id:'mbti', q:'あなたのMBTIは？', sub:'わからなければ「わからない」でだいじょうぶです', grid:4,
-    opts:['INTJ','INTP','ENTJ','ENTP','INFJ','INFP','ENFJ','ENFP',
-          'ISTJ','ISFJ','ESTJ','ESFJ','ISTP','ISFP','ESTP','ESFP']
-      .map(function(m){ return { t:m, mbti:m }; })
-      .concat([{ t:'わからない', short:'わからない', wide:true }])
+var ENEMIES = {
+  scroll: {
+    name:'スクロール|魔人', color:['#EFE9FB','#7B5CC4'],
+    kind:'スマホをつい見続けてしまう',
+    line:'次にもっと面白いのがあるかもよ？',
+    plan:'スマホを手の届かない所に置いて、1問だけ解く',
+    weak:'やることが「この1問」と決まっていると、スマホに手がのびる前に終わります。'
   },
-  { id:'start', q:'いまの勉強の進め方に、いちばん近いのは？',
-    opts:[
-      { t:'何から手をつければいいか、決められない',     short:'何からやるか決められない', x:2 },
-      { t:'計画は立てるけれど、続かない',               short:'計画が続かない',   x:1 },
-      { t:'やることは決まっているけれど、時間が足りない', short:'時間が足りない',   x:-1 },
-      { t:'自分でやることを決めて、進められている',     short:'自分で決めて進められている', x:-2 }
-    ]},
-  { id:'range', q:'不安な分野は、どのくらいありますか？',
-    opts:[
-      { t:'ほとんど全部が不安',                 short:'ほとんど全部', x:2 },
-      { t:'解剖生理など、土台からあやふや',     short:'土台からあやふや', x:1 },
-      { t:'まだ、よくわからない',               short:'まだわからない' },
-      { t:'苦手な分野が2〜3個、はっきりしている', short:'苦手が2〜3個に絞れている', x:-2 }
-    ]},
-  { id:'review', q:'問題を1つ解いたあと、ほかの知識とつなげて考えていますか？', sub:'たとえば心不全の問題なら、心臓のしくみや、似た症状の病気まで考えるか',
-    opts:[
-      { t:'答えを覚えて、そこで終わることが多い',                         short:'答えを覚えて終わる', x:2 },
-      { t:'つなげたほうがいいと思うけれど、どうつなげればいいかわからない', short:'つなげ方がわからない', x:1 },
-      { t:'ときどき、関係するところまでさかのぼって確かめている',         short:'ときどきつなげている', x:-1 },
-      { t:'いつも、しくみや関係する病気まで広げて考えている',             short:'いつもつなげている', x:-2 }
-    ]},
-  { id:'ask', q:'わからないところがあったら、どうしたいですか？',
-    opts:[
-      { t:'説明を、納得するまで何度も見返したい', short:'何度も見返したい', y:2 },
-      { t:'自分で調べて、あとで確かめられれば十分', short:'自分で調べたい', y:1 },
-      { t:'友だちと話しながら考えたい',           short:'人と話しながら考えたい', y:-1 },
-      { t:'講師に直接聞いて、その場で解決したい', short:'講師に直接聞きたい', y:-2 }
-    ]},
-  { id:'focus', q:'勉強がはかどるのは、どんなときですか？',
-    opts:[
-      { t:'家で、自分のペースで進めるとき',       short:'家で自分のペース', y:2 },
-      { t:'通学中などの、すきま時間',             short:'すきま時間', y:1 },
-      { t:'予定や締め切りが決まっているとき',     short:'予定が決まっているとき', y:-1 },
-      { t:'人がいる場所で、ほどよく緊張感があるとき', short:'人がいる場所', y:-2 }
-    ]},
-  { id:'time', q:'勉強の時間は、どう取りやすいですか？',
-    opts:[
-      { t:'平日に、毎日少しずつ',               short:'毎日少しずつ', y:2 },
-      { t:'実習や仕事で、ほとんど取れていない', short:'ほとんど取れていない', y:1, x:1 },
-      { t:'日によってばらばら',                 short:'日によってばらばら', y:-1 },
-      { t:'休みの日に、まとめて',               short:'休みの日にまとめて', y:-2 }
-    ]},
-  { id:'venue', q:'通いやすい場所はありますか？', sub:'WAGONの対面講義を開いている会場です', grid:2,
-    opts:[
-      { t:'埼玉' }, { t:'東京' }, { t:'神奈川' },
-      { t:'名古屋' }, { t:'大阪' }, { t:'福岡' },
-      { t:'どこも遠い', short:'どこも遠い', far:true, wide:true }
-    ]},
-  { id:'member', q:'いま、WAGONで使っているものはありますか？',
-    opts:[
-      { t:'LINEの毎日問題などの、無料のもの',     short:'無料のもの' },
-      { t:'対面講義・LIVE教室に参加したことがある', short:'対面講義・LIVE教室の参加経験あり' },
-      { t:'オンラインサロン',                     short:'オンラインサロン' },
-      { t:'サブスクWAGON（受講中）',              short:'サブスクWAGON受講中', subsc:true }
-    ]}
-];
-
-/* 同点のときは、この質問の向きで決める（いちばん直接その軸を聞いている質問） */
-var TIEBREAK = { x:'range', y:'ask' };
-
-/* ============================================================
-   タイプ
-   値段は出さない。低学年に月額を先に見せない方針のため、
-   料金の話は担任がLINEで学年を見てから行う。
-   ============================================================ */
-var TYPES = {
-  // 全体を任せたい × 自分のペースで毎日
-  steady: {
-    name:'コツコツ|伴走タイプ',
-    catch:'道筋さえ見えれば、ちゃんと続けられる人',
-    color:['#DDF2FB','#1878C4'],
-    body:'何から手をつけるかが決まれば、毎日こつこつ進められるタイプです。いま足りないのは、やる気ではなく「今日はこれをやる」が決まっている状態です。',
-    points:[
-      '見るところを自分で探すより、決めてもらったところから始める',
-      '1日の量は少なくていいので、毎日同じ時間に続ける',
-      'わからないところは、その日のうちに聞いて解消する'
-    ],
-    plan:'subsc',
-    planText:'「今日はここを見る」が、いつも担任から届きます。何から手をつけるか迷う時間が、なくなります。'
+  yama: {
+    name:'やること山盛り|スライム', color:['#E5F5EA','#2E9B57'],
+    kind:'実習や記録で、時間・余力がなくなる',
+    line:'ひとつ終わったら、次のお仕事です！',
+    plan:'受け持ちの患者さんの病気の問題を、1問だけ解く',
+    weak:'実習で見た病気と国試の問題がつながるたびに、山が少しずつ低くなっていきます。'
   },
-  // 全体を任せたい × 講師の前で
-  rebuild: {
-    name:'土台から|組み直しタイプ',
-    catch:'一度つながれば、一気に伸びる人',
-    color:['#E3F6F1','#0F9E8A'],
-    body:'不安な分野が広いのは、分野ごとにばらばらに覚えているからかもしれません。解剖生理の土台からつなぎ直すと、疾患の理解がまとめて進みます。人から説明を聞くと入りやすいあなたには、すぐ質問できる環境が大切です。',
-    points:[
-      '過去問を解く前に、解剖生理から順番に理解する',
-      '覚えるより先に「なぜそうなるか」を説明してもらう',
-      'わからないまま、次の分野に進まない'
-    ],
-    plan:'subsc',
-    planText:'わからないところの原因が手前の単元にあれば、担任がそこまでさかのぼって、見るところを示します。解剖生理の土台から、順番につなぎ直せます。'
+  maigo: {
+    name:'どこから迷子|ゴースト', color:['#E6F3FB','#3A8FC9'],
+    kind:'何から勉強すればよいか分からない',
+    line:'あっちも大事。こっちも大事。で、どこから？',
+    plan:'今日やる1問を、先に決めてしまう',
+    weak:'今日やることが決まった瞬間に、すっと姿を消します。'
   },
-  // 必要なところだけ × 自分のペースで毎日
-  target: {
-    name:'ねらい撃ち|タイプ',
-    catch:'やるべき場所が、もう見えている人',
-    color:['#FFF1E6','#C8702E'],
-    body:'自分で進める力があって、苦手もはっきりしています。全部をやり直す必要はありません。弱いところにだけ、濃い時間を使うのがいちばんの近道です。',
-    points:[
-      'ふだんの勉強は、いまのやり方をそのまま続ける',
-      '苦手な分野を1つずつ選んで、集中して固める',
-      '固めた分野が取れているか、模試や過去問で確かめる'
-    ],
-    plan:'venue',
-    planText:'1回ごとに申し込めるので、苦手な分野に合わせて必要な回だけを受けられます。'
+  matome: {
+    name:'まとめて満足|エイリアン', color:['#EAF6E4','#5B9E3A'],
+    kind:'ノートをまとめて終わってしまう',
+    line:'このノート、見ているだけで達成感！',
+    plan:'まとめるのをやめて、まず1問解く',
+    weak:'先に問題を解いて、間違えたところだけ書き足すと、自分の星に帰っていきます。'
   },
-  // 必要なところだけ × 講師の前で
-  live: {
-    name:'その場で聞いて|スッキリタイプ',
-    catch:'人から聞くと、すっと頭に入る人',
-    color:['#FDEFF4','#C94C74'],
-    body:'ひとりで読むより、講師の説明を聞いて、その場で質問したほうが頭に残るタイプです。まとまった時間に集中したほうが、力を出しやすいはずです。',
-    points:[
-      '苦手な分野は、講師に直接聞いて一度で理解する',
-      '休みの日などのまとまった時間を、勉強の山場にする',
-      '聞いた内容は、その週のうちに問題で使ってみる'
-    ],
-    plan:'venue',
-    planText:'少人数の講義なので、講師に直接質問しながら学べます。1回ごとに申し込めるので、必要な回だけを受けられます。'
+  zombie: {
+    name:'丸暗記ループ|ゾンビ', color:['#EEF1F7','#6A7BA8'],
+    kind:'理由がつながらないまま、丸暗記しようとする',
+    line:'忘れた？ じゃあ、また最初から丸暗記だ！',
+    plan:'「なぜそうなる？」をひとつつなげる',
+    weak:'しくみから理解すると、聞かれ方が変わっても答えられるようになり、ループが止まります。'
+  },
+  tanuki: {
+    name:'なるほど|化け狸', color:['#FBEFE3','#A8672F'],
+    kind:'分かったつもりで終わってしまう',
+    line:'答えを見れば分かるし、大丈夫でしょ！',
+    plan:'解説を閉じて、ひとつ答えてみる',
+    weak:'解説を読んだあとに、自分で答える1問をはさむと、化けの皮がはがれます。'
   }
 };
 
-/* MBTIの E/I と J/P の組み合わせで、結果画面に添える一言。
-   判定は変えず、「勉強のしかた」への付け足しとして出す。
-   MBTIから学び方を言い当てる根拠はないので、言い切らない（「〜かもしれません」）。
-   お楽しみ・会話のきっかけという位置づけを崩さないこと */
-var MBTI_TIPS = {
-  EJ:'人と一緒に予定を決めると、進めやすいかもしれません。いっしょに勉強する日を先に決めてみるのも、ひとつの手です。',
-  EP:'人と話しながら覚えるほうが、頭に残りやすいかもしれません。予定は細かく決めすぎないほうが続く、という人もいます。',
-  IJ:'ひとりで振り返る時間があると、理解が深まりやすいかもしれません。その時間を先に予定に入れてみるのも、ひとつの手です。',
-  IP:'ひとりで振り返る時間があると、理解が深まりやすいかもしれません。やる順番は気分で選んでも、その週の範囲だけ決めておくと安心です。'
-};
+/* 同点のときに優先する順（Q4→Q3→Q5→Q2 で、その問で選んだ敵を優先したあとの最後の決め手） */
+var ENEMY_ORDER = ['scroll','yama','maigo','matome','zombie','tanuki'];
 
-var PLANS = {
-  // サブスクWAGONは「動画が見放題」ではなく、「何を見て、見たあと何をするかを担任が決める」サービス。
-  // 対面講義との違いは範囲の広さではなく、誰が選んで、そのあと誰が見届けるか
-  subsc: { name:'サブスクWAGON', lbl:'見るところを、担任が決めてくれる',
-    steps:[
-      'わからないところを、LINEで担任に送る',
-      '担任から「この動画の、ここを見てください」と届く',
-      '見終わったら、その場面の確認問題が届く',
-      '解けたら、次に見るところへ進む'
+/* ============================================================
+   質問
+   p … 点が入る敵と点数。いちばん点の高い敵が「今日の敵」
+   short … LINEに送る文面での表記
+   点の入り方は、全256通りの答えで6体とも14〜19%になるよう調整済み（2026-09-17）
+   ============================================================ */
+var QUESTIONS = [
+  // MBTIは敵を決めるのには使わない。結果に「出会いやすい敵かも」の一言を足すだけ
+  { id:'mbti', label:'MBTI', q:'あなたのMBTIは？', sub:'わからなければ「わからない」でだいじょうぶです', grid:4,
+    opts:['INTJ','INTP','ENTJ','ENTP','INFJ','INFP','ENFJ','ENFP',
+          'ISTJ','ISFJ','ESTJ','ESFJ','ISTP','ISFP','ESTP','ESFP']
+      .map(function(m){ return { t:m, mbti:m }; })
+      .concat([{ t:'わからない', wide:true }])
+  },
+  { id:'today', label:'今日の状態', q:'今日のあなたに近いのは？',
+    opts:[
+      { t:'実習や課題で、勉強の時間がない',   short:'時間がない',       p:{ yama:2 } },
+      { t:'時間はあるのに、なかなか進まない', short:'なかなか進まない', p:{ scroll:1, maigo:1 } },
+      { t:'勉強はしているのに、手応えがない', short:'手応えがない',     p:{ matome:1, zombie:1, tanuki:1 } },
+      { t:'勉強する気分になれない',           short:'気分になれない',   p:{ maigo:1 } }
     ]},
-  venue: { name:'対面講義',       lbl:'受ける回を、自分で選ぶ' }
+  { id:'before', label:'勉強を始める前', q:'勉強を始める前のあなたは？',
+    opts:[
+      { t:'「少しだけスマホを見てから」と思う', short:'少しだけスマホを見てから', p:{ scroll:2 } },
+      { t:'どの教材や問題集にするか迷う',       short:'教材を迷う',               p:{ maigo:2 } },
+      { t:'まずノートを開いて、まとめ始める',   short:'まずノートをまとめる',     p:{ matome:2 } },
+      { t:'実習記録や課題が山盛り',             short:'実習記録や課題が山盛り',   p:{ yama:2 } }
+    ]},
+  { id:'during', label:'勉強しているとき', q:'勉強しているときのあなたは？',
+    opts:[
+      { t:'教科書の内容を、ノートに写している',         short:'教科書をノートに写す',   p:{ matome:2 } },
+      { t:'病名と症状を、セットで丸ごと覚えている',     short:'病名と症状を丸ごと覚える', p:{ zombie:2 } },
+      { t:'解説を読んで「なるほど」と思い、次に進む',   short:'解説を読んで次に進む',   p:{ tanuki:2 } },
+      { t:'調べもののつもりが、別のアプリを開いている', short:'別のアプリを開いている', p:{ scroll:2 } }
+    ]},
+  { id:'exam', label:'模試や過去問', q:'模試や過去問を解いているとき、どうなりがち？',
+    opts:[
+      { t:'見たことがある言葉なのに、聞かれ方が変わると選べない',         short:'聞かれ方が変わると選べない', p:{ zombie:2 } },
+      { t:'解説で読んだはずの問題なのに、答えが思い出せない',             short:'読んだはずなのに思い出せない', p:{ tanuki:2 } },
+      { t:'見覚えのない問題が続いて、何を勉強すればよかったのか分からなくなる', short:'何を勉強すればよかったか分からない', p:{ maigo:2 } },
+      { t:'勉強できていない分野が多くて、勘で選ぶ問題が多い',             short:'勘で選ぶ問題が多い',     p:{ yama:2 } }
+    ]},
+  // 敵は決めない。担任が「今日の1問」と会員向けの動画を、この分野から選ぶ。
+  // 表記は問題DB・動画区間DBの分野とそろえる（2026-09-17 ユーザー指定の8分野。問題マスターの「分野」と同じ表記）
+  { id:'area', label:'今日の分野', q:'今日、勉強したい分野は？', grid:2,
+    opts:['循環器','呼吸器','消化器','脳神経系','代謝','内分泌','腎','血液']
+      .map(function(a){ return { t:a }; })
+  }
+];
+
+/* 同点のとき、どの質問で選んだ敵を優先するか（前にあるほど優先） */
+var TIE_QUESTIONS = ['during', 'before', 'exam', 'today'];
+
+/* MBTIの1文字目（E/I）と4文字目（J/P）で、出会いやすい日の一言を変える。
+   MBTIから苦手を当てる根拠はないので、言い切らない（「〜かも」） */
+var MBTI_TIPS = {
+  EJ:'予定を詰めこみすぎた日に、出会いやすい敵かも。',
+  EP:'人と話したり動き回ったりした日に、出会いやすい敵かも。',
+  IJ:'計画どおりに進まなかった日に、出会いやすい敵かも。',
+  IP:'ひとりで考えこんだ日に、出会いやすい敵かも。'
 };
 
-var ICONS = {
-  steady:'<path d="M14 50c8 0 10-10 18-10s10 10 18 10 8-6 10-8" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="14" cy="50" r="5" fill="currentColor"/><circle cx="58" cy="40" r="5" fill="currentColor"/><path d="M52 20l6 6-6 6" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>',
-  rebuild:'<rect x="12" y="44" width="48" height="10" rx="4" fill="currentColor"/><rect x="18" y="31" width="36" height="10" rx="4" fill="currentColor" opacity=".7"/><rect x="24" y="18" width="24" height="10" rx="4" fill="currentColor" opacity=".45"/>',
-  target:'<circle cx="36" cy="36" r="22" stroke="currentColor" stroke-width="4" fill="none"/><circle cx="36" cy="36" r="12" stroke="currentColor" stroke-width="4" fill="none" opacity=".6"/><circle cx="36" cy="36" r="4" fill="currentColor"/>',
-  live:'<path d="M14 18h32a6 6 0 016 6v14a6 6 0 01-6 6H30l-10 8v-8h-6a6 6 0 01-6-6V24a6 6 0 016-6z" fill="currentColor" opacity=".85"/><circle cx="23" cy="31" r="2.6" fill="#fff"/><circle cx="31" cy="31" r="2.6" fill="#fff"/><circle cx="39" cy="31" r="2.6" fill="#fff"/><path d="M58 30v18" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="58" cy="55" r="3" fill="currentColor"/>'
+/* ============================================================
+   担任に送る前に、タップで選んでもらう項目（すべて任意）
+   ============================================================ */
+var PROFILE = [
+  { id:'grade', label:'学年',
+    opts:['1年生','2年生','3年生（専門学校・短大）','3年生（大学）','4年生','既卒'] },
+  // 模試は「WAGONの模試」と「WAGON以外の模試」を分けて聞く。受けた方だけ、直近の点数を選ぶ。
+  // 必修は50点満点で合格基準は8割（40点）。一般・状況設定は250点満点で、合格ラインは年によって6割前後
+  { id:'wagonMock', label:'WAGONの模試', opts:['受けたことがある','受けたことがない'] },
+  { id:'wagonHisshu', label:'WAGONの模試の点数（必修）', when:{ wagonMock:'受けたことがある' },
+    opts:['34点以下','35〜39点','40〜44点','45点以上','覚えていない'] },
+  { id:'wagonIppan', label:'WAGONの模試の点数（一般・状況設定）', when:{ wagonMock:'受けたことがある' },
+    opts:['129点以下','130〜149点','150〜169点','170点以上','覚えていない'] },
+  { id:'otherMock', label:'WAGON以外の模試', opts:['受けたことがある','受けたことがない'] },
+  { id:'otherHisshu', label:'WAGON以外の模試の点数（必修）', when:{ otherMock:'受けたことがある' },
+    opts:['34点以下','35〜39点','40〜44点','45点以上','覚えていない'] },
+  { id:'otherIppan', label:'WAGON以外の模試の点数（一般・状況設定）', when:{ otherMock:'受けたことがある' },
+    opts:['129点以下','130〜149点','150〜169点','170点以上','覚えていない'] },
+  { id:'member', label:'いまWAGONで使っているもの',
+    opts:['無料のもの','対面講義・LIVE教室に参加したことがある','オンラインサロン','サブスクWAGON（受講中）'] }
+];
+
+/* ============================================================
+   敵のイラスト（SVG）
+   ============================================================ */
+function eyes(x1, x2, y){
+  return '<circle cx="' + x1 + '" cy="' + y + '" r="6" fill="#fff"/><circle cx="' + x2 + '" cy="' + y + '" r="6" fill="#fff"/>' +
+         '<circle cx="' + (x1 + 1.5) + '" cy="' + (y + 1) + '" r="3" fill="#1B3A56"/><circle cx="' + (x2 + 1.5) + '" cy="' + (y + 1) + '" r="3" fill="#1B3A56"/>';
+}
+var ART = {
+  // スマホの画面から出てくる魔人
+  scroll:
+    '<rect x="48" y="96" width="64" height="52" rx="10" fill="#1B3A56"/><rect x="54" y="102" width="52" height="40" rx="4" fill="#8FD3F4"/>' +
+    '<path d="M62 110h36M62 118h28M62 126h36M62 134h22" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/>' +
+    '<path d="M80 104 C64 96 92 88 76 80 C70 76 72 70 80 68" stroke="#9C82D9" stroke-width="14" fill="none" stroke-linecap="round"/>' +
+    '<circle cx="80" cy="48" r="28" fill="#7B5CC4"/>' +
+    '<path d="M56 60 C40 62 32 72 30 84" stroke="#7B5CC4" stroke-width="9" fill="none" stroke-linecap="round"/>' +
+    '<path d="M104 60 C120 58 128 48 130 38" stroke="#7B5CC4" stroke-width="9" fill="none" stroke-linecap="round"/>' +
+    '<path d="M60 30 C66 14 94 14 100 30 C92 24 68 24 60 30Z" fill="#F2A93B"/><circle cx="80" cy="18" r="4" fill="#E8505B"/>' +
+    eyes(70, 90, 46) +
+    '<path d="M68 60 Q80 70 92 60" stroke="#1B3A56" stroke-width="3" fill="#fff" stroke-linecap="round"/>',
+  // 頭にタスクを山盛り乗せたスライム
+  yama:
+    '<path d="M28 116 C28 88 50 72 80 72 C110 72 132 88 132 116 C132 136 112 144 80 144 C48 144 28 136 28 116Z" fill="#3DB06A"/>' +
+    '<ellipse cx="54" cy="96" rx="7" ry="10" fill="#fff" opacity=".4"/>' +
+    '<rect x="44" y="58" width="72" height="16" rx="3" fill="#fff" stroke="#C9D6DE" stroke-width="2" transform="rotate(-4 80 66)"/>' +
+    '<rect x="50" y="42" width="62" height="16" rx="3" fill="#FFF3D6" stroke="#E6C98A" stroke-width="2" transform="rotate(5 81 50)"/>' +
+    '<rect x="46" y="26" width="66" height="16" rx="3" fill="#fff" stroke="#C9D6DE" stroke-width="2" transform="rotate(-6 79 34)"/>' +
+    '<rect x="56" y="10" width="50" height="16" rx="3" fill="#FDECEC" stroke="#E8A3A3" stroke-width="2" transform="rotate(3 81 18)"/>' +
+    '<path d="M60 108 l10 4 M100 108 l-10 4" stroke="#1B3A56" stroke-width="3.5" stroke-linecap="round"/>' +
+    '<path d="M70 128 Q80 122 90 128" stroke="#1B3A56" stroke-width="3" fill="none" stroke-linecap="round"/>' +
+    '<path d="M122 96 C126 102 126 106 122 108 C118 106 118 102 122 96Z" fill="#8FD3F4"/>',
+  // 何が大事か決められずに迷うゴースト
+  maigo:
+    '<path d="M40 80 C40 44 58 26 80 26 C102 26 120 44 120 80 L120 132 L108 122 L96 134 L84 122 L72 134 L60 122 L48 134 L40 126Z" fill="#8CC8EE"/>' +
+    eyes(68, 92, 72) +
+    '<ellipse cx="80" cy="96" rx="6" ry="7" fill="#1B3A56"/>' +
+    '<text x="116" y="42" font-size="34" font-weight="900" fill="#3A8FC9" font-family="Zen Maru Gothic, sans-serif">?</text>' +
+    '<text x="22" y="54" font-size="24" font-weight="900" fill="#3A8FC9" font-family="Zen Maru Gothic, sans-serif">?</text>',
+  // きれいなノートを抱えて満足しているエイリアン
+  matome:
+    '<path d="M62 30 L52 10 M98 30 L108 10" stroke="#5B9E3A" stroke-width="4" stroke-linecap="round"/>' +
+    '<circle cx="52" cy="10" r="6" fill="#F2A93B"/><circle cx="108" cy="10" r="6" fill="#F2A93B"/>' +
+    '<ellipse cx="80" cy="62" rx="42" ry="36" fill="#7BC25A"/>' +
+    '<path d="M58 60 Q66 52 74 60 M86 60 Q94 52 102 60" stroke="#1B3A56" stroke-width="3.5" fill="none" stroke-linecap="round"/>' +
+    '<ellipse cx="56" cy="74" rx="6" ry="4" fill="#F5A3B5" opacity=".7"/><ellipse cx="104" cy="74" rx="6" ry="4" fill="#F5A3B5" opacity=".7"/>' +
+    '<path d="M72 78 Q80 86 88 78" stroke="#1B3A56" stroke-width="3" fill="none" stroke-linecap="round"/>' +
+    '<ellipse cx="80" cy="124" rx="30" ry="24" fill="#5B9E3A"/>' +
+    '<rect x="50" y="100" width="60" height="42" rx="4" fill="#fff" stroke="#C9D6DE" stroke-width="2"/>' +
+    '<path d="M58 110h28M58 118h44M58 126h36M58 134h24" stroke-width="3.5" stroke-linecap="round" stroke="#F2A93B"/>' +
+    '<path d="M88 110h14" stroke="#E8505B" stroke-width="3.5" stroke-linecap="round"/><path d="M84 126h18" stroke="#4EC6EC" stroke-width="3.5" stroke-linecap="round"/>' +
+    '<path d="M130 92 l4 -10 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4Z" fill="#F2C94C"/>',
+  // 単語カードをぐるぐる回しているゾンビ（こわくない絵柄）
+  zombie:
+    '<rect x="44" y="30" width="72" height="66" rx="30" fill="#A9C7A2"/>' +
+    '<path d="M50 44 C60 30 78 28 92 34" stroke="#6A7BA8" stroke-width="7" fill="none" stroke-linecap="round"/>' +
+    '<rect x="88" y="44" width="22" height="8" rx="3" fill="#fff" transform="rotate(20 99 48)"/>' +
+    '<circle cx="68" cy="64" r="7" fill="#fff"/><circle cx="92" cy="64" r="5" fill="#fff"/>' +
+    '<circle cx="69" cy="65" r="3" fill="#1B3A56"/><circle cx="92" cy="65" r="2.4" fill="#1B3A56"/>' +
+    '<path d="M70 82 Q80 78 90 82" stroke="#1B3A56" stroke-width="3" fill="none" stroke-linecap="round"/>' +
+    '<rect x="52" y="96" width="56" height="44" rx="16" fill="#6A7BA8"/>' +
+    '<path d="M54 106 L24 102 M106 106 L136 102" stroke="#A9C7A2" stroke-width="10" stroke-linecap="round"/>' +
+    '<circle cx="136" cy="100" r="14" fill="none" stroke="#1B3A56" stroke-width="2.5"/>' +
+    '<rect x="128" y="112" width="18" height="12" rx="2" fill="#FFF3D6" stroke="#D9A441" stroke-width="1.5"/>' +
+    '<path d="M20 86 A20 20 0 1 1 34 118" stroke="#F2A93B" stroke-width="3.5" fill="none" stroke-linecap="round"/>' +
+    '<path d="M30 112 L34 118 L27 121" stroke="#F2A93B" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+  // 丸の付いた答案を持って「なるほど」顔の化け狸
+  tanuki:
+    '<path d="M66 18 C74 4 94 4 96 20 C88 16 78 18 72 26Z" fill="#6FB24E"/><path d="M70 22 L90 10" stroke="#4F8A34" stroke-width="2"/>' +
+    '<path d="M44 44 L40 24 L60 36Z M116 44 L120 24 L100 36Z" fill="#8A5224"/>' +
+    '<ellipse cx="80" cy="64" rx="42" ry="38" fill="#C98A4B"/>' +
+    '<ellipse cx="66" cy="66" rx="14" ry="11" fill="#5A3A20"/><ellipse cx="94" cy="66" rx="14" ry="11" fill="#5A3A20"/>' +
+    '<path d="M60 66 Q66 62 72 66 M88 66 Q94 62 100 66" stroke="#fff" stroke-width="3.2" fill="none" stroke-linecap="round"/>' +
+    '<ellipse cx="80" cy="84" rx="14" ry="10" fill="#F3E3CF"/><circle cx="80" cy="80" r="4" fill="#1B3A56"/>' +
+    '<path d="M74 88 Q80 92 88 86" stroke="#1B3A56" stroke-width="2.6" fill="none" stroke-linecap="round"/>' +
+    '<ellipse cx="80" cy="126" rx="34" ry="24" fill="#A8672F"/><ellipse cx="80" cy="130" rx="20" ry="15" fill="#F3E3CF"/>' +
+    '<rect x="96" y="98" width="46" height="50" rx="4" fill="#fff" stroke="#C9D6DE" stroke-width="2" transform="rotate(10 119 123)"/>' +
+    '<circle cx="119" cy="118" r="13" fill="none" stroke="#E8505B" stroke-width="4" transform="rotate(10 119 123)"/>' +
+    '<path d="M106 138h26" stroke="#8597A8" stroke-width="3" stroke-linecap="round" transform="rotate(10 119 123)"/>'
 };
+function art(key){
+  return '<svg viewBox="0 0 160 160" role="img" aria-label="' + ENEMIES[key].name.replace('|', '') + '">' + ART[key] + '</svg>';
+}
 
 /* ============================================================
    計測
@@ -436,17 +475,21 @@ function track(name, params){
    画面
    ============================================================ */
 var $ = function(id){ return document.getElementById(id); };
-var answers = [];   // 質問ごとの選択肢の番号
+var answers = [];
 var qi = 0;
 
 function show(id){
   ['s-intro','s-quiz','s-result'].forEach(function(s){ $(s).hidden = (s !== id); });
   window.scrollTo(0, 0);
 }
-
 function esc(s){
   return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; });
 }
+function nb(name){
+  return name.split('|').map(function(s){ return '<span class="nb">' + esc(s) + '</span>'; }).join('');
+}
+
+$('lineup').innerHTML = ENEMY_ORDER.map(art).join('');
 
 $('start').addEventListener('click', function(){
   answers = []; qi = 0;
@@ -454,7 +497,6 @@ $('start').addEventListener('click', function(){
   show('s-quiz');
   renderQ();
 });
-
 $('back').addEventListener('click', function(){
   if (qi > 0){ qi--; renderQ(); }
 });
@@ -464,7 +506,6 @@ function renderQ(){
   $('bar').style.width = (qi / QUESTIONS.length * 100) + '%';
   $('count').textContent = (qi + 1) + '/' + QUESTIONS.length;
   $('back').disabled = (qi === 0);
-
   var el = $('q');
   el.innerHTML =
     '<p class="num">Q' + (qi + 1) + '</p>' +
@@ -498,177 +539,124 @@ $('q').addEventListener('click', function(e){
    判定
    ============================================================ */
 function picked(id){
-  var i = QUESTIONS.findIndex(function(q){ return q.id === id; });
-  return QUESTIONS[i].opts[answers[i]];
+  for (var i = 0; i < QUESTIONS.length; i++){
+    if (QUESTIONS[i].id === id) return QUESTIONS[i].opts[answers[i]];
+  }
 }
 
 function judge(){
-  var x = 0, y = 0;
+  var score = {};
+  ENEMY_ORDER.forEach(function(k){ score[k] = 0; });
   QUESTIONS.forEach(function(q, i){
-    var o = q.opts[answers[i]];
-    x += o.x || 0; y += o.y || 0;
+    var p = q.opts[answers[i]].p || {};
+    Object.keys(p).forEach(function(k){ score[k] += p[k]; });
   });
-  if (x === 0) x = picked(TIEBREAK.x).x || 1;
-  if (y === 0) y = picked(TIEBREAK.y).y || 1;
-  var key = x > 0 ? (y > 0 ? 'steady' : 'rebuild') : (y > 0 ? 'target' : 'live');
-  return { key:key, x:x, y:y };
+  var max = Math.max.apply(null, ENEMY_ORDER.map(function(k){ return score[k]; }));
+  var cand = ENEMY_ORDER.filter(function(k){ return score[k] === max; });
+  // 同点：TIE_QUESTIONS の順に、その質問で点が入った敵に絞る
+  for (var t = 0; t < TIE_QUESTIONS.length && cand.length > 1; t++){
+    var p = picked(TIE_QUESTIONS[t]).p || {};
+    var f = cand.filter(function(k){ return p[k]; });
+    if (f.length) cand = f;
+  }
+  return cand[0];
 }
 
 /* ============================================================
-   担任に送る前に、タップで選んでもらう項目（すべて任意）
-   文字入力はさせない。選ばなかった項目は送る文面に出さない
-   multi … 複数選べる
-   when  … ほかの項目がこの値のときだけ出す
+   担任に送る前の項目
    ============================================================ */
-var PROFILE = [
-  { id:'grade', label:'学年',
-    opts:['1年生','2年生','3年生（専門学校・短大）','3年生（大学）','4年生','既卒'] },
-  { id:'worry', label:'困っていること', multi:true, sub:'いくつでも選べます',
-    opts:['何から始めればいいか分からない','覚えてもすぐ忘れる','問題になると解けない',
-          '模試の点数が伸びない','苦手な分野がある','勉強の時間が取れない','実習や課題で手いっぱい'] },
-  // 模試は「WAGONの模試」と「WAGON以外の模試」を分けて聞く。受けた方だけ、直近の点数を選ぶ。
-  // 必修は50点満点で合格基準は8割（40点）。一般・状況設定は250点満点で、合格ラインは年によって6割前後
-  { id:'wagonMock', label:'WAGONの模試',
-    opts:['受けたことがある','受けたことがない'] },
-  { id:'wagonHisshu', label:'WAGONの模試の点数（必修）', when:{ wagonMock:'受けたことがある' },
-    opts:['34点以下','35〜39点','40〜44点','45点以上','覚えていない'] },
-  { id:'wagonIppan', label:'WAGONの模試の点数（一般・状況設定）', when:{ wagonMock:'受けたことがある' },
-    opts:['129点以下','130〜149点','150〜169点','170点以上','覚えていない'] },
-  { id:'otherMock', label:'WAGON以外の模試',
-    opts:['受けたことがある','受けたことがない'] },
-  { id:'otherHisshu', label:'WAGON以外の模試の点数（必修）', when:{ otherMock:'受けたことがある' },
-    opts:['34点以下','35〜39点','40〜44点','45点以上','覚えていない'] },
-  { id:'otherIppan', label:'WAGON以外の模試の点数（一般・状況設定）', when:{ otherMock:'受けたことがある' },
-    opts:['129点以下','130〜149点','150〜169点','170点以上','覚えていない'] }
-];
-var profile = {};   // { grade:'3年生（大学）', worry:['…','…'], … }
-
+var profile = {};
 function profileVisible(f){
   if (!f.when) return true;
   return Object.keys(f.when).every(function(k){ return profile[k] === f.when[k]; });
 }
-
+function pv(id){
+  var f = PROFILE.filter(function(p){ return p.id === id; })[0];
+  return (profileVisible(f) && profile[id]) ? profile[id] : '';
+}
 function profileLines(){
-  var v = function(id){
-    var f = PROFILE.filter(function(p){ return p.id === id; })[0];
-    var x = profile[id];
-    if (!profileVisible(f) || x == null || (x.join && !x.length)) return '';
-    return x.join ? x.join('、') : x;
-  };
   var lines = [];
-  if (v('grade'))  lines.push('学年：' + v('grade'));
-  if (v('worry'))  lines.push('困っていること：' + v('worry'));
+  if (pv('grade')) lines.push('学年：' + pv('grade'));
   // 「WAGONの模試：必修 35〜39点／一般・状況設定 150〜169点」の形。点数を選ばなければ受験の有無だけ
   [['wagon', 'WAGONの模試'], ['other', 'WAGON以外の模試']].forEach(function(m){
-    var took = v(m[0] + 'Mock');
+    var took = pv(m[0] + 'Mock');
     if (!took) return;
     var scores = [
-      v(m[0] + 'Hisshu') ? '必修 ' + v(m[0] + 'Hisshu') : '',
-      v(m[0] + 'Ippan')  ? '一般・状況設定 ' + v(m[0] + 'Ippan') : ''
+      pv(m[0] + 'Hisshu') ? '必修 ' + pv(m[0] + 'Hisshu') : '',
+      pv(m[0] + 'Ippan')  ? '一般・状況設定 ' + pv(m[0] + 'Ippan') : ''
     ].filter(Boolean).join('／');
     lines.push(m[1] + '：' + (scores || took));
   });
+  if (pv('member')) lines.push('WAGONの利用：' + pv('member'));
   return lines;
 }
 
-function buildMessage(t){
+/* 担任はこのメッセージを見て、問題DBから「今日の分野」の1問を選び、
+   返信DBの「敵ごとの解き方」と「会員向けの動画」を添えて返す */
+function buildMessage(key){
+  var e = ENEMIES[key];
   var lines = [
     CONFIG.msgTitle,
-    'タイプ：' + t.name.replace('|', ''),
-    '合う学び方：' + PLANS[t.plan].name,
+    '今日の敵：' + e.name.replace('|', ''),
+    '今日の分野：' + picked('area').t,
     ''
   ];
   var pl = profileLines();
   if (pl.length) lines = lines.concat(pl, ['']);
+  lines.push('MBTI：' + (picked('mbti').mbti || 'わからない'));
   QUESTIONS.forEach(function(q, i){
+    if (q.id === 'mbti' || q.id === 'area') return;
     var o = q.opts[answers[i]];
-    var label = {
-      mbti:'MBTI', start:'勉強の進め方', range:'不安な分野', review:'ほかの知識とのつながり',
-      ask:'わからないとき', focus:'はかどるとき', time:'勉強の時間', venue:'通いやすい会場', member:'WAGONの利用'
-    }[q.id];
-    lines.push(label + '：' + (o.short || o.t));
+    lines.push(q.label + '：' + (o.short || o.t));
   });
-  lines.push('', 'この結果に合う進め方を教えてください。');
+  lines.push('', 'この敵を倒す、今日の1問をください。');
   return lines.join('\n');
 }
 
+/* ============================================================
+   結果
+   ============================================================ */
 function showResult(){
   $('bar').style.width = '100%';
-  var r = judge();
-  var t = TYPES[r.key];
-  var plan = PLANS[t.plan];
-  var far = !!picked('venue').far;
-  var member = !!picked('member').subsc;
+  var key = judge();
+  var e = ENEMIES[key];
   var mbti = picked('mbti').mbti || '';
-  var mbtiTip = mbti ? MBTI_TIPS[mbti.charAt(0) + mbti.charAt(3)] : '';
+  var tip = mbti ? MBTI_TIPS[mbti.charAt(0) + mbti.charAt(3)] : '';
+  var area = picked('area').t;
   profile = {};
-  var msg = buildMessage(t);
-  var lineUrl = lineHref(msg);
 
-  track('diag_complete', {
-    diag_type: r.key, diag_plan: t.plan, mbti: mbti || 'unknown',
-    venue_far: far ? 'yes' : 'no', member: picked('member').short
-  });
-
-  // 対面講義が合うのに会場が遠い人／すでにサブスク受講中の人には、ひとこと添える
-  var aside = '';
-  if (t.plan === 'venue' && far){
-    aside = '近くに会場がない場合の進め方も、担任からご案内します。';
-  } else if (member){
-    aside = 'いま受講中の講座のなかで、このタイプに合う進め方を担任からお伝えします。';
-  }
+  track('diag_complete', { enemy:key, mbti: mbti || 'unknown', area: area });
 
   $('s-result').innerHTML =
-    '<div class="card">' +
-      '<div class="res-head">' +
-        '<p class="eyebrow">あなたは</p>' +
-        '<div class="icon" style="background:' + t.color[0] + '; color:' + t.color[1] + '">' +
-          '<svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true">' + ICONS[r.key] + '</svg></div>' +
-        '<h1>' + t.name.split('|').map(function(s){ return '<span class="nb">' + esc(s) + '</span>'; }).join('') + '</h1>' +
-        '<p class="catch">' + esc(t.catch) + '</p>' +
-      '</div>' +
-    '</div>' +
-
-    '<div class="card sec">' +
-      '<h2>あなたの勉強のしかた</h2>' +
-      '<p>' + esc(t.body) + '</p>' +
-      (mbtiTip
-        ? '<div class="mbti"><p class="lbl">' + mbti + 'のあなたへ</p><p>' + esc(mbtiTip) + '</p>' +
-            '<p class="fine">MBTIは参考程度に。あなたに合うやり方は、担任といっしょに確かめていきましょう。</p></div>'
+    '<div class="card enemy">' +
+      '<p class="eyebrow">今日のあなたの敵は…</p>' +
+      '<div class="art pop" style="background:' + e.color[0] + '">' + art(key) + '</div>' +
+      '<h1 style="color:' + e.color[1] + '">' + nb(e.name) + '</h1>' +
+      '<p class="say">「' + esc(e.line) + '」</p>' +
+      '<p class="scene"><b>こんなときに現れる</b>' + esc(e.kind) + '</p>' +
+      (tip
+        ? '<div class="mbti"><p class="lbl">' + mbti + 'のあなたへ</p><p>' + esc(tip) + '</p>' +
+            '<p class="fine">MBTIは参考程度に。今日の敵は、今日の答えから見つけています。</p></div>'
         : '') +
     '</div>' +
 
     '<div class="card sec">' +
-      '<h2>合う進め方</h2>' +
-      '<ul class="points">' +
-        t.points.map(function(p, i){ return '<li><b>' + (i + 1) + '</b><span>' + esc(p) + '</span></li>'; }).join('') +
-      '</ul>' +
+      '<h2>今日の作戦</h2>' +
+      '<p class="plan-main"><span class="hl">' + esc(e.plan) + '</span></p>' +
+      '<p class="weak"><b>倒し方のコツ：</b>' + esc(e.weak) + '</p>' +
     '</div>' +
 
-    '<div class="card sec">' +
-      '<h2>WAGONなら、この形</h2>' +
-      '<div class="plan">' +
-        '<p class="lbl">' + esc(plan.lbl) + '</p>' +
-        '<p class="name">' + esc(plan.name) + '</p>' +
-        '<p>' + esc(t.planText) + '</p>' +
-        (plan.steps
-          ? '<ol class="cycle">' +
-              plan.steps.map(function(s, i){ return '<li><b>' + (i + 1) + '</b><span>' + esc(s) + '</span></li>'; }).join('') +
-            '</ol>' +
-            '<p class="loop">わからないことがなくなるまで、これをくり返します。</p>'
-          : '') +
-        (aside ? '<p class="aside">' + esc(aside) + '</p>' : '') +
-      '</div>' +
-    '</div>' +
-
+    // 問題はページに出さず、LINEで担任から受け取る（LINEに戻ってくる理由にする）
     '<div class="card send">' +
-      '<h2>この結果を、<br>担任に送ってみませんか</h2>' +
-      '<p class="body">担任があなたの結果を読んで、<b>いまの状況に合わせた具体的な進め方</b>をLINEでお返事します。</p>' +
+      '<h2>今日の1問を、<br>担任から受け取る</h2>' +
+      '<p class="body">今日の敵に合わせた<b>' + esc(area) + 'の1問</b>を、倒し方のコツといっしょに、担任がLINEでお送りします。</p>' +
+      // サブスクWAGON受講中を選んだ人には出さない（refreshで切りかえる）
+      '<p class="subsc" id="subsc">毎日の敵に合わせて、<b>見るところと解く問題を担任が決めてくれる</b>のが、サブスクWAGONです。</p>' +
       '<div class="pf">' +
         '<p class="pf-head">あてはまるものをタップすると、いっしょに送れます</p>' +
         PROFILE.map(function(f){
           return '<div class="pf-row" data-f="' + f.id + '"' + (profileVisible(f) ? '' : ' hidden') + '>' +
-                   '<p class="pf-lbl">' + esc(f.label) + (f.sub ? '<small>' + esc(f.sub) + '</small>' : '') + '</p>' +
+                   '<p class="pf-lbl">' + esc(f.label) + '</p>' +
                    '<div class="pf-chips">' +
                      f.opts.map(function(o){
                        return '<button type="button" class="chip" aria-pressed="false" data-v="' + esc(o) + '">' + esc(o) + '</button>';
@@ -678,75 +666,61 @@ function showResult(){
         }).join('') +
         '<p class="pf-note">選ばなくても送れます</p>' +
       '</div>' +
-      '<a class="btn line" id="send" href="' + lineUrl + '">LINEで担任に送る</a>' +
+      '<a class="btn line" id="send" href="#">LINEで今日の1問を受け取る</a>' +
       '<p class="how">LINEが開いたら、そのまま送信してください</p>' +
       '<details class="msg">' +
         '<summary>送られる内容を見る・うまく開かないとき</summary>' +
-        '<pre id="msg">' + esc(msg) + '</pre>' +
+        '<pre id="msg"></pre>' +
         '<button type="button" class="copy" id="copy">内容をコピーする</button>' +
         '<p class="note">コピーしたら、WAGONのLINEのトークに貼りつけて送ってください。</p>' +
       '</details>' +
     '</div>' +
 
-    '<button type="button" class="btn ghost" id="retry">もう一度診断する</button>';
+    '<button type="button" class="btn ghost" id="retry">もう一度、敵をさがす</button>';
 
   show('s-result');
 
-  // 選ぶたびに、送る文面とLINEのリンクを作り直す
+  var msg = '';
   function refresh(){
-    msg = buildMessage(t);
+    msg = buildMessage(key);
     $('send').href = lineHref(msg);
     $('msg').textContent = msg;
+    $('subsc').hidden = (pv('member') === 'サブスクWAGON（受講中）');
     Array.prototype.forEach.call(document.querySelectorAll('.pf-row'), function(row){
       var f = PROFILE.filter(function(p){ return p.id === row.getAttribute('data-f'); })[0];
       row.hidden = !profileVisible(f);
     });
   }
+  refresh();
 
-  document.querySelector('.pf').addEventListener('click', function(e){
-    var chip = e.target.closest('.chip');
+  // 送る前の項目
+  document.querySelector('.pf').addEventListener('click', function(ev){
+    var chip = ev.target.closest('.chip');
     if (!chip) return;
     var row = chip.closest('.pf-row');
-    var f = PROFILE.filter(function(p){ return p.id === row.getAttribute('data-f'); })[0];
+    var id = row.getAttribute('data-f');
     var val = chip.getAttribute('data-v');
     var on = chip.getAttribute('aria-pressed') !== 'true';
-
-    if (f.multi){
-      var list = (profile[f.id] || []).filter(function(x){ return x !== val; });
-      if (on) list.push(val);
-      // 選択肢の並び順で送る
-      profile[f.id] = f.opts.filter(function(o){ return list.indexOf(o) !== -1; });
-      chip.setAttribute('aria-pressed', on ? 'true' : 'false');
-    } else {
-      // もう一度押すと選択を外せる
-      profile[f.id] = on ? val : null;
-      Array.prototype.forEach.call(row.querySelectorAll('.chip'), function(c){
-        c.setAttribute('aria-pressed', (on && c === chip) ? 'true' : 'false');
-      });
-    }
+    profile[id] = on ? val : null;   // もう一度押すと選択を外せる
+    Array.prototype.forEach.call(row.querySelectorAll('.chip'), function(c){
+      c.setAttribute('aria-pressed', (on && c === chip) ? 'true' : 'false');
+    });
     refresh();
   });
 
-  function profileParams(){
-    return {
-      grade: profile.grade || 'none',
-      wagon_mock: profile.wagonMock || 'none',
-      other_mock: profile.otherMock || 'none',
-      worry_count: (profile.worry || []).length
-    };
-  }
-
   $('send').addEventListener('click', function(){
-    var p = profileParams();
-    p.method = 'line'; p.diag_type = r.key; p.diag_plan = t.plan;
-    track('diag_send', p);
+    track('diag_send', {
+      method:'line', enemy:key, area: area,
+      grade: profile.grade || 'none', wagon_mock: profile.wagonMock || 'none',
+      other_mock: profile.otherMock || 'none', member: profile.member || 'none'
+    });
   });
   $('copy').addEventListener('click', function(){
     var btn = this;
     var done = function(){
       btn.textContent = 'コピーしました';
       btn.classList.add('done');
-      track('diag_send', { method:'copy', diag_type:r.key, diag_plan:t.plan });
+      track('diag_send', { method:'copy', enemy:key });
     };
     if (navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(msg).then(done, fallback);
@@ -755,7 +729,7 @@ function showResult(){
       var ta = document.createElement('textarea');
       ta.value = msg; ta.style.position = 'fixed'; ta.style.opacity = '0';
       document.body.appendChild(ta); ta.select();
-      try { document.execCommand('copy'); done(); } catch(e){}
+      try { document.execCommand('copy'); done(); } catch(err){}
       document.body.removeChild(ta);
     }
   });
