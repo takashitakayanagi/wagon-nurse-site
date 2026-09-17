@@ -6,8 +6,8 @@
 <link rel="icon" href="/assets/img/favicon.png" type="image/png">
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#F3F8FA">
-<title>あなたに合う勉強のしかた診断｜ナース・ライセンススクール WAGON</title>
-<meta name="description" content="9つの質問に答えるだけ。国家試験に向けて、あなたに合う勉強のしかたがわかります。">
+<title>MBTI×あなたに合う勉強のしかた診断｜ナース・ライセンススクール WAGON</title>
+<meta name="description" content="MBTIと10の質問に答えるだけ。国家試験に向けて、あなたに合う勉強のしかたがわかります。">
 
 <!-- ===== 計測タグ =====
   公式LINEのリッチメニューから開く前提のページ（広告LPではない）。
@@ -115,7 +115,9 @@ button{font:inherit; color:inherit;}
   padding:14px 16px; font-size:15.5px; line-height:1.6; cursor:pointer;
   transition:border-color .15s ease, background .15s ease;
 }
-.opts.grid2 .opt{text-align:center; padding:13px 8px;}
+.opts.grid4{grid-template-columns:repeat(4,1fr); gap:8px;}
+.opts.grid2 .opt, .opts.grid4 .opt{text-align:center; padding:13px 8px;}
+.opts.grid4 .opt{padding:12px 2px; font-size:15px; letter-spacing:.02em; font-variant-numeric:tabular-nums;}
 .opt.wide{grid-column:1 / -1;}
 @media (hover:hover){ .opt:hover{border-color:#BFDDEB;} }
 .opt.on{border-color:var(--grad-a); background:var(--sky-soft);}
@@ -131,6 +133,10 @@ button{font:inherit; color:inherit;}
 .sec h2{font-size:16px; font-weight:900; margin:0 0 10px; display:flex; align-items:center; gap:8px;}
 .sec h2::before{content:""; width:6px; height:18px; border-radius:3px; background:linear-gradient(var(--grad-a),var(--grad-b));}
 .sec p{margin:0; font-size:15px;}
+.mbti{margin-top:14px; background:var(--peach); border-radius:14px; padding:12px 14px;}
+.mbti .lbl{font-size:13px; font-weight:900; color:var(--peach-ink); margin:0 0 2px; letter-spacing:.03em;}
+.mbti p{font-size:14.5px;}
+.mbti p.fine{margin-top:8px; font-size:12px; line-height:1.7; color:var(--ink-dim);}
 .points{list-style:none; margin:0; padding:0; display:grid; gap:10px;}
 .points li{display:flex; gap:10px; font-size:15px; line-height:1.7;}
 .points li b{
@@ -143,6 +149,14 @@ button{font:inherit; color:inherit;}
 .plan .lbl{font-size:12.5px; font-weight:700; color:var(--grad-a); margin:0;}
 .plan .name{font-size:21px; font-weight:900; margin:2px 0 6px;}
 .plan p{font-size:14.5px; color:var(--ink-soft);}
+.cycle{list-style:none; margin:14px 0 0; padding:0; display:grid; gap:0; background:#fff; border-radius:14px; padding:6px 14px;}
+.cycle li{display:flex; gap:10px; align-items:flex-start; padding:9px 0; font-size:14px; line-height:1.6; position:relative;}
+.cycle li + li{border-top:1px dashed var(--line);}
+.cycle li b{
+  flex:none; width:22px; height:22px; border-radius:50%; margin-top:1px;
+  background:linear-gradient(135deg,var(--grad-a),var(--grad-b)); color:#fff; font-size:12px; display:grid; place-items:center;
+}
+.plan p.loop{margin-top:8px; font-size:13px; font-weight:700; color:var(--grad-a); text-align:center;}
 .plan .aside{margin-top:10px; font-size:13.5px; background:#fff; border-radius:12px; padding:10px 12px; color:var(--ink-soft);}
 
 .send{margin-top:16px; text-align:center;}
@@ -181,9 +195,9 @@ details.msg pre{
           <path d="M46.5 50.5l4 4 7-8" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      <p class="eyebrow">国家試験に向けて</p>
+      <p class="eyebrow">MBTI × 国家試験</p>
       <h1><span class="hl">あなたに合う</span><br>勉強のしかた診断</h1>
-      <p class="lead">がんばり方は、人によって違います。<br>9つの質問で、<span class="nb">あなたに合うやり方を</span><span class="nb">見つけましょう。</span></p>
+      <p class="lead">がんばり方は、人によって違います。<br>MBTIと10の質問で、<span class="nb">あなたに合うやり方を</span><span class="nb">見つけましょう。</span></p>
       <div class="chips"><span>約1分</span><span>登録なし</span><span>無料</span></div>
       <button class="btn main" id="start" type="button">診断をはじめる</button>
       <p class="note">結果は、LINEで担任に送ることができます</p>
@@ -219,12 +233,19 @@ var CONFIG = {
 
 /* ============================================================
    質問
-   x … サポートの範囲。＋なら全体を任せたい（サブスクWAGON）、
-       −なら必要なところだけ（対面講義）
+   x … 誰が選ぶか。＋なら何を見て次に何をするかを決めてほしい（サブスクWAGON）、
+       −なら自分で選べる（対面講義）
    y … 学び方。＋なら自分のペースで毎日、−なら講師の前で・まとめて
    short … LINEに送る文面での表記
    ============================================================ */
 var QUESTIONS = [
+  // MBTIは判定（x/y）には使わない。結果画面の一言と、担任との会話のきっかけにだけ使う
+  { id:'mbti', q:'あなたのMBTIは？', sub:'わからなければ「わからない」でだいじょうぶです', grid:4,
+    opts:['INTJ','INTP','ENTJ','ENTP','INFJ','INFP','ENFJ','ENFP',
+          'ISTJ','ISFJ','ESTJ','ESFJ','ISTP','ISFP','ESTP','ESFP']
+      .map(function(m){ return { t:m, mbti:m }; })
+      .concat([{ t:'わからない', short:'わからない', wide:true }])
+  },
   { id:'exam', q:'国家試験を受けるのは、いつですか？',
     opts:[
       { t:'次の国試（いちばん近い回）', short:'次の国試' },
@@ -232,12 +253,12 @@ var QUESTIONS = [
       { t:'もっと先',                   short:'もっと先' },
       { t:'一度受けたことがある',       short:'再受験' }
     ]},
-  { id:'start', q:'勉強を始めようとすると、どうなりがちですか？',
+  { id:'start', q:'いまの勉強の進め方に、いちばん近いのは？',
     opts:[
-      { t:'何から手をつければいいか、迷ってしまう',   short:'何からやるか迷う', x:2 },
-      { t:'計画は立てるけれど、続かない',             short:'計画が続かない',   x:1 },
-      { t:'やることは決まっていて、時間が足りない',   short:'時間が足りない',   x:-1 },
-      { t:'自分で決めて、それなりに進められている',   short:'自分で進められている', x:-2 }
+      { t:'何から手をつければいいか、決められない',     short:'何からやるか決められない', x:2 },
+      { t:'計画は立てるけれど、続かない',               short:'計画が続かない',   x:1 },
+      { t:'やることは決まっているけれど、時間が足りない', short:'時間が足りない',   x:-1 },
+      { t:'自分でやることを決めて、進められている',     short:'自分で決めて進められている', x:-2 }
     ]},
   { id:'range', q:'不安な分野は、どのくらいありますか？',
     opts:[
@@ -246,12 +267,12 @@ var QUESTIONS = [
       { t:'まだ、よくわからない',               short:'まだわからない' },
       { t:'苦手な分野が2〜3個、はっきりしている', short:'苦手が2〜3個に絞れている', x:-2 }
     ]},
-  { id:'review', q:'模試や過去問を解いたあと、どうしていますか？',
+  { id:'review', q:'動画や参考書で勉強したあと、どうしていますか？',
     opts:[
-      { t:'点数を見て、そのままにしがち',             short:'そのままにしがち', x:2 },
-      { t:'解説は読むけれど、また同じところを間違える', short:'また同じところを間違える', x:1 },
-      { t:'まだ模試や過去問を解いたことがない',       short:'まだ解いていない' },
-      { t:'間違えた分野を確かめて、そこを復習している', short:'間違えた分野を復習している', x:-2 }
+      { t:'見たり読んだりして、そのまま終わりにしがち',   short:'見て終わりにしがち', x:2 },
+      { t:'次に何をやればいいか、わからなくなる',         short:'次に何をやるかわからない', x:1 },
+      { t:'まだ、あまり勉強を始めていない',               short:'まだ始めていない' },
+      { t:'問題を解いて、できなかったところを復習している', short:'問題を解いて復習している', x:-2 }
     ]},
   { id:'ask', q:'わからないところがあったら、どうしたいですか？',
     opts:[
@@ -274,7 +295,7 @@ var QUESTIONS = [
       { t:'日によってばらばら',                 short:'日によってばらばら', y:-1 },
       { t:'休みの日に、まとめて',               short:'休みの日にまとめて', y:-2 }
     ]},
-  { id:'venue', q:'通いやすい場所はありますか？', sub:'WAGONの対面講義を開いている会場です', grid:true,
+  { id:'venue', q:'通いやすい場所はありますか？', sub:'WAGONの対面講義を開いている会場です', grid:2,
     opts:[
       { t:'埼玉' }, { t:'東京' }, { t:'神奈川' },
       { t:'名古屋' }, { t:'大阪' }, { t:'福岡' },
@@ -305,12 +326,12 @@ var TYPES = {
     color:['#DDF2FB','#1878C4'],
     body:'何から手をつけるかが決まれば、毎日こつこつ進められるタイプです。いま足りないのは、やる気ではなく「今日はこれをやる」が決まっている状態です。',
     points:[
-      '範囲を自分で選ぶより、順番の決まった講義を最初から進める',
+      '見るところを自分で探すより、決めてもらったところから始める',
       '1日の量は少なくていいので、毎日同じ時間に続ける',
       'わからないところは、その日のうちに聞いて解消する'
     ],
     plan:'subsc',
-    planText:'講義動画が順番どおりにそろっていて、わからないところはLINEで何度でも質問できます。担任と「今日やること」を決めながら進められます。'
+    planText:'「今日はここを見る」が、いつも担任から届きます。何から手をつけるか迷う時間が、なくなります。'
   },
   // 全体を任せたい × 講師の前で
   rebuild: {
@@ -324,7 +345,7 @@ var TYPES = {
       'わからないまま、次の分野に進まない'
     ],
     plan:'subsc',
-    planText:'解剖生理から疾患まで、順番に学べる講義動画がそろっています。生配信のLIVE教室では、講師にその場で質問もできます。'
+    planText:'わからないところの原因が手前の単元にあれば、担任がそこまでさかのぼって、見るところを示します。解剖生理の土台から、順番につなぎ直せます。'
   },
   // 必要なところだけ × 自分のペースで毎日
   target: {
@@ -356,9 +377,28 @@ var TYPES = {
   }
 };
 
+/* MBTIの E/I と J/P の組み合わせで、結果画面に添える一言。
+   判定は変えず、「勉強のしかた」への付け足しとして出す。
+   MBTIから学び方を言い当てる根拠はないので、言い切らない（「〜かもしれません」）。
+   お楽しみ・会話のきっかけという位置づけを崩さないこと */
+var MBTI_TIPS = {
+  EJ:'人と一緒に予定を決めると、進めやすいかもしれません。いっしょに勉強する日を先に決めてみるのも、ひとつの手です。',
+  EP:'人と話しながら覚えるほうが、頭に残りやすいかもしれません。予定は細かく決めすぎないほうが続く、という人もいます。',
+  IJ:'ひとりで振り返る時間があると、理解が深まりやすいかもしれません。その時間を先に予定に入れてみるのも、ひとつの手です。',
+  IP:'ひとりで振り返る時間があると、理解が深まりやすいかもしれません。やる順番は気分で選んでも、その週の範囲だけ決めておくと安心です。'
+};
+
 var PLANS = {
-  subsc: { name:'サブスクWAGON', lbl:'まるごとサポートしてもらう' },
-  venue: { name:'対面講義',       lbl:'必要なところだけ選ぶ' }
+  // サブスクWAGONは「動画が見放題」ではなく、「何を見て、見たあと何をするかを担任が決める」サービス。
+  // 対面講義との違いは範囲の広さではなく、誰が選んで、そのあと誰が見届けるか
+  subsc: { name:'サブスクWAGON', lbl:'見るところを、担任が決めてくれる',
+    steps:[
+      'わからないところを、LINEで担任に送る',
+      '担任から「この動画の、ここを見てください」と届く',
+      '見終わったら、その場面の確認問題が届く',
+      '解けたら、次に見るところへ進む'
+    ]},
+  venue: { name:'対面講義',       lbl:'受ける回を、自分で選ぶ' }
 };
 
 var ICONS = {
@@ -416,7 +456,7 @@ function renderQ(){
     '<p class="num">Q' + (qi + 1) + '</p>' +
     '<h2>' + esc(q.q) + '</h2>' +
     (q.sub ? '<p class="sub">' + esc(q.sub) + '</p>' : '') +
-    '<div class="opts' + (q.grid ? ' grid2' : '') + '">' +
+    '<div class="opts' + (q.grid ? ' grid' + q.grid : '') + '">' +
       q.opts.map(function(o, i){
         return '<button type="button" class="opt' + (o.wide ? ' wide' : '') +
                (answers[qi] === i ? ' on' : '') + '" data-i="' + i + '">' + esc(o.t) + '</button>';
@@ -470,7 +510,7 @@ function buildMessage(t){
   QUESTIONS.forEach(function(q, i){
     var o = q.opts[answers[i]];
     var label = {
-      exam:'国試', start:'勉強を始めると', range:'不安な分野', review:'模試や過去問のあと',
+      mbti:'MBTI', exam:'国試', start:'勉強の進め方', range:'不安な分野', review:'勉強したあと',
       ask:'わからないとき', focus:'はかどるとき', time:'勉強の時間', venue:'通いやすい会場', member:'WAGONの利用'
     }[q.id];
     lines.push(label + '：' + (o.short || o.t));
@@ -486,11 +526,13 @@ function showResult(){
   var plan = PLANS[t.plan];
   var far = !!picked('venue').far;
   var member = !!picked('member').subsc;
+  var mbti = picked('mbti').mbti || '';
+  var mbtiTip = mbti ? MBTI_TIPS[mbti.charAt(0) + mbti.charAt(3)] : '';
   var msg = buildMessage(t);
   var lineUrl = 'https://line.me/R/oaMessage/' + encodeURIComponent(CONFIG.lineId) + '/?' + encodeURIComponent(msg);
 
   track('diag_complete', {
-    diag_type: r.key, diag_plan: t.plan,
+    diag_type: r.key, diag_plan: t.plan, mbti: mbti || 'unknown',
     exam_timing: picked('exam').short, venue_far: far ? 'yes' : 'no', member: picked('member').short
   });
 
@@ -516,6 +558,10 @@ function showResult(){
     '<div class="card sec">' +
       '<h2>あなたの勉強のしかた</h2>' +
       '<p>' + esc(t.body) + '</p>' +
+      (mbtiTip
+        ? '<div class="mbti"><p class="lbl">' + mbti + 'のあなたへ</p><p>' + esc(mbtiTip) + '</p>' +
+            '<p class="fine">MBTIは参考程度に。あなたに合うやり方は、担任といっしょに確かめていきましょう。</p></div>'
+        : '') +
     '</div>' +
 
     '<div class="card sec">' +
@@ -531,6 +577,12 @@ function showResult(){
         '<p class="lbl">' + esc(plan.lbl) + '</p>' +
         '<p class="name">' + esc(plan.name) + '</p>' +
         '<p>' + esc(t.planText) + '</p>' +
+        (plan.steps
+          ? '<ol class="cycle">' +
+              plan.steps.map(function(s, i){ return '<li><b>' + (i + 1) + '</b><span>' + esc(s) + '</span></li>'; }).join('') +
+            '</ol>' +
+            '<p class="loop">わからないことがなくなるまで、これをくり返します。</p>'
+          : '') +
         (aside ? '<p class="aside">' + esc(aside) + '</p>' : '') +
       '</div>' +
     '</div>' +
