@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#F3F8FA">
 <title>MBTI×あなたに合う勉強のしかた診断｜ナース・ライセンススクール WAGON</title>
-<meta name="description" content="MBTIと10の質問に答えるだけ。国家試験に向けて、あなたに合う勉強のしかたがわかります。">
+<meta name="description" content="MBTIと9つの質問に答えるだけ。国家試験に向けて、あなたに合う勉強のしかたがわかります。">
 
 <!-- ===== 計測タグ =====
   公式LINEのリッチメニューから開く前提のページ（広告LPではない）。
@@ -173,6 +173,19 @@ details.msg pre{
   white-space:pre-wrap; font-family:inherit; background:var(--bg); border-radius:12px;
   padding:12px 14px; margin:10px 0; font-size:13px; line-height:1.7; color:var(--ink-soft);
 }
+.pf{text-align:left; background:var(--bg); border-radius:18px; padding:16px 14px; margin:0 0 18px; display:grid; gap:16px;}
+.pf-head{margin:0; font-size:13.5px; font-weight:700; color:var(--ink); text-align:center;}
+.pf-lbl{margin:0 0 8px; font-size:13.5px; font-weight:700; color:var(--ink);}
+.pf-lbl small{font-size:12px; font-weight:500; color:var(--ink-dim); margin-left:8px;}
+.pf-chips{display:flex; flex-wrap:wrap; gap:8px;}
+.chip{
+  border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); border-radius:999px;
+  padding:7px 13px; font-size:13.5px; line-height:1.5; cursor:pointer; text-align:left;
+  transition:border-color .15s ease, background .15s ease, color .15s ease;
+}
+.chip[aria-pressed="true"]{border-color:var(--grad-a); background:var(--sky-soft); color:var(--grad-a); font-weight:700;}
+.chip:focus-visible, .opt:focus-visible, .btn:focus-visible{outline:3px solid var(--sky); outline-offset:2px;}
+.pf-note{margin:-6px 0 0; font-size:12px; color:var(--ink-dim); text-align:center;}
 .copy{
   width:100%; border:1.5px solid var(--line); background:#fff; border-radius:999px;
   padding:11px; font-size:14px; cursor:pointer; color:var(--ink-soft);
@@ -197,7 +210,7 @@ details.msg pre{
       </div>
       <p class="eyebrow">MBTI × 国家試験</p>
       <h1><span class="hl">あなたに合う</span><br>勉強のしかた診断</h1>
-      <p class="lead">がんばり方は、人によって違います。<br>MBTIと10の質問で、<span class="nb">あなたに合うやり方を</span><span class="nb">見つけましょう。</span></p>
+      <p class="lead">がんばり方は、人によって違います。<br>MBTIと9つの質問で、<span class="nb">あなたに合うやり方を</span><span class="nb">見つけましょう。</span></p>
       <div class="chips"><span>約1分</span><span>登録なし</span><span>無料</span></div>
       <button class="btn main" id="start" type="button">診断をはじめる</button>
       <p class="note">結果は、LINEで担任に送ることができます</p>
@@ -246,13 +259,6 @@ var QUESTIONS = [
       .map(function(m){ return { t:m, mbti:m }; })
       .concat([{ t:'わからない', short:'わからない', wide:true }])
   },
-  { id:'exam', q:'国家試験を受けるのは、いつですか？',
-    opts:[
-      { t:'次の国試（いちばん近い回）', short:'次の国試' },
-      { t:'その次の国試',               short:'その次の国試' },
-      { t:'もっと先',                   short:'もっと先' },
-      { t:'一度受けたことがある',       short:'再受験' }
-    ]},
   { id:'start', q:'いまの勉強の進め方に、いちばん近いのは？',
     opts:[
       { t:'何から手をつければいいか、決められない',     short:'何からやるか決められない', x:2 },
@@ -500,6 +506,63 @@ function judge(){
   return { key:key, x:x, y:y };
 }
 
+/* ============================================================
+   担任に送る前に、タップで選んでもらう項目（すべて任意）
+   文字入力はさせない。選ばなかった項目は送る文面に出さない
+   multi … 複数選べる
+   when  … ほかの項目がこの値のときだけ出す
+   ============================================================ */
+var PROFILE = [
+  { id:'grade', label:'学年',
+    opts:['1年生','2年生','3年生（専門学校・短大）','3年生（大学）','4年生','既卒'] },
+  { id:'worry', label:'困っていること', multi:true, sub:'いくつでも選べます',
+    opts:['何から始めればいいか分からない','覚えてもすぐ忘れる','問題になると解けない',
+          '模試の点数が伸びない','苦手な分野がある','勉強の時間が取れない','実習や課題で手いっぱい'] },
+  // 模試は「WAGONの模試」と「WAGON以外の模試」を分けて聞く。受けた方だけ、直近の点数を選ぶ。
+  // 必修は50点満点で合格基準は8割（40点）。一般・状況設定は250点満点で、合格ラインは年によって6割前後
+  { id:'wagonMock', label:'WAGONの模試',
+    opts:['受けたことがある','受けたことがない'] },
+  { id:'wagonHisshu', label:'WAGONの模試の点数（必修）', when:{ wagonMock:'受けたことがある' },
+    opts:['34点以下','35〜39点','40〜44点','45点以上','覚えていない'] },
+  { id:'wagonIppan', label:'WAGONの模試の点数（一般・状況設定）', when:{ wagonMock:'受けたことがある' },
+    opts:['129点以下','130〜149点','150〜169点','170点以上','覚えていない'] },
+  { id:'otherMock', label:'WAGON以外の模試',
+    opts:['受けたことがある','受けたことがない'] },
+  { id:'otherHisshu', label:'WAGON以外の模試の点数（必修）', when:{ otherMock:'受けたことがある' },
+    opts:['34点以下','35〜39点','40〜44点','45点以上','覚えていない'] },
+  { id:'otherIppan', label:'WAGON以外の模試の点数（一般・状況設定）', when:{ otherMock:'受けたことがある' },
+    opts:['129点以下','130〜149点','150〜169点','170点以上','覚えていない'] }
+];
+var profile = {};   // { grade:'3年生（大学）', worry:['…','…'], … }
+
+function profileVisible(f){
+  if (!f.when) return true;
+  return Object.keys(f.when).every(function(k){ return profile[k] === f.when[k]; });
+}
+
+function profileLines(){
+  var v = function(id){
+    var f = PROFILE.filter(function(p){ return p.id === id; })[0];
+    var x = profile[id];
+    if (!profileVisible(f) || x == null || (x.join && !x.length)) return '';
+    return x.join ? x.join('、') : x;
+  };
+  var lines = [];
+  if (v('grade'))  lines.push('学年：' + v('grade'));
+  if (v('worry'))  lines.push('困っていること：' + v('worry'));
+  // 「WAGONの模試：必修 35〜39点／一般・状況設定 150〜169点」の形。点数を選ばなければ受験の有無だけ
+  [['wagon', 'WAGONの模試'], ['other', 'WAGON以外の模試']].forEach(function(m){
+    var took = v(m[0] + 'Mock');
+    if (!took) return;
+    var scores = [
+      v(m[0] + 'Hisshu') ? '必修 ' + v(m[0] + 'Hisshu') : '',
+      v(m[0] + 'Ippan')  ? '一般・状況設定 ' + v(m[0] + 'Ippan') : ''
+    ].filter(Boolean).join('／');
+    lines.push(m[1] + '：' + (scores || took));
+  });
+  return lines;
+}
+
 function buildMessage(t){
   var lines = [
     CONFIG.msgTitle,
@@ -507,10 +570,12 @@ function buildMessage(t){
     '合う学び方：' + PLANS[t.plan].name,
     ''
   ];
+  var pl = profileLines();
+  if (pl.length) lines = lines.concat(pl, ['']);
   QUESTIONS.forEach(function(q, i){
     var o = q.opts[answers[i]];
     var label = {
-      mbti:'MBTI', exam:'国試', start:'勉強の進め方', range:'不安な分野', review:'勉強したあと',
+      mbti:'MBTI', start:'勉強の進め方', range:'不安な分野', review:'勉強したあと',
       ask:'わからないとき', focus:'はかどるとき', time:'勉強の時間', venue:'通いやすい会場', member:'WAGONの利用'
     }[q.id];
     lines.push(label + '：' + (o.short || o.t));
@@ -528,12 +593,13 @@ function showResult(){
   var member = !!picked('member').subsc;
   var mbti = picked('mbti').mbti || '';
   var mbtiTip = mbti ? MBTI_TIPS[mbti.charAt(0) + mbti.charAt(3)] : '';
+  profile = {};
   var msg = buildMessage(t);
   var lineUrl = 'https://line.me/R/oaMessage/' + encodeURIComponent(CONFIG.lineId) + '/?' + encodeURIComponent(msg);
 
   track('diag_complete', {
     diag_type: r.key, diag_plan: t.plan, mbti: mbti || 'unknown',
-    exam_timing: picked('exam').short, venue_far: far ? 'yes' : 'no', member: picked('member').short
+    venue_far: far ? 'yes' : 'no', member: picked('member').short
   });
 
   // 対面講義が合うのに会場が遠い人／すでにサブスク受講中の人には、ひとこと添える
@@ -590,6 +656,20 @@ function showResult(){
     '<div class="card send">' +
       '<h2>この結果を、<br>担任に送ってみませんか</h2>' +
       '<p class="body">担任があなたの結果を読んで、<b>いまの状況に合わせた具体的な進め方</b>をLINEでお返事します。</p>' +
+      '<div class="pf">' +
+        '<p class="pf-head">あてはまるものをタップすると、いっしょに送れます</p>' +
+        PROFILE.map(function(f){
+          return '<div class="pf-row" data-f="' + f.id + '"' + (profileVisible(f) ? '' : ' hidden') + '>' +
+                   '<p class="pf-lbl">' + esc(f.label) + (f.sub ? '<small>' + esc(f.sub) + '</small>' : '') + '</p>' +
+                   '<div class="pf-chips">' +
+                     f.opts.map(function(o){
+                       return '<button type="button" class="chip" aria-pressed="false" data-v="' + esc(o) + '">' + esc(o) + '</button>';
+                     }).join('') +
+                   '</div>' +
+                 '</div>';
+        }).join('') +
+        '<p class="pf-note">選ばなくても送れます</p>' +
+      '</div>' +
       '<a class="btn line" id="send" href="' + lineUrl + '">LINEで担任に送る</a>' +
       '<p class="how">LINEが開いたら、そのまま送信してください</p>' +
       '<details class="msg">' +
@@ -604,8 +684,54 @@ function showResult(){
 
   show('s-result');
 
+  // 選ぶたびに、送る文面とLINEのリンクを作り直す
+  function refresh(){
+    msg = buildMessage(t);
+    $('send').href = 'https://line.me/R/oaMessage/' + encodeURIComponent(CONFIG.lineId) + '/?' + encodeURIComponent(msg);
+    $('msg').textContent = msg;
+    Array.prototype.forEach.call(document.querySelectorAll('.pf-row'), function(row){
+      var f = PROFILE.filter(function(p){ return p.id === row.getAttribute('data-f'); })[0];
+      row.hidden = !profileVisible(f);
+    });
+  }
+
+  document.querySelector('.pf').addEventListener('click', function(e){
+    var chip = e.target.closest('.chip');
+    if (!chip) return;
+    var row = chip.closest('.pf-row');
+    var f = PROFILE.filter(function(p){ return p.id === row.getAttribute('data-f'); })[0];
+    var val = chip.getAttribute('data-v');
+    var on = chip.getAttribute('aria-pressed') !== 'true';
+
+    if (f.multi){
+      var list = (profile[f.id] || []).filter(function(x){ return x !== val; });
+      if (on) list.push(val);
+      // 選択肢の並び順で送る
+      profile[f.id] = f.opts.filter(function(o){ return list.indexOf(o) !== -1; });
+      chip.setAttribute('aria-pressed', on ? 'true' : 'false');
+    } else {
+      // もう一度押すと選択を外せる
+      profile[f.id] = on ? val : null;
+      Array.prototype.forEach.call(row.querySelectorAll('.chip'), function(c){
+        c.setAttribute('aria-pressed', (on && c === chip) ? 'true' : 'false');
+      });
+    }
+    refresh();
+  });
+
+  function profileParams(){
+    return {
+      grade: profile.grade || 'none',
+      wagon_mock: profile.wagonMock || 'none',
+      other_mock: profile.otherMock || 'none',
+      worry_count: (profile.worry || []).length
+    };
+  }
+
   $('send').addEventListener('click', function(){
-    track('diag_send', { method:'line', diag_type:r.key, diag_plan:t.plan });
+    var p = profileParams();
+    p.method = 'line'; p.diag_type = r.key; p.diag_plan = t.plan;
+    track('diag_send', p);
   });
   $('copy').addEventListener('click', function(){
     var btn = this;
