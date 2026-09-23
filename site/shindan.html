@@ -292,6 +292,15 @@ var ENEMIES = {
   }
 };
 
+/* Q2で「今日は調子がいい」を選んだ日の結果。敵は出さず、腕試しの1問へ */
+var NO_ENEMY = {
+  name:'今日は|敵なし', color:['#FFF6DC','#C8901C'],
+  kind:'勉強をジャマするものが、見当たらない日',
+  line:'ジャマするやつは、今日はいないみたいです。',
+  plan:'調子のいい日は、少し難しい1問で腕試し',
+  weak:'解ける日に、少し上の問題に当たっておくと、本番で崩れにくくなります。'
+};
+
 /* 同点のときに優先する順（Q4→Q3→Q5→Q2 で、その問で選んだ敵を優先したあとの最後の決め手） */
 var ENEMY_ORDER = ['scroll','yama','maigo','matome','zombie','tanuki'];
 
@@ -314,7 +323,9 @@ var QUESTIONS = [
       { t:'実習や課題で、勉強の時間がない',   short:'時間がない',       p:{ yama:2 } },
       { t:'時間はあるのに、なかなか進まない', short:'なかなか進まない', p:{ scroll:1, maigo:1 } },
       { t:'勉強はしているのに、手応えがない', short:'手応えがない',     p:{ matome:1, zombie:1, tanuki:1 } },
-      { t:'勉強する気分になれない',           short:'気分になれない',   p:{ maigo:1 } }
+      { t:'勉強する気分になれない',           short:'気分になれない',   p:{ maigo:1 } },
+      // 順調な日は敵を出さず、腕試し（正答率50%前後の1問）に進む
+      { t:'今日は調子がいい',                 short:'調子がいい',       none:true }
     ]},
   { id:'before', label:'勉強を始める前', q:'勉強を始める前のあなたは？',
     opts:[
@@ -457,8 +468,19 @@ var ART = {
     '<circle cx="119" cy="118" r="13" fill="none" stroke="#E8505B" stroke-width="4" transform="rotate(10 119 123)"/>' +
     '<path d="M106 138h26" stroke="#8597A8" stroke-width="3" stroke-linecap="round" transform="rotate(10 119 123)"/>'
 };
+// 敵なしの日の絵。旗を立てたたてと、逃げていく敵たちの足あと
+ART.none =
+  '<circle cx="80" cy="84" r="52" fill="#FFE9A8"/>' +
+  '<path d="M80 40 L112 56 V92 C112 112 98 124 80 132 C62 124 48 112 48 92 V56Z" fill="#F2B72E"/>' +
+  '<path d="M80 48 L104 60 V90 C104 105 94 114 80 121 C66 114 56 105 56 90 V60Z" fill="#FFF6DC"/>' +
+  '<path d="M66 86 l10 11 l20 -26" stroke="#0FA37F" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+  '<path d="M24 40 l8 -18 l8 18 l18 8 l-18 8 l-8 18 l-8 -18 l-18 -8Z" fill="#F2C94C"/>' +
+  '<path d="M130 28 l5 -11 l5 11 l11 5 l-11 5 l-5 11 l-5 -11 l-11 -5Z" fill="#F2C94C"/>' +
+  '<path d="M126 120 l4 -9 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4Z" fill="#F2C94C"/>';
+
 function art(key){
-  return '<svg viewBox="0 0 160 160" role="img" aria-label="' + ENEMIES[key].name.replace('|', '') + '">' + ART[key] + '</svg>';
+  var name = key ? ENEMIES[key].name : NO_ENEMY.name;
+  return '<svg viewBox="0 0 160 160" role="img" aria-label="' + name.replace('|', '') + '">' + ART[key || 'none'] + '</svg>';
 }
 
 /* ============================================================
@@ -594,13 +616,14 @@ function profileLines(){
 /* 担任はこのメッセージを見て、問題DBから「今日の分野」の1問を選び、
    返信DBの「敵ごとの解き方」と「会員向けの動画」を添えて返す */
 function buildMessage(key){
-  var e = ENEMIES[key];
   var lines = [
     CONFIG.msgTitle,
-    '今日の敵：' + e.name.replace('|', ''),
+    key ? '今日の敵：' + ENEMIES[key].name.replace('|', '') : '今日の敵：なし（腕試し）',
     '今日の分野：' + picked('area').t,
     ''
   ];
+  // 敵なしの日は、正答率50%前後の問題を送る
+  if (!key) lines.splice(3, 0, '問題の希望：正答率50%前後の1問');
   var pl = profileLines();
   if (pl.length) lines = lines.concat(pl, ['']);
   lines.push('MBTI：' + (picked('mbti').mbti || 'わからない'));
@@ -609,7 +632,7 @@ function buildMessage(key){
     var o = q.opts[answers[i]];
     lines.push(q.label + '：' + (o.short || o.t));
   });
-  lines.push('', 'この敵を倒す、今日の1問をください。');
+  lines.push('', key ? 'この敵を倒す、今日の1問をください。' : '腕試しの1問をください。');
   return lines.join('\n');
 }
 
@@ -618,38 +641,41 @@ function buildMessage(key){
    ============================================================ */
 function showResult(){
   $('bar').style.width = '100%';
-  var key = judge();
-  var e = ENEMIES[key];
+  // Q2で「今日は調子がいい」を選んだ日は、敵を出さずに腕試しにする
+  var key = picked('today').none ? '' : judge();
+  var e = key ? ENEMIES[key] : NO_ENEMY;
   var mbti = picked('mbti').mbti || '';
   var tip = mbti ? MBTI_TIPS[mbti.charAt(0) + mbti.charAt(3)] : '';
   var area = picked('area').t;
   profile = {};
 
-  track('diag_complete', { enemy:key, mbti: mbti || 'unknown', area: area });
+  track('diag_complete', { enemy: key || 'none', mbti: mbti || 'unknown', area: area });
 
   $('s-result').innerHTML =
     '<div class="card enemy">' +
-      '<p class="eyebrow">今日のあなたの敵は…</p>' +
+      '<p class="eyebrow">' + (key ? '今日のあなたの敵は…' : '今日のあなたは…') + '</p>' +
       '<div class="art pop" style="background:' + e.color[0] + '">' + art(key) + '</div>' +
       '<h1 style="color:' + e.color[1] + '">' + nb(e.name) + '</h1>' +
       '<p class="say">「' + esc(e.line) + '」</p>' +
-      '<p class="scene"><b>こんなときに現れる</b>' + esc(e.kind) + '</p>' +
-      (tip
+      '<p class="scene"><b>' + (key ? 'こんなときに現れる' : 'こんな日です') + '</b>' + esc(e.kind) + '</p>' +
+      (tip && key
         ? '<div class="mbti"><p class="lbl">' + mbti + 'のあなたへ</p><p>' + esc(tip) + '</p>' +
-            '<p class="fine">MBTIは参考程度に。今日の敵は、今日の答えから見つけています。</p></div>'
+            '<p class="fine">MBTIは参考程度に。' + (key ? '今日の敵は、今日の答えから見つけています。' : '') + '</p></div>'
         : '') +
     '</div>' +
 
     '<div class="card sec">' +
-      '<h2>今日の作戦</h2>' +
+      '<h2>' + (key ? '今日の作戦' : '今日のおすすめ') + '</h2>' +
       '<p class="plan-main"><span class="hl">' + esc(e.plan) + '</span></p>' +
-      '<p class="weak"><b>倒し方のコツ：</b>' + esc(e.weak) + '</p>' +
+      '<p class="weak"><b>' + (key ? '倒し方のコツ：' : 'ねらい：') + '</b>' + esc(e.weak) + '</p>' +
     '</div>' +
 
     // 問題はページに出さず、LINEで担任から受け取る（LINEに戻ってくる理由にする）
     '<div class="card send">' +
-      '<h2>今日の1問を、<br>担任から受け取る</h2>' +
-      '<p class="body">今日の敵に合わせた<b>' + esc(area) + 'の1問</b>を、倒し方のコツといっしょに、担任がLINEでお送りします。</p>' +
+      '<h2>' + (key ? '今日の1問を、<br>担任から受け取る' : '腕試しの1問を、<br>担任から受け取る') + '</h2>' +
+      '<p class="body">' + (key
+        ? '今日の敵に合わせた<b>' + esc(area) + 'の1問</b>を、倒し方のコツといっしょに、担任がLINEでお送りします。'
+        : '<b>' + esc(area) + 'の、正答率50%前後の1問</b>を、担任がLINEでお送りします。') + '</p>' +
       // サブスクWAGON受講中を選んだ人には出さない（refreshで切りかえる）
       '<p class="subsc" id="subsc">毎日の敵に合わせて、<b>見るところと解く問題を担任が決めてくれる</b>のが、サブスクWAGONです。</p>' +
       '<div class="pf">' +
@@ -710,7 +736,7 @@ function showResult(){
 
   $('send').addEventListener('click', function(){
     track('diag_send', {
-      method:'line', enemy:key, area: area,
+      method:'line', enemy: key || 'none', area: area,
       grade: profile.grade || 'none', wagon_mock: profile.wagonMock || 'none',
       other_mock: profile.otherMock || 'none', member: profile.member || 'none'
     });
@@ -720,7 +746,7 @@ function showResult(){
     var done = function(){
       btn.textContent = 'コピーしました';
       btn.classList.add('done');
-      track('diag_send', { method:'copy', enemy:key });
+      track('diag_send', { method:'copy', enemy: key || 'none' });
     };
     if (navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(msg).then(done, fallback);
