@@ -292,7 +292,7 @@ var ENEMIES = {
   }
 };
 
-/* Q2で「今日は調子がいい」を選んだ日の結果。敵は出さず、腕試しの1問へ */
+/* Q2で「今日は勉強が進んでいる」を選んだ日の結果。敵は出さず、腕試しの1問へ */
 var NO_ENEMY = {
   name:'今日は|敵なし', color:['#FFF6DC','#C8901C'],
   kind:'勉強をジャマするものが、見当たらない日',
@@ -325,7 +325,7 @@ var QUESTIONS = [
       { t:'勉強はしているのに、手応えがない', short:'手応えがない',     p:{ matome:1, zombie:1, tanuki:1 } },
       { t:'勉強する気分になれない',           short:'気分になれない',   p:{ maigo:1 } },
       // 順調な日は敵を出さず、腕試し（正答率50%前後の1問）に進む
-      { t:'今日は調子がいい',                 short:'調子がいい',       none:true }
+      { t:'今日は勉強が進んでいる',           short:'勉強が進んでいる', none:true }
     ]},
   { id:'before', label:'勉強を始める前', q:'勉強を始める前のあなたは？',
     opts:[
@@ -519,7 +519,7 @@ $('start').addEventListener('click', function(){
   show('s-quiz');
   renderQ();
 });
-/* この日に出す質問の並び。「今日は調子がいい」を選んだ日は、
+/* この日に出す質問の並び。「今日は勉強が進んでいる」を選んだ日は、
    敵を決める3問（Q3〜Q5）をとばして、分野の質問へ進む */
 var SKIP_WHEN_NONE = ['before', 'during', 'exam'];
 function flow(){
@@ -665,7 +665,7 @@ function buildMessage(key){
    ============================================================ */
 function showResult(){
   $('bar').style.width = '100%';
-  // Q2で「今日は調子がいい」を選んだ日は、敵を出さずに腕試しにする
+  // Q2で「今日は勉強が進んでいる」を選んだ日は、敵を出さずに腕試しにする
   var key = picked('today').none ? '' : judge();
   var e = key ? ENEMIES[key] : NO_ENEMY;
   var mbti = picked('mbti').mbti || '';
