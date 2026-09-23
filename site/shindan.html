@@ -519,18 +519,37 @@ $('start').addEventListener('click', function(){
   show('s-quiz');
   renderQ();
 });
+/* この日に出す質問の並び。「今日は調子がいい」を選んだ日は、
+   敵を決める3問（Q3〜Q5）をとばして、分野の質問へ進む */
+var SKIP_WHEN_NONE = ['before', 'during', 'exam'];
+function flow(){
+  var t = QUESTIONS[0].id === 'today' ? 0 : QUESTIONS.findIndex(function(q){ return q.id === 'today'; });
+  var a = answers[t];
+  var none = (a != null) && !!QUESTIONS[t].opts[a].none;
+  var list = [];
+  QUESTIONS.forEach(function(q, i){
+    if (none && SKIP_WHEN_NONE.indexOf(q.id) !== -1) return;
+    list.push(i);
+  });
+  return list;
+}
+
 $('back').addEventListener('click', function(){
-  if (qi > 0){ qi--; renderQ(); }
+  var list = flow();
+  var pos = list.indexOf(qi);
+  if (pos > 0){ qi = list[pos - 1]; renderQ(); }
 });
 
 function renderQ(){
   var q = QUESTIONS[qi];
-  $('bar').style.width = (qi / QUESTIONS.length * 100) + '%';
-  $('count').textContent = (qi + 1) + '/' + QUESTIONS.length;
-  $('back').disabled = (qi === 0);
+  var list = flow();
+  var pos = list.indexOf(qi);
+  $('bar').style.width = (pos / list.length * 100) + '%';
+  $('count').textContent = (pos + 1) + '/' + list.length;
+  $('back').disabled = (pos === 0);
   var el = $('q');
   el.innerHTML =
-    '<p class="num">Q' + (qi + 1) + '</p>' +
+    '<p class="num">Q' + (pos + 1) + '</p>' +
     '<h2>' + esc(q.q) + '</h2>' +
     (q.sub ? '<p class="sub">' + esc(q.sub) + '</p>' : '') +
     '<div class="opts' + (q.grid ? ' grid' + q.grid : '') + '">' +
@@ -552,7 +571,9 @@ $('q').addEventListener('click', function(e){
   b.classList.add('on');
   setTimeout(function(){
     busy = false;
-    if (qi < QUESTIONS.length - 1){ qi++; renderQ(); }
+    var list = flow();
+    var pos = list.indexOf(qi);
+    if (pos < list.length - 1){ qi = list[pos + 1]; renderQ(); }
     else { showResult(); }
   }, 220);
 });
@@ -562,14 +583,17 @@ $('q').addEventListener('click', function(e){
    ============================================================ */
 function picked(id){
   for (var i = 0; i < QUESTIONS.length; i++){
-    if (QUESTIONS[i].id === id) return QUESTIONS[i].opts[answers[i]];
+    // とばした質問は空の答えを返す（呼び出し側で .p や .none を見るだけにする）
+    if (QUESTIONS[i].id === id) return (answers[i] == null) ? {} : QUESTIONS[i].opts[answers[i]];
   }
+  return {};
 }
 
 function judge(){
   var score = {};
   ENEMY_ORDER.forEach(function(k){ score[k] = 0; });
   QUESTIONS.forEach(function(q, i){
+    if (answers[i] == null) return;   // とばした質問は数えない
     var p = q.opts[answers[i]].p || {};
     Object.keys(p).forEach(function(k){ score[k] += p[k]; });
   });
@@ -628,7 +652,7 @@ function buildMessage(key){
   if (pl.length) lines = lines.concat(pl, ['']);
   lines.push('MBTI：' + (picked('mbti').mbti || 'わからない'));
   QUESTIONS.forEach(function(q, i){
-    if (q.id === 'mbti' || q.id === 'area') return;
+    if (q.id === 'mbti' || q.id === 'area' || answers[i] == null) return;   // とばした質問は出さない
     var o = q.opts[answers[i]];
     lines.push(q.label + '：' + (o.short || o.t));
   });
