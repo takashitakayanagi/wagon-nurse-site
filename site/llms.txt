@@ -5,10 +5,10 @@
 ## サービス
 
 - [トップページ](https://wagon-nurse.com/): WAGONの特徴、無料模試、最新のお知らせ
-- [サービスとプラン](https://wagon-nurse.com/plan.html): 料金プラン一覧(無料・オンラインサロン月額1,000円・サブスクWAGON月額20,000円、いずれも税込)
-- [サブスクWAGON](https://wagon-nurse.com/subscription.html): WEB教室・LIVE教室・データ問80%講座・模試解説講義が月額1つで使い放題のプラン
-- [WEB教室](https://wagon-nurse.com/web_class.html): オンデマンド動画講義。サブスクWAGONに含まれ、単体購入は不可
-- [LIVE教室](https://wagon-nurse.com/live_class.html): 月替わりテーマのリアルタイム生配信講義(1回500円〜、サブスクWAGON会員は追加料金なし)
+- [サービスとプラン](https://wagon-nurse.com/plan.html): 料金プラン一覧(無料・オンラインサロン月額1,000円・バディWAGON月額20,000円、いずれも税込)
+- [バディWAGON](https://wagon-nurse.com/subscription.html): 看護学生向けの月額プラン(月額20,000円・税込、旧名サブスクWAGON)。WEB教室・LIVE教室・データ問80%講座・模試解説講義の4つが使え、WAGONの担任が相棒としてLINEで毎日の勉強をいっしょに進める。見る動画の区間を分・秒まで指定し、見終わったら確認問題を出す。就職活動や日常の相談もできる
+- [WEB教室](https://wagon-nurse.com/web_class.html): オンデマンド動画講義。バディWAGONに含まれ、単体購入は不可
+- [LIVE教室](https://wagon-nurse.com/live_class.html): 月替わりテーマのリアルタイム生配信講義(1回500円〜、バディWAGON会員は追加料金なし)
 - [対面講義](https://wagon-nurse.com/venue_class.html): 埼玉・東京・神奈川・名古屋・大阪・福岡の全国6会場で通年開催(1回7,700円〜)
 - [模試解説講義](https://wagon-nurse.com/moshi_kaisetsu.html): 模試の解き方・考え方・重要ポイントを解説する買い切り講義(1,500円〜)
 
