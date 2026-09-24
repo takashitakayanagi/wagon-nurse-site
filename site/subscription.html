@@ -74,10 +74,17 @@ src="https://www.facebook.com/tr?id=2817935241910493&ev=PageView&noscript=1"
 ]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","url":"https://wagon-nurse.com/subscription.html","dateModified":"2026-09-24","speakable":{"@type":"SpeakableSpecification","cssSelector":[".page-hero .sub",".faq-a"]}}
+{"@context":"https://schema.org","@type":"WebPage","url":"https://wagon-nurse.com/subscription.html","dateModified":"2026-09-24","speakable":{"@type":"SpeakableSpecification","cssSelector":[".page-hero-sub",".faq-a"]}}
 </script>
 <style>
-  .page-hero .formerly{ position:relative; z-index:2; display:inline-block; margin-top:14px; padding:3px 12px; border-radius:999px; background:rgba(255,255,255,.85); color:var(--ink-soft); font-size:12px; font-weight:700; }
+  .page-hero.custom-img{
+    background:url('/assets/img/subscription-hero.jpg') center/cover no-repeat;
+    aspect-ratio:1600/800; padding:0; max-width:1600px; margin:0 auto 40px;
+  }
+  .page-hero.custom-img::before, .page-hero.custom-img::after{ content:none; }
+  main.page .page-hero-sub{ text-align:center; font-size:14px; color:var(--ink-soft); max-width:680px; margin:18px auto 0; word-break:keep-all; overflow-wrap:break-word; }
+  .formerly{ text-align:center; margin:10px 0 0; }
+  .formerly span{ display:inline-block; padding:3px 12px; border-radius:999px; background:#EAF8FC; color:var(--ink-soft); font-size:12px; font-weight:700; }
   .svc-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px; }
   @media (max-width:640px){ .svc-grid{ grid-template-columns:1fr; } }
   .svc{ background:var(--card-bg); border:1px solid var(--line); border-radius:14px; padding:16px 18px; box-shadow:var(--card-shadow); font-size:13.5px; color:var(--ink-soft); }
@@ -135,11 +142,11 @@ src="https://www.facebook.com/tr?id=2817935241910493&ev=PageView&noscript=1"
 </header>
 
 <main class="page has-hero">
-  <div class="page-hero">
-    <h1>バディWAGON</h1>
-    <p class="sub">サブスクWAGONで使えていたものは、すべてそのまま。そこに、担任のほうからLINEで関わる仕組みが加わりました。</p>
-    <span class="formerly">旧サブスクWAGON</span>
+  <div class="page-hero custom-img">
+    <h1 style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;">バディWAGON</h1>
   </div>
+  <p class="page-hero-sub">サブスクWAGONで使えていたものは、すべてそのまま。そこに、担任のほうからLINEで関わる仕組みが加わりました。</p>
+  <p class="formerly"><span>旧サブスクWAGON</span></p>
 
   <section>
     <h2 class="hl">使えるもの</h2>
