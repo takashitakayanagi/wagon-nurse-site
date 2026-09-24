@@ -387,7 +387,7 @@ var PROFILE = [
   { id:'otherIppan', label:'WAGON以外の模試の点数（一般・状況設定）', when:{ otherMock:'受けたことがある' },
     opts:['129点以下','130〜149点','150〜169点','170点以上','覚えていない'] },
   { id:'member', label:'いまWAGONで使っているもの',
-    opts:['無料のもの','対面講義・LIVE教室に参加したことがある','オンラインサロン','バディWAGON（受講中）'] }
+    opts:['無料のもの','対面講義・LIVE教室に参加したことがある','オンラインサロン','サブスクWAGON（受講中）'] }
 ];
 
 /* ============================================================
@@ -701,7 +701,7 @@ function showResult(){
         ? '今日の敵に合わせた<b>' + esc(area) + 'の1問</b>を、倒し方のコツといっしょに、専任スタッフがLINEでお送りします。'
         : '<b>' + esc(area) + 'の、正答率50%前後の1問</b>を、専任スタッフがLINEでお送りします。') + '</p>' +
       // サブスクWAGON受講中を選んだ人には出さない（refreshで切りかえる）
-      '<p class="subsc" id="subsc">毎日の敵に合わせて、<b>見るところと解く問題を相棒が決めてくれる</b>のが、バディWAGONです。</p>' +
+      '<p class="subsc" id="subsc">毎日の敵に合わせて、<b>見るところと解く問題を担任が決めてくれる</b>のが、サブスクWAGONです。</p>' +
       '<div class="pf">' +
         '<p class="pf-head">あてはまるものをタップすると、いっしょに送れます</p>' +
         PROFILE.map(function(f){
@@ -735,7 +735,7 @@ function showResult(){
     msg = buildMessage(key);
     $('send').href = lineHref(msg);
     $('msg').textContent = msg;
-    $('subsc').hidden = (pv('member') === 'バディWAGON（受講中）');
+    $('subsc').hidden = (pv('member') === 'サブスクWAGON（受講中）');
     Array.prototype.forEach.call(document.querySelectorAll('.pf-row'), function(row){
       var f = PROFILE.filter(function(p){ return p.id === row.getAttribute('data-f'); })[0];
       row.hidden = !profileVisible(f);
