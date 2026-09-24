@@ -252,7 +252,7 @@ export const features: Feature[] = [
     icon: MessageCircle,
     title: "迷ったらLINEで相談できる",
     description:
-      "LINEの先にいるのは、WAGONの専任スタッフです。どの模試を受ければよいかも含めてご相談いただけます。",
+      "LINEの先にいるのは担任です。どの模試を受ければよいかも含めてご相談いただけます。",
   },
 ];
 
@@ -501,7 +501,7 @@ export const cta = {
   /** 悩みセクション（2つめのCTA）。ここはフォームではなくLINEに送る */
   problemLabel: "無料解説講義についてLINEで聞く",
   kaisetsuLabel: "無料解説講義をLINEで聞いてみる",
-  notesReply: "LINEの先にいるのは、WAGONの専任スタッフです。当日中にご返信します。",
+  notesReply: "LINEの先にいるのは担任です。当日中にご返信します。",
 } as const;
 
 /* ---------------------------------------------------------------------- *
