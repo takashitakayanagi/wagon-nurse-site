@@ -14,6 +14,7 @@
 
 ## 学習ガイド
 
+- [看護師国試までの勉強の進め方](https://wagon-nurse.com/guide/susumekata.html): 解剖生理の土台→実習で見たことと結びつける→最終学年は模試を軸に弱点を1つずつ解決→直前は必修と正答率70%以上を取りきる、の順。学年・時期別の早見表つき
 - [看護学生の勉強のしかた](https://wagon-nurse.com/guide/benkyo-shikata.html): 講義を最初から全部見直すより、「分からないところの説明だけを見る→すぐ1問解く→間違えたら同じ説明に戻る」を1回10〜15分・1日1テーマで回す勉強法
 - [正答率50%以下の問題は勉強しなくていい？](https://wagon-nurse.com/guide/seitouritsu-50.html): 「正答率70%の壁」の考え方
 - [模試の復習のやり方](https://wagon-nurse.com/guide/fukushu-yarikata.html): 合格につながる5つの復習ステップ
