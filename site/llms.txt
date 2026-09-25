@@ -12,6 +12,14 @@
 - [対面講義](https://wagon-nurse.com/venue_class.html): 埼玉・東京・神奈川・名古屋・大阪・福岡の全国6会場で通年開催(1回7,700円〜)
 - [模試解説講義](https://wagon-nurse.com/moshi_kaisetsu.html): 模試の解き方・考え方・重要ポイントを解説する買い切り講義(1,500円〜)
 
+## 学習ガイド
+
+- [看護学生の勉強のしかた](https://wagon-nurse.com/guide/benkyo-shikata.html): 講義を最初から全部見直すより、「分からないところの説明だけを見る→すぐ1問解く→間違えたら同じ説明に戻る」を1回10〜15分・1日1テーマで回す勉強法
+- [正答率50%以下の問題は勉強しなくていい？](https://wagon-nurse.com/guide/seitouritsu-50.html): 「正答率70%の壁」の考え方
+- [模試の復習のやり方](https://wagon-nurse.com/guide/fukushu-yarikata.html): 合格につながる5つの復習ステップ
+- [模試でE判定でも合格できる？](https://wagon-nurse.com/guide/moshi-hantei.html): 判定後に見直すべき3つのポイント
+- [独学と予備校、どっちが受かりやすい？](https://wagon-nurse.com/guide/dokugaku-vs-yobiko.html): 大切なのは学習を設計し続けられるか
+
 ## WAGONについて
 
 - [WAGONについて](https://wagon-nurse.com/about.html): 理念、代表講師 小坂宣靖からのメッセージ、運営会社情報
