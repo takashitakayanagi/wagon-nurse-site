@@ -7,6 +7,8 @@
 - [トップページ](https://wagon-nurse.com/): WAGONの特徴、無料模試、最新のお知らせ
 - [サービスとプラン](https://wagon-nurse.com/plan.html): 料金プラン一覧(無料・オンラインサロン月額1,000円・バディWAGON月額20,000円、いずれも税込)
 - [バディWAGON](https://wagon-nurse.com/subscription.html): バディWAGONは、看護学生のための国試対策の月額プランです。WAGONの担任が相棒となり、あなたの課題に合わせて、LINEで1つずつ一緒に解決していきます。(旧名サブスクWAGON)月額20,000円(税込)で、WEB教室・LIVE教室・データ問80%講座・模試解説講義の4つが使える。見る動画の区間を分・秒まで指定し、見終わったら確認問題を出す。就職活動や日常の相談もできる
+- [クラスWAGON](https://wagon-nurse.com/plan.html): 無料のLINEサービス(旧名LINE担任制)。国試対策の問題が毎日1問LINEで届き、解くと類似問題が届く。約2〜3分の解説動画を毎日公開し、復習チェックで確かめる。公式LINEで「クラスWAGONに参加したい！」と送ると参加できる
+- [オンラインサロン](https://wagon-nurse.com/plan.html): 月額1,000円(税込)のお試し向けプラン。毎日問題、会員限定記事、LIVE教室の過去動画の一部を視聴できる
 - [WEB教室](https://wagon-nurse.com/web_class.html): オンデマンド動画講義。バディWAGONに含まれ、単体購入は不可
 - [LIVE教室](https://wagon-nurse.com/live_class.html): 月替わりテーマのリアルタイム生配信講義(1回500円〜、バディWAGON会員は追加料金なし)
 - [対面講義](https://wagon-nurse.com/venue_class.html): 埼玉・東京・神奈川・名古屋・大阪・福岡の全国6会場で通年開催(1回7,700円〜)
