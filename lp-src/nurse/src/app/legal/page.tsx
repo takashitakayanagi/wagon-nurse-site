@@ -16,7 +16,7 @@ type Row = { label: string; value: string };
  */
 const rows: Row[] = [
   { label: "事業者の名称", value: "株式会社WAGON" },
-  { label: "代表者／通信販売業務の責任者", value: "高柳 貴士" },
+  { label: "代表者／通信販売業務の責任者", value: "髙栁貴士" },
   {
     label: "所在地",
     value: "〒337-0051 埼玉県さいたま市見沼区東大宮5丁目35-6 エストレザンⅡ 2階",
