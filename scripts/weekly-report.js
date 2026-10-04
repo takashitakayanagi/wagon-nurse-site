@@ -164,6 +164,76 @@ function printClarity(data) {
   console.log('\n=== GA4: コンバージョンイベント（ページ別） ===');
   printGA4Rows('イベント×ページ', conversions);
 
+  /* 2026年9月7日に登録したカスタムディメンション。
+     登録は遡及しないので、9月7日より前の期間を指定しても「データなし」になる。
+     反映まで24〜48時間かかることがあり、その間はAPIがディメンション自体を知らずエラーを返す。 */
+  console.log('\n=== GA4: カスタムディメンション（2026-09-07以降のデータのみ） ===');
+
+  const quizFilter = {
+    filter: {
+      fieldName: 'pagePath',
+      stringFilter: { matchType: 'CONTAINS', value: '/lp/' },
+    },
+  };
+
+  const customReports = [
+    {
+      title: 'CTA位置別（どこのボタンが押されたか）',
+      dimensions: ['customEvent:cta_location', 'eventName'],
+      events: ['cta_click', 'generate_lead', 'begin_checkout'],
+    },
+    {
+      title: '受験学年（yes=最終学年・既卒 / no=低学年）',
+      dimensions: ['customEvent:exam_year'],
+      events: ['exam_year_select'],
+    },
+    {
+      title: 'スクロール到達率',
+      dimensions: ['customEvent:percent_scrolled'],
+      events: ['scroll_depth'],
+    },
+    {
+      title: '診断スコア別のCV（-1は5問未完了）',
+      dimensions: ['customEvent:quiz_score'],
+      events: ['generate_lead'],
+    },
+    {
+      title: 'CTA誘導領域',
+      dimensions: ['customEvent:cta_domain'],
+      events: ['quiz_complete'],
+    },
+    {
+      title: 'LP流入区分（広告 / school）',
+      dimensions: ['customEvent:lp_variant', 'eventName'],
+      events: ['page_view', 'quiz_complete', 'generate_lead'],
+    },
+  ];
+
+  for (const r of customReports) {
+    try {
+      const report = await runGA4Report(accessToken, {
+        dateRanges: [{ startDate, endDate }],
+        dimensions: r.dimensions.map((name) => ({ name })),
+        metrics: [{ name: 'eventCount' }, { name: 'totalUsers' }],
+        dimensionFilter: {
+          andGroup: {
+            expressions: [
+              quizFilter,
+              { filter: { fieldName: 'eventName', inListFilter: { values: r.events } } },
+            ],
+          },
+        },
+        orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
+        limit: 30,
+      });
+      printGA4Rows(r.title, report);
+    } catch (err) {
+      // 登録直後はディメンションがAPIに伝播しておらず、ここで弾かれる。
+      console.log(`\n--- ${r.title} ---`);
+      console.log('  まだ取得できません（登録の反映待ち、または対象期間にデータなし）');
+    }
+  }
+
   const clarity = await getClarityInsights();
   printClarity(clarity);
 

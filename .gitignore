@@ -9,3 +9,8 @@ out/
 site/lp/manga/
 site/lp/nurse/
 site/lp/moshi/
+
+# 公開リポジトリなので、教材データ・未公開の原稿・LINE用の画像は記録しない
+reply-db/
+note-drafts/
+richmenu-*.png
