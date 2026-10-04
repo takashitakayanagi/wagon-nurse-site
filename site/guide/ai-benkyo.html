@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/assets/img/favicon.png" type="image/png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FXKCWMXKJB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  // 旧サイトの拡張子なしURL(/about など)には、GitHub Pagesが .html を補って
+  // 200を返す（301はしない）。そのままだとGA4で /about と /about.html が
+  // 別ページとして積み上がるため、計測上のURLだけをこのページの実体に寄せる。
+  // ?utm_* などのクエリとハッシュは、キャンペーン計測が壊れないよう残す。
+  gtag('config', 'G-FXKCWMXKJB', {
+    page_location: 'https://wagon-nurse.com/guide/ai-benkyo.html' + location.search + location.hash
+  });
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ybfkyv1j57");
+</script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2817935241910493');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2817935241910493&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<title>ChatGPTで看護師国試の勉強をしてもいい？AIの答えを点数に変える使い方 - WAGON</title>
+<meta name="description" content="ChatGPTなどのAIや検索で調べながら看護師国試の勉強をしてかまいません。ただし「その答えが正しいか」「今の自分が優先して覚えるべき範囲か」「次に何を解けばいいか」の3つは、AIの答えだけでは決まりません。答えを知ることと、正しい順番で勉強することの違いをWAGONが解説します。">
+<link rel="canonical" href="https://wagon-nurse.com/guide/ai-benkyo.html">
+<meta property="og:site_name" content="ナース・ライセンススクール WAGON">
+<meta property="og:title" content="ChatGPTで看護師国試の勉強をしてもいい？AIの答えを点数に変える使い方 - WAGON">
+<meta property="og:description" content="ChatGPTなどのAIや検索で調べながら看護師国試の勉強をしてかまいません。ただし「その答えが正しいか」「今の自分が優先して覚えるべき範囲か」「次に何を解けばいいか」の3つは、AIの答えだけでは決まりません。答えを知ることと、正しい順番で勉強することの違いをWAGONが解説します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wagon-nurse.com/guide/ai-benkyo.html">
+<meta property="og:image" content="https://wagon-nurse.com/assets/img/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wagon-nurse.com/assets/img/hero.jpg">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"ナース・ライセンススクール WAGON","alternateName":["WAGON","ナースライセンススクールWAGON","ナース・ライセンススクールWAGON"],"legalName":"株式会社WAGON","description":"看護師国家試験対策の予備校。2026年度、全国の看護学校で4,500コマ以上の非常勤講義を担当しています。","address":{"@type":"PostalAddress","postalCode":"337-0051","addressRegion":"埼玉県","addressLocality":"さいたま市見沼区","streetAddress":"東大宮5丁目35-6 エストレザンⅡ 2階","addressCountry":"JP"},"telephone":"+81-48-685-3316","email":"wagon@nurse-wagon.com","url":"https://wagon-nurse.com/","logo":{"@type":"ImageObject","url":"https://wagon-nurse.com/assets/img/wagon-logo.png","width":723,"height":227},"sameAs":["https://twitter.com/nursewagon","https://www.youtube.com/channel/UCifxRY2eXLP5N96EnS72rKw","https://note.com/wagon_nurse","https://page.line.me/wvr6857m","https://www.instagram.com/wagon_nurse/"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"ホーム","item":"https://wagon-nurse.com/"},
+{"@type":"ListItem","position":2,"name":"学習ガイド","item":"https://wagon-nurse.com/guide.html"},
+{"@type":"ListItem","position":3,"name":"ChatGPTで看護師国試の勉強をしてもいい？","item":"https://wagon-nurse.com/guide/ai-benkyo.html"}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"ChatGPTで看護師国試の勉強をしてもいいですか？","acceptedAnswer":{"@type":"Answer","text":"調べながら勉強してかまいません。病態や薬、検査値、看護について、すぐ説明を見られるのはとても便利です。ただし、その答えが本当に正しいか、今の自分が優先して覚えるべき範囲か、次に何を解けばいいかの3つは、AIの答えだけでは決まりません。答えを知ることと、国試に向けて正しい順番で勉強することは違います。"}},
+{"@type":"Question","name":"AIの答えは間違っていることがありますか？","acceptedAnswer":{"@type":"Answer","text":"あります。AIは的確な答えを返してくれることも多い一方で、説明が不正確だったり、国試で必要な範囲より細かすぎたりすることもあります。特に、まだその分野を十分に理解できていないときほど、もっともらしい説明が本当に合っているかを自分で判断するのは簡単ではありません。"}},
+{"@type":"Question","name":"AIで調べて分かったのに、問題が解けないのはなぜですか？","acceptedAnswer":{"@type":"Answer","text":"「分かった」と「解ける」は違うからです。国試で必要なのは、その場で理解することではなく、数日後に問題として出されたときに自分で答えられることです。理解する→問題を解く→間違える→もう一度確認する、という流れで、答えを見たら次の問題につなげることが大切です。"}},
+{"@type":"Question","name":"何から勉強すればいいか分からないときは、どうすればいいですか？","acceptedAnswer":{"@type":"Answer","text":"①正答率の高い問題を落としていないか、②同じ分野で何度も間違えていないか、③間違えた理由は何か（知識不足・読み違い・判断できなかった）、の3つの順番で考えると、勉強の方向が整理できます。"}},
+{"@type":"Question","name":"間違えた問題は全部復習しないといけませんか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。全部を同じように復習するより、何を先にやるかが大切です。まず、多くの受験生が正解している正答率70%以上の問題で落としたものから確認します。10人中7人以上が正解している問題は、得点を伸ばしやすい部分だからです。"}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","url":"https://wagon-nurse.com/guide/ai-benkyo.html","reviewedBy":{"@type":"Person","name":"小坂宣靖","jobTitle":"代表講師","description":"看護師として臨床経験を積み、現在はナース・ライセンススクールWAGONの代表講師として看護師国家試験対策の講義を行う。","url":"https://wagon-nurse.com/about.html#message","worksFor":{"@type":"Organization","name":"ナース・ライセンススクール WAGON","url":"https://wagon-nurse.com/"}},"dateModified":"2026-10-04","speakable":{"@type":"SpeakableSpecification","cssSelector":[".guide-answer",".faq-a"]}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"ChatGPTで看護師国試の勉強をしてもいい？","description":"ChatGPTなどのAIや検索で調べながら看護師国試の勉強をしてかまいません。ただし「その答えが正しいか」「今の自分が優先して覚えるべき範囲か」「次に何を解けばいいか」の3つは、AIの答えだけでは決まりません。答えを知ることと、正しい順番で勉強することの違いをWAGONが解説します。","mainEntityOfPage":"https://wagon-nurse.com/guide/ai-benkyo.html","image":"https://wagon-nurse.com/assets/img/hero.jpg","datePublished":"2026-10-04","dateModified":"2026-10-04","author":{"@type":"Organization","name":"ナース・ライセンススクール WAGON","url":"https://wagon-nurse.com/"},"publisher":{"@type":"Organization","name":"ナース・ライセンススクール WAGON","url":"https://wagon-nurse.com/","logo":{"@type":"ImageObject","url":"https://wagon-nurse.com/assets/img/wagon-logo.png"}},"inLanguage":"ja"}
+</script>
+<style>
+  main.page .page-hero-sub{ text-align:center; font-size:14px; color:var(--ink-soft); max-width:680px; margin:18px auto 0; word-break:keep-all; overflow-wrap:break-word; }
+  .term{ margin-top:18px; }
+  .term h3{ font-size:15px; margin:0 0 6px; color:var(--ink); }
+  main.page .term p{ margin:0; font-size:13.5px; max-width:none; }
+  main.page section ul.check{ margin:8px 0 0; padding-left:1.4em; font-size:13.5px; line-height:1.9; color:var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<header class="topnav">
+  <a class="logo-block" href="/">
+    <div class="logo-eyebrow">看護師国家試験対策 ナース・ライセンススクール</div>
+    <img src="/assets/img/wagon-logo.png" alt="WAGON" class="logo-img">
+  </a>
+  <nav class="primary-nav">
+    <a href="/about.html">WAGONについて</a>
+    <a href="/howto.html">合格の仕組み</a>
+    <a href="/plan.html">サービスとプラン</a>
+  </nav>
+  <a class="school-btn" href="/forschool.html">学校関係者の皆様へ</a>
+</header>
+
+<main class="page" style="max-width:760px;">
+  <p class="guide-crumb"><a href="/">ホーム</a> &rsaquo; <a href="/guide.html">学習ガイド</a> &rsaquo; ChatGPTで看護師国試の勉強をしてもいい？</p>
+  <h1 style="font-size:24px; font-weight:900; letter-spacing:-.01em; margin:0 0 6px;">ChatGPTで看護師国試の勉強をしてもいい？</h1>
+  <p class="guide-byline">監修：<a href="/about.html#message">代表講師 小坂宣靖（看護師）</a>｜2026年10月4日 公開</p>
+  <p class="page-hero-sub" style="text-align:left; margin-left:0;">AIの答えを、国試の点数に変える考え方を解説します。</p>
+  <p class="guide-answer">ChatGPTなどのAIやGoogle検索で調べながら勉強してかまいません。ただし、<strong>①返ってきた答えが本当に正しいか、②今の自分が優先して覚えるべき範囲か、③次に何を解けばいいか</strong>、の3つは、AIの答えだけでは決まりません。答えを知ることと、国試に向けて正しい順番で勉強することは違います。</p>
+
+  <section>
+    <h2 class="hl">AIや検索は、とても便利</h2>
+    <p style="margin-top:18px;">今は、分からないことがあれば、ChatGPTなどのAIやGoogle検索ですぐに調べられます。病態や薬、検査値、看護について、すぐ説明を見られるのはとても便利です。</p>
+  </section>
+
+  <section class="section-sky">
+    <h2 class="hl">気をつけたいのは「その答えを信じていいか」</h2>
+    <p style="margin-top:18px;">ただし、国試対策では一つ大事なことがあります。それは、<strong>「返ってきた答えが本当に正しいか、自分で判断できるか」</strong>ということです。</p>
+    <p style="margin-top:14px;">AIは的確な答えを返してくれることも多い一方で、説明が不正確だったり、国試で必要な範囲より細かすぎたりすることもあります。特に、まだその分野を十分に理解できていないときほど、「もっともらしい説明だけれど、本当に合っているのか」を自分で判断するのは簡単ではありません。</p>
+  </section>
+
+  <section>
+    <h2 class="hl">答えが正しくても、優先順位は別の話</h2>
+    <p style="margin-top:18px;">さらに、答えが正しかったとしても、次のことまでは分かりません。</p>
+    <ul class="check">
+      <li>今の自分が優先して覚えるべき内容なのか</li>
+      <li>そこまで細かく覚える必要があるのか</li>
+      <li>この問題を間違えた次に、何を勉強すればいいのか</li>
+    </ul>
+    <p style="margin-top:14px;">つまり、<strong>答えを知ることと、国試に向けて正しい順番で勉強することは違います。</strong>国試対策で大切なのは、勉強時間を増やすことより、何を先にやるかを間違えないことです。</p>
+    <p style="margin-top:14px;">WAGONでは、まず正答率70%以上の問題を優先して確認することをおすすめしています。10人中7人以上が正解している問題を落としているなら、そこは得点を伸ばしやすい部分だからです（<a href="/guide/seitouritsu-50.html" style="color:var(--accent); font-weight:700;">「正答率70%の壁」</a>）。模試を見るときも、「何点だったか」だけでなく<a href="/guide/goukaku-line.html" style="color:var(--accent); font-weight:700;">「何を間違えたか」</a>を見ることが大切です。</p>
+  </section>
+
+  <section class="section-sky">
+    <h2 class="hl">「分かった」と「解ける」も違う</h2>
+    <p style="margin-top:18px;">AIや検索で解説を読むと、「なるほど、分かった」と思うことがあります。でも、国試で必要なのは、その場で理解できることではありません。<strong>数日後に問題として出されたときに、自分で答えられること</strong>です。</p>
+    <p style="margin-top:14px;">理解する → 問題を解く → 間違える → もう一度確認する。答えを見たら、そこで終わらせず、次の問題につなげることが大切です（<a href="/guide/benkyo-shikata.html" style="color:var(--accent); font-weight:700;">看護学生の勉強のしかた</a>）。</p>
+  </section>
+
+  <section>
+    <h2 class="hl">迷ったら、この3つで優先順位を決める</h2>
+    <p style="margin-top:18px;">何を勉強すればいいか分からなくなったら、次の順番で考えてみてください。</p>
+    <div class="term">
+      <h3>① 正答率の高い問題を落としていないか</h3>
+      <p>まずは、みんなが取れている問題から確認する。</p>
+    </div>
+    <div class="term">
+      <h3>② 同じ分野で何度も間違えていないか</h3>
+      <p>循環器、呼吸器、内分泌など、同じ分野が続くなら基本から戻る。</p>
+    </div>
+    <div class="term">
+      <h3>③ 間違えた理由は何か</h3>
+      <p>知識不足なのか、読み違いなのか、判断できなかったのかを考える。</p>
+    </div>
+    <p style="margin-top:18px;">国試対策は、全部を完璧にする必要はありません。正しい情報を選ぶ。取るべき問題を知る。次にやることを決める。分かったことを、解ける状態に変える。<strong>この順番を間違えないことが、合格への近道です。</strong></p>
+  </section>
+
+  <section class="section-sky">
+    <h2 class="hl">バディWAGONは「答え」だけでなく「次に何をやるか」まで</h2>
+    <p style="margin-top:18px;">国試勉強で一番もったいないのは、何をやればいいか迷っている時間です。</p>
+    <p style="margin-top:14px;"><a href="/subscription.html" style="color:var(--accent); font-weight:700;">バディWAGON</a>は、看護学生のための国試対策の月額プランです。WAGONの担任が相棒となり、あなたの課題に合わせて、LINEで1つずつ一緒に解決していきます。質問に答えるだけではなく、その答えが国試対策として適切かを確認し、今のあなたに必要な範囲に絞り、次に見る動画や解く問題までつなげていきます。</p>
+    <ul class="check">
+      <li>AIに聞いたけど、この答えを信じていいのか不安</li>
+      <li>説明は分かったけど、次に何をすればいいか分からない</li>
+      <li>模試の結果を見ても、どこから直せばいいか分からない</li>
+    </ul>
+    <p style="margin-top:14px;">そんなときに、相談できる相手がいるのがバディWAGONです。まずは無料の<a href="/plan.html" style="color:var(--accent); font-weight:700;">クラスWAGON</a>で毎日の問題に取り組みながら、自分が取るべき問題を取れているか確認してみてください。</p>
+  </section>
+
+  <section>
+    <h2 class="hl">よくある質問</h2>
+    <div style="margin-top:20px;">
+      <details class="faq" open>
+        <summary>ChatGPTで看護師国試の勉強をしてもいいですか？<span></span></summary>
+        <p class="faq-a">調べながら勉強してかまいません。病態や薬、検査値、看護について、すぐ説明を見られるのはとても便利です。ただし、その答えが本当に正しいか、今の自分が優先して覚えるべき範囲か、次に何を解けばいいかの3つは、AIの答えだけでは決まりません。答えを知ることと、国試に向けて正しい順番で勉強することは違います。</p>
+      </details>
+      <details class="faq">
+        <summary>AIの答えは間違っていることがありますか？<span></span></summary>
+        <p class="faq-a">あります。AIは的確な答えを返してくれることも多い一方で、説明が不正確だったり、国試で必要な範囲より細かすぎたりすることもあります。特に、まだその分野を十分に理解できていないときほど、もっともらしい説明が本当に合っているかを自分で判断するのは簡単ではありません。</p>
+      </details>
+      <details class="faq">
+        <summary>AIで調べて分かったのに、問題が解けないのはなぜですか？<span></span></summary>
+        <p class="faq-a">「分かった」と「解ける」は違うからです。国試で必要なのは、その場で理解することではなく、数日後に問題として出されたときに自分で答えられることです。理解する→問題を解く→間違える→もう一度確認する、という流れで、答えを見たら次の問題につなげることが大切です。</p>
+      </details>
+      <details class="faq">
+        <summary>何から勉強すればいいか分からないときは、どうすればいいですか？<span></span></summary>
+        <p class="faq-a">①正答率の高い問題を落としていないか、②同じ分野で何度も間違えていないか、③間違えた理由は何か（知識不足・読み違い・判断できなかった）、の3つの順番で考えると、勉強の方向が整理できます。</p>
+      </details>
+      <details class="faq">
+        <summary>間違えた問題は全部復習しないといけませんか？<span></span></summary>
+        <p class="faq-a">いいえ。全部を同じように復習するより、何を先にやるかが大切です。まず、多くの受験生が正解している正答率70%以上の問題で落としたものから確認します。10人中7人以上が正解している問題は、得点を伸ばしやすい部分だからです。</p>
+      </details>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="hl" style="font-size:16px;">関連する悩み</h2>
+    <div class="related-list">
+      <a href="/guide/benkyo-shikata.html">看護学生の勉強のしかた｜動画→1問→やり直し &rsaquo;</a>
+      <a href="/guide/seitouritsu-50.html">国試の正答率50%以下の問題、勉強しなくていい？ &rsaquo;</a>
+      <a href="/guide/goukaku-line.html">看護師国試の合格ラインは何点？｜過去5年のボーダー・合格率 &rsaquo;</a>
+      <a href="/guide/fukushu-yarikata.html">模試の復習、受けっぱなしになっていませんか？ &rsaquo;</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2 class="hl" style="font-size:18px;">まずは無料でWAGONを試してみませんか</h2>
+      <p style="margin-top:14px;">無料模試で今の実力を確認できるほか、掲示板の閲覧・クラスWAGONでの毎日問題・公式LINEでの質疑応答も無料でご利用いただけます。</p>
+      <p style="margin-top:10px;">ひとりで勉強を進めるのが不安な人には、有料の<a href="/subscription.html" style="color:var(--accent); font-weight:700;">バディWAGON</a>もあります。バディWAGONは、看護学生のための国試対策の月額プランです。WAGONの担任が相棒となり、あなたの課題に合わせて、LINEで1つずつ一緒に解決していきます。</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
+        <a class="btn lg" href="https://forms.gle/QWdwTxHozDBj5ThL8" target="_blank" rel="noopener">無料模試を受けてみる &rsaquo;</a>
+        <a class="btn line lg" href="https://page.line.me/wvr6857m" target="_blank" rel="noopener">LINEに登録する &rsaquo;</a>
+      </div>
+      <span class="deadline-note">模試の受付は2027年1月22日までです</span>
+      <br><span class="deadline-note urgent" style="margin-top:8px;">2026年12月26日以降のお申込みは有料になります</span>
+      <p class="reply-note"><span class="dot"></span>LINEの先にいるのは本物の担任です。当日中にご返信します。</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="foot-grid">
+    <div>
+      <h3>ナース・ライセンススクール WAGON</h3>
+      <p style="color:#93A6B6; max-width:38ch;">看護師国家試験対策のオンライン予備校。データに基づく学習と、多医療職の講師陣による少人数制講義が特長です。</p>
+    </div>
+    <div>
+      <h3>WAGONを使う</h3>
+      <ul>
+        <li><a href="/contact.html">講座お申し込み</a></li>
+        <li><a href="/forms.html">お申し込みフォーム一覧</a></li>
+        <li><a href="/subscription.html">バディWAGON</a></li>
+        <li><a href="/web_class.html">WEB教室</a></li>
+        <li><a href="/live_class.html">LIVE教室</a></li>
+        <li><a href="/venue_class.html">対面講義</a></li>
+        <li><a href="/moshi_kaisetsu.html">模試解説講義</a></li>
+        <li><a href="/moshi.html">WAGON模擬試験（無料）</a></li>
+        <li><a href="https://forms.gle/QWdwTxHozDBj5ThL8" target="_blank" rel="noopener">模擬試験個人お申込み</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>WAGONについて</h3>
+      <ul>
+        <li><a href="/about.html">WAGONについて</a></li>
+        <li><a href="/howto.html">合格の仕組み</a></li>
+        <li><a href="/guide.html">学習ガイド</a></li>
+        <li><a href="/plan.html">サービスとプラン</a></li>
+        <li><a href="/about.html#company_info">運営会社</a></li>
+        <li><a href="/law.html">特定商取引法に基づく表示</a></li>
+        <li><a href="/moshi_terms.html">模試サービスの利用規約</a></li>
+        <li><a href="/contact.html">お問い合わせ</a></li>
+        <li><a href="/privacy_policy.html">プライバシーポリシー</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="copyright">Copyright © 2016 ナース・ライセンススクール WAGON All Rights Reserved.</p>
+</footer>
+
+<div class="sticky-cta">
+  <div class="msg"><strong>まずは無料模試から</strong>0円・登録後すぐ受験</div>
+  <a class="btn" href="https://forms.gle/QWdwTxHozDBj5ThL8" target="_blank" rel="noopener">無料模試を受けてみる &rsaquo;</a>
+</div>
+<script src="/assets/js/sticky-cta.js"></script>
+<script src="/assets/js/form-click.js"></script>
+
+</body>
+</html>
