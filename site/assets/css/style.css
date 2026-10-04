@@ -293,3 +293,22 @@ details.faq .faq-a{ padding:0 20px 18px; color:var(--ink-soft); font-size:14px; 
   .sticky-cta.duo .msg{ display:block; }
   .sticky-cta.duo .cta-actions{ flex:0 1 400px; }
 }
+
+/* ===== 学習ガイド・各ページで共通の部品（以前は各ページの<style>に同じものをコピーしていた） ===== */
+.page-hero.custom-img::before, .page-hero.custom-img::after{ content:none; }
+.guide-crumb{ font-size:12px; color:var(--ink-soft); margin:0 0 6px; }
+.guide-crumb a{ color:var(--ink-soft); }
+.guide-byline{ font-size:12px; color:var(--ink-soft); margin:4px 0 0; }
+.guide-byline a{ color:var(--ink-soft); }
+.related-list{ display:grid; gap:10px; margin-top:16px; }
+.related-list a{ font-size:13.5px; color:var(--accent); font-weight:700; text-decoration:none; }
+.related-list a:hover{ text-decoration:underline; }
+main.page .guide-answer{ max-width:none; margin:18px 0 0; padding:16px 18px; border-radius:14px; background:#EAF8FC; color:var(--ink); font-size:14.5px; line-height:1.9; }
+.plan-table{ width:100%; border-collapse:collapse; margin-top:18px; font-size:13px; background:var(--card-bg); border-radius:14px; overflow:hidden; box-shadow:var(--card-shadow); }
+.plan-table th, .plan-table td{ padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; color:var(--ink-soft); }
+.plan-table th{ background:#EAF8FC; color:var(--ink); font-weight:800; white-space:nowrap; }
+.plan-table td:first-child{ font-weight:800; color:var(--ink); white-space:nowrap; }
+.plan-table tr:last-child td{ border-bottom:none; }
+.info-table th{ text-align:left; color:var(--ink-soft); font-weight:700; padding:10px 16px 10px 0; white-space:nowrap; vertical-align:top; width:140px; }
+.info-table td{ padding:10px 0; border-top:1px solid var(--line); }
+.info-table tr:first-child td{ border-top:none; }
