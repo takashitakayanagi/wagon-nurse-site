@@ -14,3 +14,9 @@ site/lp/moshi/
 reply-db/
 note-drafts/
 richmenu-*.png
+
+# 決算書・試算表・融資の相談資料（社外秘）
+融資資料/
+/*.pdf
+/*.docx
+/*.xlsx
