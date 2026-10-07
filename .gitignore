@@ -17,7 +17,7 @@ richmenu-*.png
 
 # 決算書・試算表・融資の相談資料（社外秘）
 融資資料/
-請求書PDF/
+請求書PDF*/
 /*.pdf
 /*.docx
 /*.xlsx
