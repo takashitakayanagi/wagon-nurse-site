@@ -1,5 +1,6 @@
 import SafeImage from "./SafeImage";
 import LineButton from "./LineButton";
+import PhraseText from "./PhraseText";
 import { finalCta, cta, site } from "@/config/site";
 
 /**
@@ -30,7 +31,9 @@ export default function FinalCtaSection() {
 
           <div className="mx-auto mt-4 max-w-md space-y-3 text-sm leading-relaxed text-white/90">
             {finalCta.body.map((p, i) => (
-              <p key={i}>{p}</p>
+              <p key={i}>
+                <PhraseText text={p} />
+              </p>
             ))}
           </div>
 

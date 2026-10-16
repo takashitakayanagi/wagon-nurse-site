@@ -1,5 +1,6 @@
 import { Check } from "lucide-react";
 import LineButton from "./LineButton";
+import PhraseText from "./PhraseText";
 import { lineBenefits, lineBenefitsHeading, cta } from "@/config/site";
 
 /**
@@ -21,7 +22,7 @@ export default function LineBenefitsSection() {
                 <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-line text-white">
                   <Check className="h-4 w-4" aria-hidden="true" />
                 </span>
-                <span className="text-sm text-ink">{b}</span>
+                <span className="text-sm text-ink"><PhraseText text={b} /></span>
               </li>
             ))}
           </ul>
@@ -34,7 +35,7 @@ export default function LineBenefitsSection() {
         <div className="mt-8 flex flex-col items-center gap-2">
           <LineButton cta="benefits" label={cta.benefitLabel} />
           <p className="text-xs text-inkSoft">
-            {cta.notesFree}・{cta.notesOptional}
+            <PhraseText text={`${cta.notesFree}・｜${cta.notesOptional}`} />
           </p>
         </div>
       </div>

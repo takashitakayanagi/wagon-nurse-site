@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
 import { site } from "@/config/site";
 import { trackCta, type CtaLocation } from "@/lib/tracking";
+import PhraseText from "./PhraseText";
 
 type Variant = "primary" | "onDark";
 
@@ -59,7 +60,7 @@ export default function LineButton({
         className={`${base} ${skin} cursor-not-allowed opacity-60 ${className}`}
       >
         <MessageCircle className="h-5 w-5" aria-hidden="true" />
-        <span>{label}</span>
+        <span><PhraseText text={label} /></span>
       </button>
     );
   }
@@ -74,7 +75,7 @@ export default function LineButton({
       data-cta={cta}
     >
       <MessageCircle className="h-5 w-5" aria-hidden="true" />
-      <span>{label}</span>
+      <span><PhraseText text={label} /></span>
     </a>
   );
 }

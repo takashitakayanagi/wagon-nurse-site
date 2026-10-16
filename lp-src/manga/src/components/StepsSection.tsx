@@ -1,14 +1,15 @@
-import { steps } from "@/config/site";
+import { steps, stepsHeading } from "@/config/site";
+import PhraseText from "./PhraseText";
 
 /**
- * LINE登録から毎日1問が届くまで（3ステップ）。
+ * 友だち追加からクラスWAGONに参加するまで（3ステップ）。
  */
 export default function StepsSection() {
   return (
     <section className="bg-wagon-50 py-14" aria-labelledby="steps-heading">
       <div className="container-lp">
         <h2 id="steps-heading" className="section-heading text-center">
-          LINE登録から毎日1問が届くまで
+          {stepsHeading}
         </h2>
 
         <ol className="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-3">
@@ -24,8 +25,8 @@ export default function StepsSection() {
                 {s.no}
               </span>
               <p className="text-xs font-bold text-wagon-600">STEP {s.no}</p>
-              <h3 className="mt-1 text-sm font-bold text-ink">{s.title}</h3>
-              <p className="mt-2 text-xs leading-relaxed text-inkSoft">{s.description}</p>
+              <h3 className="mt-1 text-sm font-bold text-ink"><PhraseText text={s.title} /></h3>
+              <p className="mt-2 text-xs leading-relaxed text-inkSoft"><PhraseText text={s.description} /></p>
             </li>
           ))}
         </ol>
